@@ -16,5 +16,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - TOML schema with 18 standard drivers and custom escape hatch
 - CI validation workflow
 - Contribution guidelines and issue templates
+- Full legal and compliance framework (CLA, Code of Conduct, Governance, Trademark policy)
+- SPDX license headers on all source files
+- REUSE compliance for non-commentable files
+- Dependabot configuration for CI supply chain updates
+- OpenSSF Scorecard badge
 
 [1.0.0]: https://github.com/vinver-ai/boards/releases/tag/v1.0.0
