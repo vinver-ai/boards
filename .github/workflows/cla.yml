@@ -31,7 +31,7 @@ jobs:
           path-to-signatures: "CLA-SIGNATURES.json"
           path-to-document: "https://github.com/${{ github.repository }}/blob/main/CLA-INDIVIDUAL.md"
           branch: "main"
-          allowlist: "dependabot[bot],renovate[bot],github-actions[bot]"
+          allowlist: "VinyQueiroz,dependabot[bot],renovate[bot],github-actions[bot]"
           custom-notsigned-prcomment: >
             Thank you for your contribution! Before we can merge this PR, you
             need to sign our [Contributor License Agreement](https://github.com/${{ github.repository }}/blob/main/CLA-INDIVIDUAL.md).
