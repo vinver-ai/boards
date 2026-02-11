@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <!-- Copyright 2026 Vinver, Inc. -->
 
-# Vinver Board Manifest Schema
+# Vinver Board Manifest Schema (v1.0)
 
 Each `.toml` file in `boards/` describes one ESP32 board variant. This document
 defines every section, field, and type. The canonical "god board" reference is
