@@ -1,0 +1,106 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "sensebox_mcu_esp32s2"
+family = "sensebox_mcu_esp32s2"
+description = "senseBox MCU ESP32-S2 board with 1x RGB LED (WS2812-style), two I2C buses (Qwiic and secondary), XBee socket with dedicated SPI/UART plus control pins, and SPI microSD (CS shared with VSPI_SS) with power/enable control."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+xbee_socket = {driver = "custom.xbee_socket", type = "custom"}
+pd = {driver = "custom.pd", type = "custom"}
+uart_port_enable = {driver = "custom.uart_port_enable", type = "custom"}
+io_header = {driver = "custom.io_header", type = "custom"}
+i2c_int = {driver = "custom.i2c_int", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 39
+scl = 40
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.i2c1]
+sda = 45
+scl = 42
+freq = 400000
+
+[system.uart1]
+tx = 17
+rx = 18
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 1
+num_leds = 1
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 10
+power_pin = 9
+
+["custom.xbee_socket"]
+type = "xbee"
+cs = 34
+enable = 41
+int = 33
+miso = 37
+mosi = 35
+reset = 38
+rxd = 18
+sck = 36
+txd = 17
+
+["custom.pd"]
+type = "power_delivery"
+enable = 21
+sense = 14
+
+["custom.uart_port_enable"]
+type = "level_shifter_enable"
+enable = 26
+
+["custom.io_header"]
+type = "gpio_header"
+io2 = 2
+io3 = 3
+io4 = 4
+io5 = 5
+io6 = 6
+io7 = 7
+io_enable = 8
+
+["custom.i2c_int"]
+type = "i2c_interrupt"
+int = 46
+
+["custom.board_specific"]
+type = "misc"
+pin_usb_dm = 19
+pin_usb_dp = 20
+usb_fw_msc_serial_number = 0

@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "cezerio_dev_esp32c6"
+family = "cezerio_dev_esp32c6"
+description = "ESP32-C6 dev board with a built-in status LED, boot/user button, primary I2C on GPIO8/7 (also labeled for IMU), and primary SPI on GPIO22/23/21 with SS on GPIO14."
+chip = "esp32c6"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+matrix = {driver = "custom.matrix", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 9
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 8
+scl = 7
+freq = 400000
+
+[system.spi]
+mosi = 22
+miso = 23
+sck = 21
+
+[system.uart]
+tx = 16
+rx = 17
+baud = 115200
+
+["drivers.neopixel"]
+type = "unknown"
+pin = 3
+num_leds = 1
+
+["custom.matrix"]
+type = "gpio"
+MATRIX = 18
+
+["custom.board_specific"]
+type = "misc"
+imusc = 7
+imusd = 8

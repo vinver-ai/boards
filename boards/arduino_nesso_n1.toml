@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "arduino_nesso_n1"
+family = "arduino_nesso_n1"
+description = "Arduino Nesso N1 (ESP32) with I2C on GPIO10/8, SPI on GPIO21/22/20, SX126x-style LoRa (CS/IRQ/BUSY), a buzzer, IR transmitter, Grove IO pins, and an SPI LCD control interface (CS/RS)."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+display = {driver = "drivers.display", type = "display"}
+ir_tx = {driver = "custom.ir_tx", type = "custom"}
+grove = {driver = "custom.grove", type = "custom"}
+sys_irq = {driver = "custom.sys_irq", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+buzzer_pin = 11
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 10
+scl = 8
+freq = 400000
+
+[system.spi]
+mosi = 21
+miso = 22
+sck = 20
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 17
+dc = 16
+
+["custom.ir_tx"]
+type = "ir_transmitter"
+tx = 9
+
+["custom.grove"]
+type = "grove_port"
+io0 = 5
+io1 = 4
+
+["custom.sys_irq"]
+type = "interrupt"
+irq = 3

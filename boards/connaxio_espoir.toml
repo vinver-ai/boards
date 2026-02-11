@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "connaxio_espoir"
+family = "connaxio_espoir"
+description = "ESP32 board with RMII Ethernet PHY (MDC/MDIO, PHY addr 0) and a general-purpose SPI + I2C header-style pinout. Includes an extra UART (TX1/RX1)."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+ethernet = {driver = "drivers.ethernet", type = "ethernet"}
+generic_module_header = {driver = "custom.generic_module_header", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 23
+scl = 18
+freq = 400000
+
+[system.spi]
+mosi = 13
+miso = 12
+sck = 14
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.uart1]
+tx = 10
+rx = 9
+baud = 115200
+
+["drivers.ethernet"]
+type = "unknown"
+bus = "rmii"
+mdc = 32
+mdio = 33
+phy_addr = 0
+irq = 35
+
+["custom.generic_module_header"]
+type = "module_header"
+an = 36
+cs = 15
+int = 4
+pwm = 2
+rst = 5

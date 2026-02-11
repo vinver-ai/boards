@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "waveshare_esp32_s3_touch_lcd_5"
+family = "waveshare_esp32_s3"
+description = "Waveshare ESP32-S3 Touch LCD 5\" board with RGB (parallel) LCD interface, I2C touch panel, onboard RS485 and CAN (TWAI) transceivers, plus exposed SPI and I2C headers."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+touch = {driver = "drivers.touch", type = "touch"}
+can = {driver = "drivers.can", type = "can"}
+rs485 = {driver = "drivers.rs485", type = "rs485"}
+ws_rgb_lcd = {driver = "custom.ws_rgb_lcd", type = "custom"}
+ws_touch_i2c = {driver = "custom.ws_touch_i2c", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 11
+scl = 10
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+irq = 4
+
+["drivers.can"]
+txd = 16
+rxd = 15
+
+["drivers.rs485"]
+txd = 44
+rxd = 43
+
+["custom.ws_rgb_lcd"]
+type = "rgb_lcd_parallel"
+b5 = 18
+b6 = 17
+r4 = 2
+vsync = 3
+
+["custom.ws_touch_i2c"]
+type = "touch_i2c_bus"
+scl = 9
+sda = 8

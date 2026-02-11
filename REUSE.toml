@@ -1,0 +1,6 @@
+version = 1
+
+[[annotations]]
+path = ["LICENSE", "NOTICE", "CODEOWNERS", ".gitattributes", "CLA-SIGNATURES.json"]
+SPDX-License-Identifier = "Apache-2.0"
+SPDX-FileCopyrightText = "2026 Vinver, Inc."

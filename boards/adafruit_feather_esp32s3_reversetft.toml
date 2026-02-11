@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_feather_esp32s3_reversetft"
+family = "adafruit_feather_esp32s3"
+description = "Adafruit Feather ESP32-S3 with reverse-mounted SPI TFT display, 1x NeoPixel (with power control), primary I2C and UART broken out."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+display = {driver = "drivers.display", type = "display"}
+
+[system]
+led_pin = 13
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 3
+scl = 4
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 39
+rx = 38
+baud = 115200
+
+[system.uart1]
+tx = 39
+rx = 38
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 33
+power_pin = 21
+num_leds = 1
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 42
+dc = 40
+rst = 41
+backlight = 45
+power_pin = 7

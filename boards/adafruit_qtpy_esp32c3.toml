@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_qtpy_esp32c3"
+family = "adafruit_qtpy"
+description = "Adafruit QT Py ESP32-C3 with boot/user button, onboard NeoPixel (RGB), I2C and SPI pin definitions."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+rgb_led = {pin = "system.led_pin", type = "addressable_rgb"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = 24
+button_pin = 9
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 5
+scl = 6
+freq = 400000
+
+[system.spi]
+mosi = 7
+miso = 8
+sck = 10
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 2
+num_leds = 1

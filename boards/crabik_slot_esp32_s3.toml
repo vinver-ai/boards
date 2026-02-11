@@ -1,0 +1,87 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "crabik_slot_esp32_s3"
+family = "crabik_slot_esp32_s3"
+description = "ESP32-S3 slot-style board with built-in user LED, BOOT button, primary I2C and SPI broken out, and LiPo alert plus external power enable (Troyka)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+slot_connectors = {driver = "custom.slot_connectors", type = "custom"}
+spi_chip_selects = {driver = "custom.spi_chip_selects", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 21
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 13
+scl = 14
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 8
+rx = 7
+baud = 115200
+
+[system.uart1]
+tx = 8
+rx = 7
+baud = 115200
+
+[system.power]
+battery_adc = 16
+
+["custom.slot_connectors"]
+type = "expansion_slot_signals"
+S1 = 1
+S10 = 6
+S11 = 7
+S12 = 8
+S13 = 9
+S14 = 10
+S15 = 45
+S16 = 46
+S17 = 48
+S18 = 47
+S19 = 33
+S2 = 12
+S20 = 34
+S3 = 2
+S4 = 11
+S5 = 17
+S6 = 18
+S7 = 3
+S8 = 4
+S9 = 5
+
+["custom.spi_chip_selects"]
+type = "chip_select_lines"
+CS1 = 17
+CS2 = 18
+
+["custom.board_specific"]
+type = "misc"
+c = 14
+clk = 36
+d = 13
+di = 37
+do = 35
+en_troyka = 15
+usb_dn = 19
+usb_dp = 20

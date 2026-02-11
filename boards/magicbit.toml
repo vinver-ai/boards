@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "magicbit"
+family = "magicbit"
+description = "Magicbit ESP32 board with onboard RGB/status LEDs, buzzer, LDR and potentiometer ADC inputs, and dual DC motor driver control pins; exposes standard I2C and SPI buses."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+status_leds = {driver = "custom.status_leds", type = "custom"}
+sensors = {driver = "custom.sensors", type = "custom"}
+motor_driver = {driver = "custom.motor_driver", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 16
+button_pin = 35
+buzzer_pin = 25
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.buttons]
+LEFT_BUTTON = 35
+RIGHT_BUTTON = 34
+
+["custom.status_leds"]
+type = "leds"
+BLUE_LED = 17
+GREEN_LED = 16
+RED_LED = 27
+YELLOW_LED = 18
+
+["custom.sensors"]
+type = "adc_inputs"
+LDR = 36
+POT = 39
+
+["custom.motor_driver"]
+type = "dual_dc_motor"
+MOTOR1A = 27
+MOTOR1B = 18
+MOTOR2A = 16
+MOTOR2B = 17
+
+["custom.board_specific"]
+type = "misc"
+right_putton = 34

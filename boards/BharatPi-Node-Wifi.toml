@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "BharatPi-Node-Wifi"
+family = "BharatPi-Node-Wifi"
+description = "BharatPi Node Wifi (ESP32) with onboard LED on GPIO2, three named status LEDs (saffron/green/white), primary I2C on GPIO21/22, primary SPI on GPIO23/19/18 with SS on GPIO5, and an extra UART on GPIO17/16."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+status_leds = {driver = "custom.status_leds", type = "custom"}
+spi_cs = {driver = "custom.spi_cs", type = "custom"}
+
+[system]
+led_pin = 2
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["custom.status_leds"]
+type = "leds"
+GREEN_LED = 13
+SAFFRON_LED = 12
+WHITE_LED = 2
+
+["custom.spi_cs"]
+type = "spi_chip_select"
+SS = 5

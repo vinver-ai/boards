@@ -1,0 +1,85 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "cyobot_v2_esp32s3"
+family = "cyobot_v2_esp32s3"
+description = "ESP32-S3 robot controller board with 2 user buttons, status LED, dual NeoPixel outputs, I2C + SPI, UART1, I2S audio interface with amplifier enable, battery voltage measurement and charge-detect, plus two quadrature encoder inputs."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+audio = {driver = "drivers.audio", type = "audio"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+neopixel_base = {driver = "custom.neopixel_base", type = "custom"}
+neopixel_brain = {driver = "custom.neopixel_brain", type = "custom"}
+encoder1 = {driver = "custom.encoder1", type = "custom"}
+encoder2 = {driver = "custom.encoder2", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 24
+button_pin = 4
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 17
+scl = 18
+freq = 400000
+
+[system.spi]
+mosi = 2
+miso = 42
+sck = 41
+
+[system.uart1]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.power]
+battery_adc = 6
+
+[system.buttons]
+button1 = 38
+
+["drivers.audio"]
+type = "i2s"
+bclk = 9
+lrck = 45
+din = 8
+mclk = 16
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 14
+
+["custom.neopixel_base"]
+type = "neopixel"
+data = 7
+
+["custom.neopixel_brain"]
+type = "neopixel"
+data = 15
+
+["custom.encoder1"]
+type = "quadrature_encoder"
+a = 39
+b = 40
+
+["custom.encoder2"]
+type = "quadrature_encoder"
+a = 20
+b = 19
+
+["custom.board_specific"]
+type = "misc"
+char_det = 23
+esp_io0 = 0
+pa_ctrl = 25

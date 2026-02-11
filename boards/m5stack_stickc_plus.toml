@@ -1,0 +1,85 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_stickc_plus"
+family = "m5stack_stickc_plus"
+description = "M5StickC Plus (ESP32-PICO) with ST7789v2 LCD 135x240, AXP192 PMU, MPU6886 IMU, BM8563 RTC, red LED on GPIO10, buttons A(37)/B(39), IR on GPIO9, buzzer on GPIO2, mic SPM1423, GROVE I2C on GPIO32/33."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+pmu = {driver = "drivers.pmu", type = "pmu"}
+imu = {driver = "drivers.imu", type = "imu"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+ir = {driver = "drivers.ir", type = "ir"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+microphone = {driver = "custom.microphone", type = "custom"}
+
+[system]
+led_pin = 10
+button_pin = 37
+buzzer_pin = 2
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.i2c1]
+sda = 32
+scl = 33
+freq = 400000
+
+[system.spi]
+mosi = 15
+miso = 36
+sck = 13
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.buttons]
+b = 39
+
+["drivers.display"]
+type = "st7789"
+bus = "spi"
+cs = 5
+dc = 23
+rst = 18
+width = 135
+height = 240
+
+["drivers.pmu"]
+type = "axp192"
+bus = "i2c"
+addr = 0x34
+
+["drivers.ir"]
+tx = 9
+
+["drivers.imu"]
+type = "mpu6886"
+bus = "i2c"
+addr = 0x68
+
+["drivers.rtc"]
+type = "bm8563"
+bus = "i2c"
+addr = 0x51
+
+["custom.microphone"]
+type = "spm1423"
+clk = 0
+data = 34

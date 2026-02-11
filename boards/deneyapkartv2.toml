@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "deneyapkartv2"
+family = "deneyapkartv2"
+description = "ESP32-S3 board with primary UART on GPIO43/44, primary I2C on GPIO47/21, primary SPI on GPIO39/40/41 with SS on GPIO42. Includes camera parallel interface signals (CAMD2..CAMD9, CAMXC, CAMPC, CAMH, CAMV) plus SCCB (CAMSD/CAMSC). Battery voltage sensing on GPIO3. Built-in RGB LED uses virtual pin 95."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+camera = {driver = "drivers.camera", type = "camera"}
+sdio_signals = {driver = "custom.sdio_signals", type = "custom"}
+spi_ss = {driver = "custom.spi_ss", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 47
+scl = 21
+freq = 400000
+
+[system.spi]
+mosi = 39
+miso = 40
+sck = 41
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.uart1]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 3
+
+["drivers.camera"]
+type = "unknown"
+d0 = 41
+d1 = 2
+d2 = 1
+d3 = 42
+d4 = 40
+d5 = 38
+d6 = 17
+d7 = 15
+xclk = 16
+pclk = 39
+vsync = 6
+href = 7
+sccb_sda = 4
+sccb_scl = 5
+
+["custom.sdio_signals"]
+type = "sdio"
+clk = 13
+cmd = 12
+d0 = 14
+
+["custom.spi_ss"]
+type = "spi_cs"
+ss = 42

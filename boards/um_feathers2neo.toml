@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "um_feathers2neo"
+family = "um_feathers2neo"
+description = "Unexpected Maker FeatherS2 Neo (ESP32-S2) with primary I2C/SPI, UART on GPIO43/44, battery+VBUS sensing, and onboard NeoPixel plus NeoPixel matrix power/data control."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+neopixel_matrix = {driver = "custom.neopixel_matrix", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 2
+vbus_sense = 34
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 21
+power_pin = 4
+num_leds = 1
+
+["custom.neopixel_matrix"]
+type = "ws2812_matrix"
+data = 21
+power = 4

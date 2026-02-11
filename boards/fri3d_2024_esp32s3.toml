@@ -1,0 +1,102 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "fri3d_2024_esp32s3"
+family = "fri3d_2024_esp32s3"
+description = "FRI3D 2024 badge (ESP32-S3) with 240x240 SPI TFT, 5x WS2812 RGB LEDs, IR receiver + IR blaster, buzzer, battery voltage sense, joystick (X/Y), multiple buttons, and I2S digital microphone."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+display = {driver = "drivers.display", type = "display"}
+audio = {driver = "drivers.audio", type = "audio"}
+ir = {driver = "drivers.ir", type = "ir"}
+joystick = {driver = "custom.joystick", type = "custom"}
+accel_gyro = {driver = "custom.accel_gyro", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 21
+button_pin = 0
+buzzer_pin = 46
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 9
+scl = 18
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 8
+sck = 7
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 13
+
+[system.buttons]
+PIN_A = 39
+PIN_AUX = 42
+PIN_B = 40
+PIN_MENU = 45
+PIN_START = 0
+PIN_X = 38
+PIN_Y = 41
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 12
+num_leds = 1
+
+["drivers.display"]
+type = "st7789"
+bus = "spi"
+cs = 5
+dc = 4
+width = 240
+height = 240
+rst = 48
+
+["drivers.audio"]
+type = "i2s"
+bclk = 17
+lrck = 47
+din = 15
+
+["drivers.ir"]
+tx = 10
+rx = 11
+
+["custom.joystick"]
+type = "analog_2axis"
+x = 1
+y = 3
+
+["custom.accel_gyro"]
+type = "imu"
+int_or_cs = 21
+
+["custom.board_specific"]
+type = "misc"
+pin_a = 39
+pin_aux = 42
+pin_b = 40
+pin_menu = 45
+pin_sdcard_cs = 14
+pin_start = 0
+pin_x = 38
+pin_y = 41

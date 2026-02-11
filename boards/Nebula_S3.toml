@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "Nebula_S3"
+family = "Nebula_S3"
+description = "Nebula_S3 (ESP32-S3) with primary UART, two I2C buses, and a general-purpose SPI bus. Built-in LED is a virtual pin (94)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+spi_ss = {driver = "custom.spi_ss", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 12
+scl = 13
+freq = 400000
+
+[system.spi]
+mosi = 40
+miso = 39
+sck = 38
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.i2c1]
+sda = 2
+scl = 1
+freq = 400000
+
+["custom.spi_ss"]
+type = "spi_cs"
+cs = 41

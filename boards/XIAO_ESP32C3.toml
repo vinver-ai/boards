@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "XIAO_ESP32C3"
+family = "xiao"
+description = "Seeed Studio XIAO ESP32-C3: compact ESP32-C3 board exposing UART, I2C, and SPI on GPIOs per variant mapping."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = -1
+button_pin = 9
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 6
+scl = 7
+freq = 400000
+
+[system.spi]
+mosi = 10
+miso = 9
+sck = 8
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200

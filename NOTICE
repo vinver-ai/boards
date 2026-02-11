@@ -1,0 +1,20 @@
+Vinver Boards
+Copyright 2026 Vinver, Inc.
+
+This product includes board manifest data independently compiled from
+publicly available hardware documentation. Pin mappings represent factual
+hardware configurations and are not derived works of any upstream software.
+The following projects and manufacturers were used as reference sources:
+
+- Arduino ESP32 Core (https://github.com/espressif/arduino-esp32)
+  Licensed under the GNU Lesser General Public License v2.1
+  Copyright 2015-2026 Espressif Systems (Shanghai) PTE LTD
+
+- PlatformIO Espressif 32 (https://github.com/platformio/platform-espressif32)
+  Licensed under the Apache License, Version 2.0
+  Copyright 2014-2026 PlatformIO
+
+Board schematics used for gold-tier verification were obtained from the
+official documentation of their respective manufacturers, including but
+not limited to Espressif, LilyGo/TTGO, M5Stack, Heltec, Adafruit,
+SparkFun, Seeed Studio, and Olimex.

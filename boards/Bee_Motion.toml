@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "Bee_Motion"
+family = "bee_motion"
+description = "ESP32-S2 board with primary UART, I2C, SPI, BOOT button, and a PIR motion sensor input."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+pir_motion = {driver = "custom.pir_motion", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 36
+scl = 37
+freq = 400000
+
+[system.spi]
+mosi = 16
+miso = 38
+sck = 15
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["custom.pir_motion"]
+type = "pir_sensor"
+pir = 5

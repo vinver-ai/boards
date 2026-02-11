@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "ch_denky"
+family = "ch_denky"
+description = "ESP32 board with boot/user button on GPIO0, RGB LED on GPIO25, I2C on GPIO21/22, SPI on GPIO23/19/18 with SS on GPIO5, and a LoRa module connected via UART (TX=GPIO26, RX=GPIO27) plus reset on GPIO14. Also includes a TIC (teleinfo) interface with enable and RX pins."
+chip = "esp32"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+tic_teleinfo = {driver = "custom.tic_teleinfo", type = "custom"}
+
+[system]
+led_pin = 27
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 25
+num_leds = 1
+
+["custom.tic_teleinfo"]
+type = "teleinfo"
+enable = 4
+rx = 8

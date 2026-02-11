@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "um_feathers2"
+family = "um_feathers2"
+description = "UM FeatherS2 (ESP32-S2) with primary I2C on GPIO8/9, primary SPI on GPIO35/37/36 with SS on GPIO34, UART on GPIO43/44, and onboard APA102/DotStar LED (data/clk) plus LDO_2 power control."
+chip = "esp32s2"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dotstar = {driver = "custom.dotstar", type = "custom"}
+ldo_2 = {driver = "custom.ldo_2", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["custom.dotstar"]
+type = "apa102"
+clk = 45
+data = 40
+
+["custom.ldo_2"]
+type = "power_switch"
+enable = 21

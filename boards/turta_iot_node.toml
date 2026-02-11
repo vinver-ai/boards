@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "turta_iot_node"
+family = "turta_iot_node"
+description = "ESP32 IoT node board with a single user LED, primary I2C on GPIO23/22, primary SPI on GPIO18/19/5 with SS on GPIO21, and a user UART on GPIO10/9."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+spi_ss = {driver = "custom.spi_ss", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 23
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 18
+miso = 19
+sck = 5
+
+[system.uart]
+tx = 10
+rx = 9
+baud = 115200
+
+["custom.spi_ss"]
+type = "spi_chip_select"
+ss = 21

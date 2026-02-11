@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32h2-devkit-lipo"
+family = "esp32h2_devkit_lipo"
+description = "ESP32-H2 devkit with LiPo focus: built-in status LED, a user button, primary UART, I2C and SPI broken out, plus an onboard RGB LED (likely WS2812/SK6812)."
+chip = "esp32h2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = -1
+button_pin = 9
+reserved_pins = [15, 16, 17, 18, 19, 20]
+
+[system.i2c]
+sda = 12
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 25
+miso = 11
+sck = 10
+
+[system.uart]
+tx = 24
+rx = 23
+baud = 115200
+
+["drivers.neopixel"]
+type = "unknown"
+pin = 8
+num_leds = 1

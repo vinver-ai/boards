@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "pandabyte_xs3"
+family = "pandabyte_xs3"
+description = "ESP32-S3 board with user LED, user button, primary I2C, primary SPI, and a general-purpose UART on GPIO43/44."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = 2
+button_pin = 21
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200

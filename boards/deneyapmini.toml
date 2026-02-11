@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "deneyapmini"
+family = "deneyapmini"
+description = "Deneyap Mini (ESP32-S2) with onboard RGB LEDs (separate R/G/B GPIOs), BOOT/KEY button on GPIO0, primary I2C on GPIO36/37, and primary SPI on GPIO40/39/38 with SS on GPIO21. Exposes two generic output pins DA0/DA1 (GPIO17/18)."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+pwm_outputs = {driver = "custom.pwm_outputs", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 35
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 36
+scl = 37
+freq = 400000
+
+[system.spi]
+mosi = 40
+miso = 39
+sck = 38
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.uart1]
+tx = 43
+rx = 44
+baud = 115200
+
+["custom.pwm_outputs"]
+type = "pwm"
+pwm0 = 42
+pwm1 = 41
+
+["custom.board_specific"]
+type = "misc"
+bt = 0

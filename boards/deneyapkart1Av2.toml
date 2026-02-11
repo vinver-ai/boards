@@ -1,0 +1,77 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "deneyapkart1Av2"
+family = "deneyapkart1Av2"
+description = "Deneyap Kart 1A v2 (ESP32-S3, 4MB flash, no PSRAM) with onboard RGB LED (virtual pin 97), BOOT/KEY button on GPIO0, primary UART on GPIO43/44, primary I2C on GPIO47/21, primary SPI on GPIO39/40/41 with SS on GPIO42, camera parallel interface pins defined, and SPI SD card pins defined. Battery voltage sense on GPIO9."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+camera = {driver = "drivers.camera", type = "camera"}
+camera_extra_data = {driver = "custom.camera_extra_data", type = "custom"}
+pwm_outputs = {driver = "custom.pwm_outputs", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 47
+scl = 21
+freq = 400000
+
+[system.spi]
+mosi = 39
+miso = 40
+sck = 41
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.uart1]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 9
+
+["drivers.camera"]
+type = "unknown"
+d0 = 41
+d1 = 2
+d2 = 1
+d3 = 42
+d4 = 40
+d5 = 38
+d6 = 17
+d7 = 15
+xclk = 16
+pclk = 39
+vsync = 6
+href = 7
+sccb_sda = 4
+sccb_scl = 5
+
+["custom.camera_extra_data"]
+type = "camera_parallel_extra"
+d8 = 17
+d9 = 15
+
+["custom.pwm_outputs"]
+type = "pwm"
+pwm0 = 15
+pwm1 = 16
+pwm2 = 17
+pwm3 = 18
+pwm4 = 38

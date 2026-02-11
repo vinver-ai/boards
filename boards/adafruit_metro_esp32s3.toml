@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_metro_esp32s3"
+family = "adafruit_metro_esp32s3"
+description = "Adafruit Metro ESP32-S3 with 16MB flash, onboard status LED, 1x NeoPixel, BOOT/user button, primary I2C and SPI broken out, and a hardware UART on GPIO40/41."
+chip = "esp32s3"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+spi_cs_default = {driver = "custom.spi_cs_default", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 47
+scl = 48
+freq = 400000
+
+[system.spi]
+mosi = 42
+miso = 21
+sck = 39
+
+[system.uart]
+tx = 40
+rx = 41
+baud = 115200
+
+[system.uart1]
+tx = 40
+rx = 41
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 46
+num_leds = 1
+
+["custom.spi_cs_default"]
+type = "spi_cs"
+cs = 45

@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_coreink"
+family = "m5stack_coreink"
+description = "M5Stack CoreInk (ESP32) base pinout: I2C on GPIO32/33, SPI on GPIO23/34/18, UART2 on GPIO14/13. No explicit LED/button/display pins provided in this header snippet."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+
+[system]
+led_pin = -1
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 32
+scl = 33
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 34
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200

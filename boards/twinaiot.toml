@@ -1,0 +1,84 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "twinaiot"
+family = "twinaiot"
+description = "ESP32-S3 board with built-in status LED, WS2812-style RGB LED, primary SPI header, shared UART/I2C pins, ultrasonic (TRIG/ECHO), touch input, multiple digital/analog IOs, and a 3-wire shift-register style interface (latch/clock/data)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+ultrasonic = {driver = "custom.ultrasonic", type = "custom"}
+shift_register_bus = {driver = "custom.shift_register_bus", type = "custom"}
+digital_outputs = {driver = "custom.digital_outputs", type = "custom"}
+digital_inputs = {driver = "custom.digital_inputs", type = "custom"}
+analog_inputs = {driver = "custom.analog_inputs", type = "custom"}
+selectors = {driver = "custom.selectors", type = "custom"}
+
+[system]
+led_pin = 35
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 39
+scl = 40
+freq = 400000
+
+[system.spi]
+mosi = 2
+miso = 3
+sck = 4
+
+[system.uart]
+tx = 39
+rx = 40
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 15
+num_leds = 1
+
+["custom.ultrasonic"]
+type = "hcsr04"
+echo = 6
+trig = 5
+
+["custom.shift_register_bus"]
+type = "shift_register_3wire"
+clock = 47
+data = 48
+latch = 34
+
+["custom.digital_outputs"]
+type = "gpio_outputs"
+d10_out = 10
+d6_out = 35
+d9_out = 36
+
+["custom.digital_inputs"]
+type = "gpio_inputs"
+d_in_12 = 9
+d_in_4 = 8
+d_in_8 = 11
+
+["custom.analog_inputs"]
+type = "adc_inputs"
+an_in_12 = 7
+an_in_4 = 17
+an_in_8 = 16
+
+["custom.selectors"]
+type = "selector_inputs"
+s1 = 37
+s2 = 38
+s3 = 14

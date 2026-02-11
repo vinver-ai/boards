@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+name: New Board
+description: Submit a new ESP32 board manifest
+title: "[New Board] "
+labels: ["new-board"]
+body:
+  - type: input
+    id: board_id
+    attributes:
+      label: Board ID
+      description: Unique identifier (e.g., lilygo_t_display_s3)
+      placeholder: my_board_name
+    validations:
+      required: true
+
+  - type: dropdown
+    id: chip
+    attributes:
+      label: Chip
+      options:
+        - esp32
+        - esp32s2
+        - esp32s3
+        - esp32c3
+        - esp32c6
+        - esp32h2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Quality Tier
+      description: Volume = extracted from headers. Gold = verified against schematic.
+      options:
+        - volume
+        - gold
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: URL to the pins_arduino.h, schematic PDF, or product page
+      placeholder: https://github.com/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: toml_content
+    attributes:
+      label: TOML Content
+      description: Paste the full board manifest TOML
+      render: toml
+    validations:
+      required: true

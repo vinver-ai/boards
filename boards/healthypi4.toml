@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "healthypi4"
+family = "healthypi4"
+description = "HealthyPi 4 (ESP32) with onboard LED and user button, I2C + SPI exposed, and biomedical AFE devices (ADS1292 and AFE4490) on SPI with DRDY/START/PWDN control pins plus a slide switch input."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+ads1292 = {driver = "custom.ads1292", type = "custom"}
+afe4490 = {driver = "custom.afe4490", type = "custom"}
+
+[system]
+led_pin = 15
+button_pin = 17
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.buttons]
+slide_switch = 16
+
+["custom.ads1292"]
+type = "ecg_afe"
+cs = 13
+drdy = 26
+pwdn = 27
+start = 14
+
+["custom.afe4490"]
+type = "ppg_afe"
+cs = 21
+drdy = 39
+pwdn = 4

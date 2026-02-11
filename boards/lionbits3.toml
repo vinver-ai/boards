@@ -1,0 +1,84 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lionbits3"
+family = "lionbits3"
+description = "ESP32-S3 board with built-in LED, buzzer, two user switches, LDR input, I2C on GPIO40/41, and an SPI TFT display (CS/DC/RST/BL). Also exposes a secondary UART (U1TX/U1RX)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+display = {driver = "drivers.display", type = "display"}
+wifi_led = {driver = "custom.wifi_led", type = "custom"}
+bt_led = {driver = "custom.bt_led", type = "custom"}
+ldr = {driver = "custom.ldr", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 0
+button_pin = 46
+buzzer_pin = 21
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 40
+scl = 41
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.uart1]
+tx = 10
+rx = 9
+baud = 115200
+
+[system.buttons]
+switch_b = 47
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 48
+num_leds = 1
+
+["drivers.display"]
+type = "st7789"
+bus = "spi"
+cs = 42
+dc = 37
+rst = 38
+backlight = 45
+
+["custom.wifi_led"]
+type = "status_led"
+WIFI_LED = 38
+
+["custom.bt_led"]
+type = "status_led"
+BT_LED = 37
+
+["custom.ldr"]
+type = "light_sensor_adc"
+LDR = 7
+
+["custom.board_specific"]
+type = "misc"
+cs = 42
+mosi = 36
+sclk = 35

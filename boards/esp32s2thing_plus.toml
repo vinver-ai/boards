@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32s2thing_plus"
+family = "esp32s2thing_plus"
+description = "SparkFun ESP32-S2 Thing Plus: ESP32-S2 board with built-in LED, primary I2C on GPIO1/2, primary SPI on GPIO35/36/37 with SS on GPIO42, and an extra UART (TX1/RX1) in addition to the main UART (TX/RX)."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+spi_ss = {driver = "custom.spi_ss", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 1
+scl = 2
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.uart1]
+tx = 34
+rx = 33
+baud = 115200
+
+["custom.spi_ss"]
+type = "spi_cs"
+ss = 42

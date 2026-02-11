@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "redpill_esp32s3"
+family = "redpill_esp32s3"
+description = "ESP32-S3 board with single built-in LED, primary UART on GPIO43/44, and exposed I2C (GPIO8/9) and SPI (GPIO16/17/18 with SS=15)."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 16
+miso = 17
+sck = 18
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200

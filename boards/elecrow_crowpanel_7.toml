@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "elecrow_crowpanel_7"
+family = "elecrow_crowpanel_7"
+description = "Elecrow CrowPanel 7\" (ESP32-S3) with primary I2C on GPIO19/20, primary SPI on GPIO11/13/12 with SS on GPIO10, and UART0-style TX/RX on GPIO37/40 plus an additional UART2 on GPIO17/18. Built-in LED is defined as a virtual pin (97)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 19
+scl = 20
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 37
+rx = 40
+baud = 115200
+
+["custom.board_specific"]
+type = "misc"
+adc = 38

@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32thing_plus_c"
+family = "esp32thing_plus_c"
+description = "SparkFun ESP32 Thing Plus C: ESP32 board with built-in LED, primary UART on GPIO16/17, and standard I2C (21/22) + SPI (18/19/23, CS=15) broken out."
+chip = "esp32"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+spi_cs = {driver = "custom.spi_cs", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 17
+rx = 16
+baud = 115200
+
+[system.uart1]
+tx = 17
+rx = 16
+baud = 115200
+
+["custom.spi_cs"]
+type = "spi_chip_select"
+ss = 15

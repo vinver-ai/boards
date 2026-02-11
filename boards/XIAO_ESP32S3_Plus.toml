@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "XIAO_ESP32S3_Plus"
+family = "XIAO_ESP32S3_Plus"
+description = "Seeed Studio XIAO ESP32S3 Plus: compact ESP32-S3 board with user LED, primary I2C and SPI, two UARTs, battery voltage ADC, and camera/DVP-related pin mappings."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+audio = {driver = "drivers.audio", type = "audio"}
+spi1 = {driver = "custom.spi1", type = "custom"}
+
+[system]
+led_pin = 21
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 5
+scl = 6
+freq = 400000
+
+[system.spi]
+mosi = 9
+miso = 8
+sck = 7
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.uart1]
+tx = 42
+rx = 41
+baud = 115200
+
+[system.power]
+battery_adc = 10
+
+["drivers.audio"]
+type = "i2s"
+bclk = 39
+lrck = 40
+mclk = 10
+speaker_en = 38
+
+["custom.spi1"]
+type = "spi_bus"
+miso1 = 12
+mosi1 = 11
+sck1 = 13

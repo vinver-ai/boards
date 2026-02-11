@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "Geekble_ESP32C3"
+family = "Geekble_ESP32C3"
+description = "ESP32-C3 board with built-in LED and button, primary UART and I2C exposed; SPI pin aliases overlap with I2C pins in the variant."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 10
+button_pin = 9
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 4
+scl = 5
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 5
+sck = 4
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+["custom.board_specific"]
+type = "misc"
+builtin_sw = 9

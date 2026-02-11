@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "unphone8"
+family = "unphone8"
+description = "ESP32-S3 board with a single user LED, primary I2C on GPIO1/2, primary SPI on GPIO38-40 with SS on GPIO3, and a user UART on GPIO37/36."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+spi_ss = {driver = "custom.spi_ss", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 1
+scl = 2
+freq = 400000
+
+[system.spi]
+mosi = 39
+miso = 40
+sck = 38
+
+[system.uart]
+tx = 37
+rx = 36
+baud = 115200
+
+["custom.spi_ss"]
+type = "spi_chip_select"
+ss = 3

@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_nanoc6"
+family = "m5stack_nanoc6"
+description = "M5Stack NanoC6 (ESP32-C6) with single user LED, user button, WS2812-style RGB LED (with power control), IR transmitter pin, and standard I2C/SPI/UART pin mappings."
+chip = "esp32c6"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+ir_tx = {driver = "custom.ir_tx", type = "custom"}
+
+[system]
+led_pin = 7
+button_pin = 9
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 2
+scl = 1
+freq = 400000
+
+[system.spi]
+mosi = 5
+miso = 6
+sck = 8
+
+[system.uart]
+tx = 16
+rx = 17
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 20
+power_pin = 19
+num_leds = 1
+
+["custom.ir_tx"]
+type = "ir_transmitter"
+tx = 3

@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32c6"
+family = "esp32c6"
+description = "Generic ESP32-C6 variant with onboard RGB LED, primary I2C/SPI pin mappings, and fixed LP I2C pins (Wire1)."
+chip = "esp32c6"
+flash_size = "8MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+rgb_led = {pin = "system.led_pin", type = "addressable_rgb"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = 8
+button_pin = 9
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 23
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 19
+miso = 20
+sck = 21
+
+[system.uart]
+tx = 16
+rx = 17
+baud = 115200
+
+[system.i2c1]
+sda = 6
+scl = 7
+freq = 400000
+
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 8
+num_leds = 1

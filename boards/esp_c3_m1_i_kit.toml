@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp_c3_m1_i_kit"
+family = "esp_c3_m1_i_kit"
+description = "ESP32-C3 kit with multiple discrete LEDs (warm/cold + RGB), primary UART on GPIO21/20, I2C on GPIO8/9, and SPI on GPIO6/5/4 with SS on GPIO7."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+leds_discrete = {driver = "custom.leds_discrete", type = "custom"}
+
+[system]
+led_pin = 18
+button_pin = 0
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 5
+sck = 4
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+["custom.leds_discrete"]
+type = "discrete_leds"
+LED_BLUE = 5
+LED_COLD = 19
+LED_GREEN = 4
+LED_RED = 3
+LED_WARM = 18
+SPI_SS = 7

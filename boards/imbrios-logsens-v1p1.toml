@@ -1,0 +1,81 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "imbrios-logsens-v1p1"
+family = "imbrios-logsens-v1p1"
+description = "Imbrios LogSens v1.1 (ESP32, 4MB flash) with built-in LEDs, buzzer control, multiple buttons, I2C, SPI, UART2/RS485-style RTS, CAN (TWAI) pinout shared with UART2, and SD card detect input."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+can = {driver = "drivers.can", type = "can"}
+spi_chip_selects = {driver = "custom.spi_chip_selects", type = "custom"}
+can_transceiver = {driver = "custom.can_transceiver", type = "custom"}
+uart2_flow_control = {driver = "custom.uart2_flow_control", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 33
+button_pin = 0
+buzzer_pin = 19
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 13
+miso = 12
+sck = 14
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.buttons]
+sw3_buildin = 36
+sw4_buildin = 34
+
+["drivers.sdcard"]
+bus = "spi"
+detect = 35
+
+["drivers.can"]
+txd = 17
+rxd = 16
+
+["custom.spi_chip_selects"]
+type = "spi_cs"
+SS = 15
+
+["custom.can_transceiver"]
+type = "can_tx_enable"
+CAN_TXDE = 4
+
+["custom.uart2_flow_control"]
+type = "uart_rts"
+UART2_RTS = 4
+
+["custom.board_specific"]
+type = "misc"
+spi_clk = 14
+spi_miso = 12
+spi_mosi = 13
+uart2_rx = 16
+uart2_tx = 17

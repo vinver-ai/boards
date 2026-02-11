@@ -1,0 +1,105 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "huidu_hd_wf4"
+family = "huidu_hd_wf4"
+description = "Huidu HD-WF4 ESP32-S3 controller board with HUB75-style RGB LED matrix interface (multiple scan groups X1-X4), onboard RUN LED, BM8563 RTC on I2C, and exposed UART/SPI-style pins."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+hub75_matrix = {driver = "custom.hub75_matrix", type = "custom"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+wf4_ports = {driver = "custom.wf4_ports", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 40
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 41
+scl = 42
+freq = 400000
+
+[system.spi]
+mosi = 26
+miso = 46
+sck = 1
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["custom.hub75_matrix"]
+type = "hub75_rgb_led_matrix"
+addr_a = 39
+addr_b = 38
+addr_c = 37
+addr_d = 36
+addr_e = 21
+clk = 34
+lat = 33
+oe = 35
+x1_b1 = 10
+x1_b2 = 11
+x1_cs = 45
+x1_g1 = 6
+x1_g2 = 7
+x1_r1 = 2
+x1_r2 = 3
+x2_b1 = 12
+x2_b2 = 13
+x2_cs = 45
+x2_g1 = 8
+x2_g2 = 9
+x2_r1 = 4
+x2_r2 = 5
+x3_b1 = 10
+x3_b2 = 11
+x3_cs = 14
+x3_g1 = 6
+x3_g2 = 7
+x3_r1 = 2
+x3_r2 = 3
+x4_b1 = 12
+x4_b2 = 13
+x4_cs = 14
+x4_g1 = 8
+x4_g2 = 9
+x4_r1 = 4
+x4_r2 = 5
+
+["drivers.rtc"]
+type = "bm8563"
+bus = "i2c"
+addr = 0x51
+
+["custom.wf4_ports"]
+type = "huidu_io_ports"
+p11_data = 15
+p12_data1 = 47
+p12_data2 = 18
+p2_data = 0
+p5_data = 16
+p7_data = 1
+s1_data = 17
+s2_data = 48
+s3_data = 26
+s4_data = 46
+
+["custom.board_specific"]
+type = "misc"
+wf4_p1_rx_pin = 44
+wf4_p1_tx_pin = 43
+wf4_usb_dn_pin = 19
+wf4_usb_dp_pin = 20

@@ -1,0 +1,99 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_camera_esp32s3"
+family = "adafruit_camera_esp32s3"
+description = "Adafruit ESP32-S3 camera board with parallel camera (SCCB on GPIO33/34), SPI TFT display, SPI microSD, NeoPixel, battery voltage monitor, speaker output and multiple buttons (incl. shutter)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+display = {driver = "drivers.display", type = "display"}
+camera = {driver = "drivers.camera", type = "camera"}
+audio = {driver = "drivers.audio", type = "audio"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 34
+scl = 33
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 4
+
+[system.buttons]
+awexp_button_down = 15
+awexp_button_left = 14
+awexp_button_ok = 11
+awexp_button_right = 12
+awexp_button_sel = 1
+awexp_button_up = 13
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 1
+num_leds = 1
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 39
+dc = 40
+rst = 38
+backlight = 45
+
+["drivers.camera"]
+type = "unknown"
+d0 = 13
+d1 = 15
+d2 = 16
+d3 = 14
+d4 = 12
+d5 = 10
+d6 = 9
+d7 = 7
+xclk = 8
+pclk = 11
+vsync = 5
+href = 6
+sccb_sda = 34
+sccb_scl = 33
+pwdn = 21
+
+["drivers.audio"]
+type = "unknown"
+speaker_en = 46
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 48
+detect = 8
+power_pin = 9
+
+["custom.board_specific"]
+type = "misc"
+awexp_spkr_sd = 0
+reset_gpio_num = 47

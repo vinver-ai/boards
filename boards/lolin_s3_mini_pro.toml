@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lolin_s3_mini_pro"
+family = "lolin_s3_mini"
+description = "LOLIN S3 Mini Pro (ESP32-S3) with SPI TFT display (backlight/DC/CS/RST), onboard RGB LED power control, IR pin, and three buttons (left/ok/right). Provides primary I2C and SPI pin mappings plus a user UART."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+ir = {driver = "drivers.ir", type = "ir"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 12
+scl = 11
+freq = 400000
+
+[system.spi]
+mosi = 38
+miso = 39
+sck = 40
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.buttons]
+button_ok = 47
+button_right = 48
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 35
+dc = 36
+rst = 34
+backlight = 33
+
+["drivers.ir"]
+tx = 9

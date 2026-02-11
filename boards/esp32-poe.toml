@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32-poe"
+family = "esp32_poe"
+description = "Olimex ESP32-PoE (ESP32-WROOM) with LAN8710A Ethernet (RMII, PHY power GPIO12), PoE support, 1-bit SDMMC, button on GPIO34, I2C on GPIO13/16, UEXT connector, UART1 on GPIO4/36."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+ethernet = {driver = "drivers.ethernet", type = "ethernet"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+
+[system]
+led_pin = -1
+button_pin = 34
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 13
+scl = 16
+freq = 400000
+
+[system.spi]
+mosi = 2
+miso = 15
+sck = 14
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.uart1]
+tx = 4
+rx = 36
+baud = 115200
+
+["drivers.ethernet"]
+type = "lan8720"
+bus = "rmii"
+mdc = 23
+mdio = 18
+phy_addr = 0
+power_pin = 12
+
+["drivers.sdcard"]
+bus = "sdio"

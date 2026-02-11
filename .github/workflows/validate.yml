@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+name: Validate Board Manifests
+
+on:
+  push:
+    branches: [main, master]
+    paths: ["boards/**", "tools/**", "schema/**"]
+  pull_request:
+    paths: ["boards/**", "tools/**", "schema/**"]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Parse all TOMLs
+        run: |
+          python3 -c "
+          import tomllib
+          from pathlib import Path
+          errors = 0
+          for f in sorted(Path('boards').glob('*.toml')):
+              try:
+                  tomllib.load(open(f, 'rb'))
+              except Exception as e:
+                  print(f'PARSE ERROR: {f}: {e}')
+                  errors += 1
+          print(f'Parsed {len(list(Path(\"boards\").glob(\"*.toml\")))} files, {errors} errors')
+          if errors:
+              raise SystemExit(1)
+          "
+
+      - name: Validate consistency
+        run: python3 tools/validate.py
+
+      - name: Check meta.id matches filename
+        run: |
+          python3 -c "
+          import tomllib
+          from pathlib import Path
+          errors = 0
+          for f in sorted(Path('boards').glob('*.toml')):
+              data = tomllib.load(open(f, 'rb'))
+              meta_id = data.get('meta', {}).get('id', '')
+              if meta_id != f.stem:
+                  print(f'MISMATCH: {f.name} has meta.id=\"{meta_id}\"')
+                  errors += 1
+          print(f'Checked {len(list(Path(\"boards\").glob(\"*.toml\")))} files, {errors} mismatches')
+          if errors:
+              raise SystemExit(1)
+          "

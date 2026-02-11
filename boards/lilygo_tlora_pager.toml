@@ -1,0 +1,123 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lilygo_tlora_pager"
+family = "lilygo_tlora_pager"
+description = "LILYGO T-LoRa Pager (ESP32-S3) with SPI TFT display, SX126x LoRa (BUSY pin present), SPI microSD, I2S audio interface, GPS UART with PPS, NFC (SPI CS/INT), rotary encoder + keyboard interrupt/backlight, and an external I2C expander controlling peripheral enables/resets/detects."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+audio = {driver = "drivers.audio", type = "audio"}
+lora = {driver = "drivers.lora", type = "lora"}
+gps = {driver = "drivers.gps", type = "gps"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+nfc = {driver = "drivers.nfc", type = "nfc"}
+keyboard = {driver = "custom.keyboard", type = "custom"}
+rotary_encoder = {driver = "custom.rotary_encoder", type = "custom"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+sensor = {driver = "custom.sensor", type = "custom"}
+expander_controls = {driver = "custom.expander_controls", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 3
+scl = 2
+freq = 400000
+
+[system.spi]
+mosi = 34
+miso = 33
+sck = 35
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.audio"]
+type = "i2s"
+bclk = 11
+lrck = 18
+dout = 45
+din = 17
+mclk = 10
+
+["drivers.lora"]
+type = "sx1262"
+bus = "spi"
+cs = 36
+rst = 47
+irq = 14
+busy = 48
+
+["drivers.gps"]
+type = "unknown"
+tx = 12
+rx = 4
+baud = 9600
+pps = 13
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 21
+
+["drivers.nfc"]
+type = "unknown"
+bus = "spi"
+cs = 39
+irq = 5
+
+["custom.keyboard"]
+type = "keypad"
+backlight = 46
+en = 8
+int = 6
+rst = 2
+
+["custom.rotary_encoder"]
+type = "encoder"
+a = 40
+b = 41
+button = 7
+
+["drivers.rtc"]
+type = "unknown"
+bus = "i2c"
+irq = 1
+
+["custom.sensor"]
+type = "interrupt"
+int = 8
+
+["custom.expander_controls"]
+type = "io_expander_lines"
+amp_en = 1
+drv_en = 0
+gpio_en = 9
+gps_en = 4
+gps_rst = 7
+kb_en = 8
+kb_rst = 2
+lora_en = 3
+nfc_en = 5
+sd_det = 10
+sd_en = 12
+sd_pullen = 11
+
+["custom.board_specific"]
+type = "misc"
+disp_bl = 42
+disp_cs = 38
+disp_dc = 37

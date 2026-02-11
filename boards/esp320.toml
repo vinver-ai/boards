@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp320"
+family = "esp320"
+description = "Generic ESP32 board with a single built-in LED, primary I2C on GPIO2/14, and primary SPI on GPIO13/12/14 with SS on GPIO15. UART pins map to the default serial port (GPIO1/3)."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+spi_ss = {driver = "custom.spi_ss", type = "custom"}
+
+[system]
+led_pin = 5
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 2
+scl = 14
+freq = 400000
+
+[system.spi]
+mosi = 13
+miso = 12
+sck = 14
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["custom.spi_ss"]
+type = "spi_cs"
+ss = 15

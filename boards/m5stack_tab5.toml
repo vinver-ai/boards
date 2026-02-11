@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_tab5"
+family = "m5stack_tab5"
+description = "M5Stack Tab5 (ESP32-S3) pin manifest: primary SPI on GPIO36/32/33 with CS on GPIO26; primary UART on GPIO37/38; includes an SDIO (4-bit) interface for an ESP-Hosted module (CMD/D0-D3 plus reset). SDA/SCL are defined as 53/54 (likely virtual/invalid for ESP32-S3), so I2C bus pins are not set."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+esp_hosted_sdio = {driver = "custom.esp_hosted_sdio", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.spi]
+mosi = 32
+miso = 33
+sck = 36
+
+[system.uart]
+tx = 37
+rx = 38
+baud = 115200
+
+["custom.esp_hosted_sdio"]
+type = "sdio_4bit"
+cmd = 13
+d0 = 11
+d1 = 10
+d2 = 9
+d3 = 8
+reset = 15

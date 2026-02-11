@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32c61"
+family = "esp32c61"
+description = "ESP32-C6 board with built-in status LED, RGB LED (single NeoPixel-style), primary UART, primary SPI, and two I2C buses."
+chip = "esp32c6"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 23
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 26
+miso = 27
+sck = 28
+
+[system.uart]
+tx = 11
+rx = 10
+baud = 115200
+
+[system.i2c1]
+sda = 6
+scl = 7
+freq = 400000
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 8
+num_leds = 1

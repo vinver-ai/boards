@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "XIAO_ESP32C5"
+family = "XIAO_ESP32C5"
+description = "Seeed Studio XIAO form-factor ESP32 board with built-in LED, battery voltage sensing (with enable), and exposed I2C/SPI/UART pins."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+battery_voltage_sense = {driver = "custom.battery_voltage_sense", type = "custom"}
+
+[system]
+led_pin = 27
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 23
+scl = 24
+freq = 400000
+
+[system.spi]
+mosi = 10
+miso = 9
+sck = 8
+
+[system.uart]
+tx = 11
+rx = 12
+baud = 115200
+
+[system.power]
+battery_adc = 6
+
+["custom.battery_voltage_sense"]
+type = "battery_adc_with_enable"
+bat_volt_adc = 6
+bat_volt_en = 26

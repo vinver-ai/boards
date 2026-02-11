@@ -1,0 +1,77 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "watchy"
+family = "watchy"
+description = "SQFMI Watchy V2.0 (ESP32) e-paper smartwatch with e-ink display (SPI, cs=5, dc=10, rst=9), PCF8563 RTC (int=27), BMA423 accelerometer (int1=14, int2=12), 4 buttons (menu=26, back=25, up=35, down=4), vibration motor on GPIO13, battery ADC on GPIO34."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+epaper_busy = {driver = "custom.epaper_busy", type = "custom"}
+vibration_motor = {driver = "custom.vibration_motor", type = "custom"}
+imu = {driver = "drivers.imu", type = "imu"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+
+[system]
+led_pin = -1
+button_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.power]
+battery_adc = 34
+
+[system.buttons]
+back = 25
+down = 4
+up = 35
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 5
+dc = 10
+rst = 9
+
+["custom.epaper_busy"]
+type = "display_busy"
+pin = 19
+
+["custom.vibration_motor"]
+type = "haptic_motor"
+pin = 13
+
+["drivers.imu"]
+type = "bma423"
+bus = "i2c"
+addr = 0x18
+irq = 14
+int2 = 12
+
+["drivers.rtc"]
+type = "pcf8563"
+bus = "i2c"
+addr = 0x51
+irq = 27

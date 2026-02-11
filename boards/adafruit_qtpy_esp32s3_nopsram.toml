@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_qtpy_esp32s3_nopsram"
+family = "adafruit_qtpy_esp32s3"
+description = "Adafruit QT Py ESP32-S3 (no PSRAM) with 1x onboard NeoPixel (power-controlled), primary I2C + secondary I2C, and a user UART on GPIO5/16."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 7
+scl = 6
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 5
+rx = 16
+baud = 115200
+
+[system.i2c1]
+sda = 41
+scl = 40
+freq = 400000
+
+[system.uart1]
+tx = 5
+rx = 16
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 39
+power_pin = 38
+num_leds = 1

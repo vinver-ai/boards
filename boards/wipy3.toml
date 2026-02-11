@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "wipy3"
+family = "wipy3"
+description = "ESP32 board with neopixel"
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 12
+scl = 13
+freq = 400000
+
+[system.spi]
+mosi = 22
+miso = 37
+sck = 13
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.neopixel"]
+type = "unknown"
+pin = 0
+num_leds = 1
+
+["custom.board_specific"]
+type = "misc"
+ant_select = 21

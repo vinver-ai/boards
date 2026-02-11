@@ -1,0 +1,89 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "alksesp32"
+family = "alksesp32"
+description = "ESP32 board with built-in LED, 3 switches (incl. BOOT on GPIO0), 2 piezo outputs, 2 potentiometer ADC inputs, photo sensor ADC input (GPIO25), DHT sensor pin, plus exposed I2C and SPI pin mappings."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+traffic_leds = {driver = "custom.traffic_leds", type = "custom"}
+rgb_led = {driver = "custom.rgb_led", type = "custom"}
+piezo = {driver = "custom.piezo", type = "custom"}
+analog_inputs = {driver = "custom.analog_inputs", type = "custom"}
+dht_sensor = {driver = "custom.dht_sensor", type = "custom"}
+header_signals = {driver = "custom.header_signals", type = "custom"}
+
+[system]
+led_pin = 23
+button_pin = 0
+buzzer_pin = 19
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 27
+scl = 14
+freq = 400000
+
+[system.spi]
+mosi = 21
+miso = 22
+sck = 23
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.buttons]
+sw1 = 15
+sw2 = 2
+
+["custom.traffic_leds"]
+type = "led_outputs"
+L_B = 5
+L_G = 17
+L_R = 22
+L_Y = 23
+
+["custom.rgb_led"]
+type = "rgb_led_outputs"
+L_RGB_B = 16
+L_RGB_G = 21
+L_RGB_R = 4
+
+["custom.piezo"]
+type = "piezo_outputs"
+PIEZO1 = 19
+PIEZO2 = 18
+
+["custom.analog_inputs"]
+type = "adc_inputs"
+PHOTO = 25
+POT1 = 32
+POT2 = 33
+
+["custom.dht_sensor"]
+type = "dht"
+DHT_PIN = 26
+
+["custom.header_signals"]
+type = "digital_io_header"
+S1 = 4
+S2 = 16
+S3 = 18
+S4 = 19
+S5 = 21

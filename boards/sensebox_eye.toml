@@ -1,0 +1,86 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "sensebox_eye"
+family = "sensebox_eye"
+description = "senseBox:eye (ESP32-S3) with OV camera interface, Qwiic I2C, microSD (SPI) with enable switch, RGB status LED, and a user button. UART pins are broken out and also labeled for LoRa serial."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+camera = {driver = "drivers.camera", type = "camera"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+uart_enable = {driver = "custom.uart_enable", type = "custom"}
+io_breakouts = {driver = "custom.io_breakouts", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 45
+button_pin = 47
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 2
+scl = 1
+freq = 400000
+
+[system.spi]
+mosi = 38
+miso = 40
+sck = 39
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 45
+num_leds = 1
+
+["drivers.camera"]
+type = "unknown"
+d0 = 11
+d1 = 9
+d2 = 8
+d3 = 10
+d4 = 12
+d5 = 18
+d6 = 17
+d7 = 16
+xclk = 15
+pclk = 13
+vsync = 6
+href = 7
+sccb_sda = 4
+sccb_scl = 5
+pwdn = 46
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 41
+power_pin = 3
+
+["custom.uart_enable"]
+type = "level_shifter_enable"
+enable = 26
+
+["custom.io_breakouts"]
+type = "gpio_breakout"
+io14 = 14
+io48 = 48
+
+["custom.board_specific"]
+type = "misc"
+pin_usb_dm = 19
+pin_usb_dp = 20
+usb_fw_msc_serial_number = 0

@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32-gateway"
+family = "esp32_gateway"
+description = "ESP32 gateway board with built-in Ethernet PHY (RMII) plus primary I2C and SPI pin mappings; includes a built-in LED and a user key."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+ethernet = {driver = "drivers.ethernet", type = "ethernet"}
+
+[system]
+led_pin = 33
+button_pin = 34
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 32
+scl = 16
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.ethernet"]
+type = "unknown"
+bus = "rmii"
+mdc = 23
+mdio = 18
+phy_addr = 0
+power_pin = 5

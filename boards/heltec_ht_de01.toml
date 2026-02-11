@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "heltec_ht_de01"
+family = "heltec_ht_de01"
+description = "Heltec HT-DE01 (ESP32-S2) board with built-in LED, BOOT button, primary I2C/SPI/UART, and an SPI e-ink display interface (RST/BUSY/CS/DC/CLK/SDI)."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+eink = {driver = "custom.eink", type = "custom"}
+status_led_alt = {driver = "custom.status_led_alt", type = "custom"}
+
+[system]
+led_pin = 35
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 10
+miso = 11
+sck = 9
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+vext = 45
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 5
+dc = 4
+rst = 6
+
+["custom.eink"]
+type = "epaper"
+busy = 7
+clk = 3
+sdi = 2
+
+["custom.status_led_alt"]
+type = "led"
+led = 18

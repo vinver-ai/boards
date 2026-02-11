@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "soldered_nula_mini_esp32c6"
+family = "soldered_nula_mini_esp32c6"
+description = "ESP32-C6 mini board with built-in LED, one user button, primary UART, and exposed I2C + SPI buses."
+chip = "esp32c6"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = 23
+button_pin = 9
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 6
+scl = 7
+freq = 400000
+
+[system.spi]
+mosi = 3
+miso = 4
+sck = 5
+
+[system.uart]
+tx = 16
+rx = 17
+baud = 115200

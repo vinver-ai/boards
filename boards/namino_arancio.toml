@@ -1,0 +1,88 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "namino_arancio"
+family = "namino_arancio"
+description = "Namino Arancio ESP32-S3 board with primary I2C on GPIO1/0, primary SPI on GPIO11/13/12 with SS on GPIO10, SD card CS on GPIO2, and a primary UART on GPIO17/18. Also exposes add-on reset and module reset pins plus a BOOT mode pin."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+addon_reset = {driver = "custom.addon_reset", type = "custom"}
+namino_module_reset = {driver = "custom.namino_module_reset", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 47
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 1
+scl = 0
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 17
+rx = 18
+baud = 115200
+
+[system.buttons]
+BOOT_MODE = 47
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 2
+
+["custom.addon_reset"]
+type = "reset"
+reset_add_on = 46
+
+["custom.namino_module_reset"]
+type = "reset"
+nm_reset = 48
+
+["custom.board_specific"]
+type = "misc"
+adc2_ch4 = 15
+adc2_ch8 = 19
+adc2_ch9 = 20
+nm_i2c_scl = 0
+pb0 = 40
+pb1 = 39
+pb2 = 38
+pb3 = 37
+pb4 = 36
+pb5 = 35
+pd0 = 18
+pd1 = 17
+pd4 = 16
+pd5 = 21
+pd6 = 42
+pd7 = 41
+touch1 = 1
+touch10 = 10
+touch11 = 11
+touch12 = 12
+touch13 = 13
+touch14 = 14
+touch2 = 2
+touch3 = 3
+touch4 = 4
+touch5 = 5
+touch6 = 6
+touch7 = 7
+touch8 = 8
+touch9 = 9

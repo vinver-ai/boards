@@ -1,0 +1,82 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "deneyapkart"
+family = "deneyapkart"
+description = "Deneyap Kart (ESP32) with onboard RGB LEDs, BOOT/KEY button, primary SPI header, I2C on GPIO4/15 (shared with LED/I2C aliases), camera parallel interface pinout, and I2S mic pins."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+camera = {driver = "drivers.camera", type = "camera"}
+rgb_led = {driver = "custom.rgb_led", type = "custom"}
+pwm_outputs = {driver = "custom.pwm_outputs", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 4
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 4
+scl = 15
+freq = 400000
+
+[system.spi]
+mosi = 5
+miso = 18
+sck = 19
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.uart1]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.camera"]
+type = "unknown"
+d0 = 19
+d1 = 22
+d2 = 23
+d3 = 21
+d4 = 18
+d5 = 26
+d6 = 35
+d7 = 34
+xclk = 32
+pclk = 5
+vsync = 36
+href = 39
+sccb_sda = 33
+sccb_scl = 25
+
+["custom.rgb_led"]
+type = "gpio_rgb_led"
+blue = 4
+
+["custom.pwm_outputs"]
+type = "pwm"
+pwm0 = 23
+pwm1 = 22
+
+["custom.board_specific"]
+type = "misc"
+imusc = 15
+micc = 13
+micd = 12

@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_sparklemotion_esp32"
+family = "adafruit_sparklemotion_esp32"
+description = "Adafruit Sparkle Motion ESP32-S3 board with built-in status LED, boot/user button, NeoPixel, primary I2C, and shared-pin UART/SPI mappings as defined by the variant."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = 4
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 14
+scl = 13
+freq = 400000
+
+[system.spi]
+mosi = 9
+miso = 10
+sck = 18
+
+[system.uart]
+tx = 9
+rx = 10
+baud = 115200
+
+[system.uart1]
+tx = 9
+rx = 10
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 2
+num_leds = 1

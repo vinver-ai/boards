@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "wt32-eth01"
+family = "wt32_eth01"
+description = "Wireless-Tag WT32-ETH01 (ESP32) Ethernet module with LAN8720A PHY (RMII, 50MHz clock input on GPIO0), UART2 on GPIO17/5, I2C on GPIO33/32, SPI on GPIO14/15/12."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+ethernet = {driver = "drivers.ethernet", type = "ethernet"}
+
+[system]
+led_pin = -1
+button_pin = -1
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 33
+scl = 32
+freq = 400000
+
+[system.spi]
+mosi = 14
+miso = 15
+sck = 12
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.uart1]
+tx = 17
+rx = 5
+baud = 115200
+
+["drivers.ethernet"]
+type = "lan8720"
+bus = "rmii"
+mdc = 23
+mdio = 18
+phy_addr = 1
+power_pin = 16

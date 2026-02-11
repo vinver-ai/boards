@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "sonoff_dualr3"
+family = "sonoff_dualr3"
+description = "Sonoff Dual R3 (ESP32) dual-relay smart switch with two external switch inputs and a CSE7761 energy-monitoring UART."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+relays = {driver = "custom.relays", type = "custom"}
+cse7761 = {driver = "custom.cse7761", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.buttons]
+switch_1 = 32
+switch_2 = 33
+
+["custom.relays"]
+type = "dual_relay"
+RELAY_1 = 27
+RELAY_2 = 14
+
+["custom.cse7761"]
+type = "energy_monitor_uart"
+rx = 26
+tx = 25

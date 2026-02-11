@@ -1,0 +1,340 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+#
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  VINVER HAL — TOML Reference Template                          ║
+# ║  Fictional "god board" with every possible driver/capability    ║
+# ║                                                                 ║
+# ║  Design rules:                                                  ║
+# ║  1. Capabilities = SDK public API (each entry → board.X)        ║
+# ║  2. Drivers are self-contained (ALL pins inside the driver)     ║
+# ║  3. System = infrastructure (buses, core pins, power sensing)   ║
+# ║  4. Custom = escape hatch for unlisted peripherals (board.custom) ║
+# ║  5. No extra_pins — everything is semantically classified       ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
+# ─── META ─────────────────────────────────────────────────────────
+[meta]
+id = "vinver_god_board"
+family = "vinver"
+description = "Fictional reference board — every driver and capability"
+chip = "esp32s3"
+flash_size = "16MB"
+psram = true
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+# ─── CAPABILITIES ─────────────────────────────────────────────────
+# The SDK index. Each entry here becomes board.X in the SDK.
+# Pin-based:   {pin = "system.path", type = "..."}
+# Driver-based: {driver = "drivers.name", type = "..."}
+
+[capabilities]
+led        = {pin = "system.led_pin",    type = "led"}
+rgb_led    = {pin = "system.led_pin",    type = "addressable_rgb"}
+button     = {pin = "system.button_pin", type = "button"}
+buzzer     = {pin = "system.buzzer_pin", type = "buzzer"}
+dac1       = {pin = "system.dac1_pin",   type = "dac"}
+dac2       = {pin = "system.dac2_pin",   type = "dac"}
+neopixel   = {driver = "drivers.neopixel",  type = "rgb_led"}
+display    = {driver = "drivers.display",   type = "display"}
+camera     = {driver = "drivers.camera",    type = "camera"}
+audio      = {driver = "drivers.audio",     type = "audio"}
+touch      = {driver = "drivers.touch",     type = "touch"}
+lora       = {driver = "drivers.lora",      type = "lora"}
+gps        = {driver = "drivers.gps",       type = "gps"}
+pmu        = {driver = "drivers.pmu",       type = "pmu"}
+sdcard     = {driver = "drivers.sdcard",    type = "sdcard"}
+ethernet   = {driver = "drivers.ethernet",  type = "ethernet"}
+can        = {driver = "drivers.can",       type = "can"}
+rs485      = {driver = "drivers.rs485",     type = "rs485"}
+nfc        = {driver = "drivers.nfc",       type = "nfc"}
+imu        = {driver = "drivers.imu",       type = "imu"}
+rtc        = {driver = "drivers.rtc",       type = "rtc"}
+env_sensor = {driver = "drivers.env_sensor", type = "env_sensor"}
+ir         = {driver = "drivers.ir",        type = "ir"}
+wifi_halow = {driver = "drivers.wifi_halow", type = "wifi_halow"}
+# Custom peripherals — SDK exposes as board.custom.X (generic config, no auto-init)
+lidar      = {driver = "custom.lidar",     type = "custom"}
+motor      = {driver = "custom.motor",     type = "custom"}
+
+# ─── SYSTEM ───────────────────────────────────────────────────────
+# Board infrastructure: core pins, buses, power sensing, buttons.
+
+[system]
+led_pin    = 35
+button_pin = 0
+buzzer_pin = 46
+dac1_pin   = 25
+dac2_pin   = 26
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+# Primary buses
+[system.i2c]
+sda  = 41
+scl  = 42
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck  = 12
+
+[system.uart]
+tx   = 43
+rx   = 44
+baud = 115200
+
+# Secondary buses (optional — only if board exposes them)
+[system.i2c1]
+sda  = 17
+scl  = 18
+freq = 400000
+
+[system.uart1]
+tx   = 1
+rx   = 2
+baud = 9600
+
+# Power sensing — simple ADC/GPIO, no IC
+# (for PMU ICs like AXP192, see drivers.pmu)
+[system.power]
+battery_adc = 4
+vbus_sense  = 33
+vext        = 36
+charge_en   = 21
+
+# Named buttons beyond the main button_pin
+[system.buttons]
+up     = 13
+down   = 15
+left   = 14
+right  = 12
+ok     = 11
+select = 1
+
+# ─── DRIVERS ──────────────────────────────────────────────────────
+# Self-contained peripheral configs. Each driver owns ALL its pins.
+# The HAL reads these to auto-instantiate and configure hardware.
+#
+# Common fields:
+#   init_priority  — lower = initializes first (0-100)
+#   depends_on     — bus/driver dependencies for init ordering
+#   type           — IC/protocol identifier (HAL picks the right class)
+#   bus            — which bus this peripheral uses
+
+# ── NeoPixel / Addressable RGB LED ──
+["drivers.neopixel"]
+init_priority = 5
+type      = "ws2812"        # ws2812 | sk6812
+pin       = 48
+power_pin = 34              # optional: GPIO that gates power to the LED
+num_leds  = 1
+
+# ── Display (SPI) ──
+# bus = "spi" → uses cs, dc
+# bus = "i2c" → uses address (for OLEDs like SSD1306)
+# bus = "rgb" → parallel RGB: adds hsync, vsync, de, pclk, d0-d15
+["drivers.display"]
+init_priority = 40
+depends_on = ["system.spi"]
+type      = "st7789"        # st7789 | ssd1306 | ili9341 | gc9a01 | ...
+bus       = "spi"
+cs        = 6
+dc        = 7
+width     = 320
+height    = 240
+rst       = 5
+backlight = 38              # optional: PWM backlight control
+power_pin = 15              # optional: GPIO that gates display power
+addr      = 0x3C            # optional: I2C address (bus = "i2c", e.g. SSD1306 = 0x3C)
+
+# ── Camera (DVP parallel) ──
+["drivers.camera"]
+init_priority = 30
+type     = "ov2640"         # ov2640 | ov5640 | ov3660 | ...
+d0       = 13
+d1       = 15
+d2       = 16
+d3       = 14
+d4       = 12
+d5       = 10
+d6       = 9
+d7       = 7
+xclk     = 8
+pclk     = 11
+vsync    = 5
+href     = 6
+sccb_sda = 34              # camera's own I2C (SCCB), not system.i2c
+sccb_scl = 33
+pwdn     = 21              # optional: power down
+reset    = 47              # optional: hardware reset
+
+# ── Audio (I2S) ──
+["drivers.audio"]
+init_priority = 30
+type       = "i2s"          # i2s | max98357 | es8311 | ...
+bclk       = 17             # bit clock
+lrck       = 18             # word select (left/right clock)
+dout       = 15             # data out (to speaker/DAC)
+din        = 16             # optional: data in (from microphone/ADC)
+mclk       = 0              # optional: master clock
+speaker_en = 46             # optional: amplifier enable
+
+# ── Touch Panel ──
+["drivers.touch"]
+init_priority = 35
+depends_on = ["system.i2c"]
+type = "cst816s"            # cst816s | gt911 | ft6336 | ...
+bus  = "i2c"
+addr = 0x15                 # 7-bit I2C address (cst816s=0x15, ft6336=0x38, gt911=0x5D)
+irq  = 3
+rst  = 4                    # optional: hardware reset
+
+# ── LoRa Radio ──
+["drivers.lora"]
+init_priority = 50
+depends_on = ["system.spi"]
+type = "sx1262"             # sx1276 | sx1262 | sx1268 | llcc68 | ...
+bus  = "spi"
+cs   = 8
+rst  = 12
+irq  = 14
+busy = 13                   # optional: sx1262 busy pin
+
+# ── WiFi HaLow (802.11ah) ──
+# Sub-GHz long-range WiFi with native IP stack
+# External IC connected via SPI (not the ESP32's built-in WiFi)
+["drivers.wifi_halow"]
+init_priority = 50
+depends_on = ["system.spi"]
+type = "mm6108"             # mm6108 | nrc7292 | ...
+bus  = "spi"
+cs   = 10
+irq  = 5
+rst  = 4
+power_pin = 12              # optional: power enable
+
+# ── GPS Receiver ──
+["drivers.gps"]
+init_priority = 50
+type = "neo-6m"             # neo-6m | neo-m8n | l76k | ...
+tx   = 1
+rx   = 2
+baud = 9600
+pps  = 3                    # optional: pulse-per-second sync
+
+# ── Power Management IC ──
+# (for simple battery ADC without IC, see system.power)
+["drivers.pmu"]
+init_priority = 10
+depends_on = ["system.i2c"]
+type = "axp2101"            # axp192 | axp2101 | ...
+bus  = "i2c"
+addr = 0x34                 # 7-bit I2C address (axp192/axp2101=0x34)
+irq  = 35
+
+# ── SD Card ──
+# bus = "spi"  → uses cs (chip select from system.spi)
+# bus = "sdio" → uses d0-d3, clk, cmd (dedicated SDIO lines)
+["drivers.sdcard"]
+init_priority = 20
+bus    = "sdio"             # spi | sdio
+cs     = 15                 # spi mode
+detect    = 36              # optional: card detect pin
+power_pin = 22              # optional: power gate
+d0     = 39                 # sdio mode
+d1     = 40
+d2     = 47
+d3     = 33
+clk    = 38
+cmd    = 34
+
+# ── Ethernet ──
+# bus = "rmii" → native MAC (LAN8720): uses mdc, mdio, phy_addr
+# bus = "spi"  → external IC (W5500): uses cs, int, rst
+["drivers.ethernet"]
+init_priority = 20
+type     = "lan8720"        # lan8720 | w5500 | dm9051 | ...
+bus      = "rmii"           # rmii | spi
+mdc      = 23               # rmii mode
+mdio     = 18               # rmii mode
+phy_addr = 0                # rmii mode
+cs        = 5               # spi mode
+irq       = 4               # spi mode
+power_pin = 12              # optional: power enable
+rst      = -1               # optional: hardware reset
+
+# ── CAN Bus ──
+["drivers.can"]
+init_priority = 30
+txd = 4
+rxd = 5
+
+# ── RS-485 ──
+["drivers.rs485"]
+init_priority = 30
+txd = 17
+rxd = 18
+rts = 19                    # optional: direction control
+
+# ── NFC ──
+["drivers.nfc"]
+init_priority = 40
+depends_on = ["system.spi"]
+type = "pn532"              # pn532 | rc522 | ...
+bus  = "spi"
+cs   = 10
+irq  = 3                    # optional: tag detect interrupt
+
+# ── IMU / Accelerometer ──
+["drivers.imu"]
+init_priority = 30
+depends_on = ["system.i2c"]
+type = "bma423"             # bma423 | mpu6050 | lsm6ds3 | bmi270 | qmi8658 | ...
+bus  = "i2c"
+addr = 0x18                 # 7-bit I2C address (bma423=0x18, mpu6050=0x68, bmi270=0x68, qmi8658=0x6B)
+irq  = 14                   # optional: motion/data-ready interrupt
+
+# ── RTC (Real-Time Clock) ──
+["drivers.rtc"]
+init_priority = 15
+depends_on = ["system.i2c"]
+type = "pcf8563"            # pcf8563 | ds3231 | ...
+bus  = "i2c"
+addr = 0x51                 # 7-bit I2C address (pcf8563/bm8563=0x51, ds3231=0x68)
+irq  = 37                   # optional: alarm interrupt
+
+# ── Environmental Sensor ──
+["drivers.env_sensor"]
+init_priority = 30
+depends_on = ["system.i2c"]
+type = "bme280"             # bme280 | sht30 | bmp280 | aht20 | ...
+bus  = "i2c"
+addr = 0x76                 # 7-bit I2C address (bme280/bmp280=0x76, sht30=0x44, aht20=0x38)
+
+# ── IR (Infrared) ──
+["drivers.ir"]
+init_priority = 30
+tx = 44                     # IR transmitter
+rx = 2                      # optional: IR receiver
+
+# ─── CUSTOM ───────────────────────────────────────────────────────
+# Escape hatch for peripherals not covered by standard drivers.
+# Same structure as drivers (type + pin fields), but the HAL does
+# NOT auto-instantiate — it exposes the config for the dev to use.
+#
+# Rule: MUST have "type" field. No flat key-value dumps.
+# SDK access: board.custom.lidar, board.custom.motor, etc.
+
+["custom.lidar"]
+type = "vl53l0x"
+bus  = "i2c"
+int  = 3
+shutdown = 4
+
+["custom.motor"]
+type = "pwm"
+pin  = 15
+freq = 5000

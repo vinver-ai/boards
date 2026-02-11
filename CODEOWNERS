@@ -1,0 +1,6 @@
+# Default owners for everything
+* @vinver-ai/maintainers
+
+# Schema and CI require core team review
+/schema/ @vinver-ai/core
+/.github/ @vinver-ai/core

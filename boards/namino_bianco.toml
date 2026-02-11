@@ -1,0 +1,133 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "namino_bianco"
+family = "namino_bianco"
+description = "ESP32-S3 board exposing Arduino-style headers with primary SPI (SS/MOSI/MISO/SCK), primary I2C (SDA/SCL), and a user UART (TX/RX). No explicit LED/button/buzzer or onboard peripherals defined in pins_arduino.h."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 1
+scl = 2
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 17
+rx = 18
+baud = 115200
+
+["custom.board_specific"]
+type = "misc"
+adc1_ch0 = 1
+adc1_ch1 = 2
+adc1_ch2 = 3
+adc1_ch3 = 4
+adc1_ch4 = 5
+adc1_ch5 = 6
+adc1_ch6 = 7
+adc1_ch7 = 8
+adc1_ch8 = 9
+adc1_ch9 = 10
+adc2_ch0 = 11
+adc2_ch1 = 12
+adc2_ch2 = 13
+adc2_ch3 = 14
+adc2_ch4 = 15
+adc2_ch5 = 16
+adc2_ch6 = 17
+adc2_ch7 = 18
+adc2_ch8 = 19
+adc2_ch9 = 20
+j3_scl = 2
+j3_sda = 1
+m1_11_mosi = 11
+m1_12_sck = 12
+m1_13_miso = 13
+m1_3_an = 3
+m1_48_cs = 48
+m1_rst = 0
+m2_14_int = 14
+m2_17_tx = 17
+m2_18_rx = 18
+m2_1_sda = 1
+m2_2_scl = 2
+m2_47_pwm = 47
+nm_i2c_scl = 2
+nm_i2c_sda = 1
+pb0 = 40
+pb1 = 39
+pb2 = 38
+pb3 = 37
+pb4 = 36
+pb5 = 35
+pb_35 = 35
+pb_36 = 36
+pb_37 = 37
+pb_38 = 38
+pb_39 = 39
+pb_40 = 40
+pb_scl = 2
+pb_sda = 1
+pc0 = 3
+pc1 = 4
+pc2 = 5
+pc3 = 6
+pc4 = 7
+pc5 = 15
+pc_15 = 15
+pc_4 = 4
+pc_5 = 5
+pc_6 = 6
+pc_7 = 7
+pc_io3 = 3
+pd0 = 18
+pd1 = 17
+pd2 = 47
+pd3 = 14
+pd4 = 16
+pd5 = 21
+pd6 = 42
+pd7 = 41
+pd_14 = 14
+pd_16 = 16
+pd_17 = 17
+pd_18 = 18
+pd_21 = 21
+pd_42 = 42
+pd_47 = 47
+pd_io41 = 41
+reset_arduino = 0
+touch1 = 1
+touch10 = 10
+touch11 = 11
+touch12 = 12
+touch13 = 13
+touch14 = 14
+touch2 = 2
+touch3 = 3
+touch4 = 4
+touch5 = 5
+touch6 = 6
+touch7 = 7
+touch8 = 8
+touch9 = 9

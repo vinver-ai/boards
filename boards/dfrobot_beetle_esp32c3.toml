@@ -1,0 +1,61 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "dfrobot_beetle_esp32c3"
+family = "dfrobot_beetle_esp32c3"
+description = "DFRobot Beetle ESP32-C3 board with built-in LED, primary I2C and SPI broken out; includes GDI (DFRobot display interface) SPI control pins and shared I2C pins."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+gdi_interface = {driver = "custom.gdi_interface", type = "custom"}
+
+[system]
+led_pin = 10
+button_pin = 0
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 5
+sck = 4
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 7
+dc = 1
+rst = 2
+backlight = 10
+
+["custom.gdi_interface"]
+type = "dfrobot_gdi"
+blk = 10
+cs = 7
+dc = 1
+i2c_scl = 9
+i2c_sda = 8
+res = 2
+sdcs = 0
+spi_miso = 5
+spi_mosi = 6
+spi_sck = 4
+tcs = 3

@@ -1,0 +1,75 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "fed4"
+family = "fed4"
+description = "ESP32-S3 board with primary/secondary I2C, SPI, UART, battery voltage sensing, RGB status LED + RGB strip output, and I2S audio amp interface plus several user buttons and TRRS-related GPIOs."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+audio = {driver = "drivers.audio", type = "audio"}
+misc_control = {driver = "custom.misc_control", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.i2c1]
+sda = 20
+scl = 19
+freq = 400000
+
+[system.power]
+battery_adc = 7
+
+[system.buttons]
+user_btn_1 = 14
+user_btn_2 = 39
+user_btn_3 = 40
+
+["drivers.neopixel"]
+type = "unknown"
+pin = 35
+num_leds = 1
+
+["drivers.audio"]
+type = "i2s"
+bclk = 45
+lrck = 48
+din = 39
+speaker_en = 42
+
+["custom.misc_control"]
+type = "gpio_control"
+DSCS = 14
+INTERRUPT_PIN = 18
+LDO2 = 47
+MSBY = 15
+SS = 47
+TRRS_1 = 4
+TRRS_2 = 2
+TRRS_3 = 3

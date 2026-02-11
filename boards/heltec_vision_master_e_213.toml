@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "heltec_vision_master_e_213"
+family = "heltec_vision_master"
+description = "Heltec Vision Master E 2.13\" e-paper board (ESP32-S2) with SPI e-ink display, LoRa radio control pins, and primary I2C/SPI/UART broken out."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+lora = {driver = "drivers.lora", type = "lora"}
+eink_epaper = {driver = "custom.eink_epaper", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 39
+scl = 38
+freq = 400000
+
+[system.spi]
+mosi = 10
+miso = 11
+sck = 9
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+vext = 18
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 5
+dc = 2
+width = 250
+height = 122
+rst = 3
+
+["drivers.lora"]
+type = "sx1262"
+bus = "spi"
+cs = 8
+rst = 12
+irq = 14
+busy = 13
+
+["custom.eink_epaper"]
+type = "epaper"
+busy = 1
+clk = 4
+sdi = 6

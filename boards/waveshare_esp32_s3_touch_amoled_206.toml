@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "waveshare_esp32_s3_touch_amoled_206"
+family = "waveshare_esp32_s3"
+description = "Waveshare ESP32-S3 Touch AMOLED 2.06\" board: SPI AMOLED display with power enable + TE pin, I2C touch panel, shared I2C bus for RTC and QMI8658 IMU, SD card via SDMMC (CMD/D0 plus CS), and battery voltage ADC sensing."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+touch = {driver = "drivers.touch", type = "touch"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+imu = {driver = "drivers.imu", type = "imu"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 15
+scl = 14
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 34
+sck = 33
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 33
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 12
+width = 410
+height = 502
+rst = 8
+power_pin = 21
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+irq = 38
+rst = 9
+
+["drivers.sdcard"]
+bus = "sdio"
+cs = 17
+
+["drivers.rtc"]
+type = "unknown"
+bus = "i2c"
+irq = 39
+
+["drivers.imu"]
+type = "qmi8658"
+bus = "i2c"
+addr = 0x6B
+irq = 21

@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "d32_pro"
+family = "d32_pro"
+description = "ESP32 D32 Pro style board with built-in LED, battery voltage sense ADC, microSD (TF) chip-select, and an SPI TFT display with backlight, reset, and D/C control."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+display = {driver = "drivers.display", type = "display"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+touchscreen_spi = {driver = "custom.touchscreen_spi", type = "custom"}
+
+[system]
+led_pin = 5
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.power]
+battery_adc = 35
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 14
+dc = 27
+rst = 33
+backlight = 32
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 4
+
+["custom.touchscreen_spi"]
+type = "touchscreen_controller_spi"
+cs = 12

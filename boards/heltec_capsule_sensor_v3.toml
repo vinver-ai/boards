@@ -1,0 +1,69 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "heltec_capsule_sensor_v3"
+family = "heltec_capsule_sensor"
+description = "Heltec Capsule Sensor V3 (ESP32-S3) with onboard GPS (UART + PPS + reset), LoRa radio (reset/busy/irq pins exposed), battery voltage ADC with control pin, Vext power switch, and multiple LEDs (including a virtual LED_BUILTIN)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+lora = {driver = "drivers.lora", type = "lora"}
+gps = {driver = "drivers.gps", type = "gps"}
+status_leds = {driver = "custom.status_leds", type = "custom"}
+gps_control = {driver = "custom.gps_control", type = "custom"}
+
+[system]
+led_pin = 33
+button_pin = 18
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 41
+scl = 42
+freq = 400000
+
+[system.spi]
+mosi = 10
+miso = 11
+sck = 9
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 7
+vext = 21
+
+["drivers.lora"]
+type = "sx1262"
+bus = "spi"
+cs = 8
+rst = 12
+irq = 14
+busy = 13
+
+["drivers.gps"]
+type = "unknown"
+tx = 4
+rx = 5
+baud = 9600
+pps = 1
+
+["custom.status_leds"]
+type = "leds"
+LED0 = 33
+LED1 = 34
+
+["custom.gps_control"]
+type = "reset"
+GPS_RESET_PIN = 3

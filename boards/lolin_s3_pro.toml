@@ -1,0 +1,55 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lolin_s3_pro"
+family = "lolin_s3_pro"
+description = "Wemos/Lolin ESP32-S3 Pro style board with onboard TFT display (SPI) with backlight control, microSD (SPI CS), and shared SPI bus; primary I2C on GPIO9/10; UART on GPIO43/44; built-in LED on virtual pin 87."
+chip = "esp32s3"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+touchscreen_spi = {driver = "custom.touchscreen_spi", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 9
+scl = 10
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 48
+dc = 47
+rst = 21
+backlight = 14
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 46
+
+["custom.touchscreen_spi"]
+type = "touchscreen_cs"
+cs = 45

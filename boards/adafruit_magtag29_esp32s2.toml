@@ -1,0 +1,82 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_magtag29_esp32s2"
+family = "adafruit_magtag29_esp32s2"
+description = "Adafruit MagTag 2.9\" ePaper (ESP32-S2) with 4x NeoPixels, 5 buttons (incl. BOOT on GPIO0), ePaper display over SPI, I2C STEMMA/QT, battery voltage monitor, light sensor, and speaker shutdown control."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+display = {driver = "drivers.display", type = "display"}
+audio = {driver = "drivers.audio", type = "audio"}
+imu = {driver = "drivers.imu", type = "imu"}
+light_sensor = {driver = "custom.light_sensor", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 33
+scl = 34
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.uart1]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 4
+
+[system.buttons]
+pin_button1 = 15
+pin_button2 = 14
+pin_button3 = 12
+pin_button4 = 11
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 1
+power_pin = 21
+num_leds = 1
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 8
+dc = 7
+rst = 6
+
+["drivers.audio"]
+type = "unknown"
+speaker_en = 16
+
+["drivers.imu"]
+type = "unknown"
+bus = "i2c"
+irq = 9
+
+["custom.light_sensor"]
+type = "adc"
+adc = 3

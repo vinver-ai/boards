@@ -1,0 +1,85 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_core2"
+family = "m5stack_core2"
+description = "M5Stack Core2 (ESP32) with ILI9341 LCD 320x240, FT6336 capacitive touch (int=39), AXP192 PMU (irq=35), NS4168 speaker (I2S), BM8563 RTC, microSD, 16MB flash, 8MB PSRAM, internal I2C on GPIO21/22, Port A I2C on GPIO32/33."
+chip = "esp32"
+flash_size = "16MB"
+psram = true
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+display = {driver = "drivers.display", type = "display"}
+touch = {driver = "drivers.touch", type = "touch"}
+audio = {driver = "drivers.audio", type = "audio"}
+pmu = {driver = "drivers.pmu", type = "pmu"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+
+[system]
+led_pin = -1
+button_pin = -1
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.i2c1]
+sda = 32
+scl = 33
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 38
+sck = 18
+
+[system.uart]
+tx = 14
+rx = 13
+baud = 115200
+
+["drivers.display"]
+type = "ili9341"
+bus = "spi"
+cs = 5
+dc = 15
+width = 320
+height = 240
+
+["drivers.touch"]
+type = "ft6336"
+bus = "i2c"
+addr = 0x38
+irq = 39
+
+["drivers.audio"]
+type = "unknown"
+bclk = 12
+lrck = 0
+dout = 2
+
+["drivers.pmu"]
+type = "axp192"
+bus = "i2c"
+addr = 0x34
+irq = 35
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 4
+
+["drivers.rtc"]
+type = "bm8563"
+bus = "i2c"
+addr = 0x51

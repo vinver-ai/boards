@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32p4_core_board"
+family = "esp32p4_core_board"
+description = "ESP32-S3 board with primary I2C (GPIO7/8), primary SPI (GPIO33/32/31, CS GPIO30), a user UART on GPIO37/38, and an on-board RGB LED (GPIO44). Also exposes an SDIO pin set for ESP-Hosted (CMD/CLK/D0-D3/BOOT)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+esp_hosted_sdio = {driver = "custom.esp_hosted_sdio", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 7
+scl = 8
+freq = 400000
+
+[system.spi]
+mosi = 33
+miso = 32
+sck = 31
+
+[system.uart]
+tx = 37
+rx = 38
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 44
+num_leds = 1
+
+["custom.esp_hosted_sdio"]
+type = "sdio_esp_hosted"
+d2 = 48
+d3 = 47

@@ -1,0 +1,72 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "um_bling"
+family = "um_bling"
+description = "ESP32-S3 board with 4 user buttons, I2C + SPI, SPI SD card (CS+detect), battery/USB voltage sensing, I2S microphone input and I2S speaker/amp output, RTC interrupt, and a single WS2812-style RGB LED with power control."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+audio = {driver = "drivers.audio", type = "audio"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+rtc_interrupt = {driver = "custom.rtc_interrupt", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 11
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 17
+vbus_sense = 16
+
+[system.buttons]
+button_b = 10
+button_c = 33
+button_d = 34
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 18
+power_pin = 6
+num_leds = 1
+
+["drivers.audio"]
+type = "i2s"
+bclk = 42
+lrck = 40
+dout = 3
+din = 41
+speaker_en = 39
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 21
+detect = 38
+
+["custom.rtc_interrupt"]
+type = "rtc_int"
+int = 7

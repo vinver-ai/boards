@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "dpu_esp32"
+family = "dpu_esp32"
+description = "ESP32 board with SPI TFT display (backlight control), I2C touch panel (INT/RST), and SPI microSD (CS + card-detect). Exposes primary I2C and SPI buses; UART pins are the default ESP32 UART0 (TX=1/RX=3)."
+chip = "esp32"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+display = {driver = "drivers.display", type = "display"}
+touch = {driver = "drivers.touch", type = "touch"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+
+[system]
+led_pin = -1
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 4
+scl = 5
+freq = 400000
+
+[system.spi]
+mosi = 13
+miso = 12
+sck = 14
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 15
+dc = 27
+rst = 32
+backlight = 18
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+irq = 19
+rst = 21
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 23
+detect = 22

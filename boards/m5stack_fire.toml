@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_fire"
+family = "m5stack_fire"
+description = "M5Stack FIRE (ESP32) core module. Exposes primary UART (GPIO1/3), I2C (GPIO21/22), and VSPI (GPIO23/19/18) plus DAC pins (GPIO25/26) and ADC inputs (GPIO35/36). No explicit LED/button/display pins provided in this pins_arduino.h snippet."
+chip = "esp32"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+adc_inputs = {driver = "custom.adc_inputs", type = "custom"}
+spi_cs = {driver = "custom.spi_cs", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["custom.adc_inputs"]
+type = "adc"
+ADC1 = 35
+ADC2 = 36
+
+["custom.spi_cs"]
+type = "chip_select"
+SS = 4

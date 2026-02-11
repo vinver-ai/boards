@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "gpy"
+family = "gpy"
+description = "ESP32 board with primary I2C, primary SPI, and an LTE modem interface (UART + RTS/CTS + WAKE) plus antenna select control. Has a built-in LED and an RGB LED pin."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+lte_modem = {driver = "custom.lte_modem", type = "custom"}
+antenna_select = {driver = "custom.antenna_select", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 12
+scl = 13
+freq = 400000
+
+[system.spi]
+mosi = 22
+miso = 37
+sck = 13
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.neopixel"]
+type = "unknown"
+pin = 0
+num_leds = 1
+
+["custom.lte_modem"]
+type = "cellular_lte"
+cts = 18
+rts = 19
+rx = 23
+tx = 5
+wake = 27
+
+["custom.antenna_select"]
+type = "rf_switch"
+ant_select = 21

@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_station"
+family = "m5stack_station"
+description = "M5Stack Station (ESP32) base board exposing primary I2C on GPIO32/33, VSPI-style SPI on GPIO23/18 with CS on GPIO5, and multiple UARTs (UART0 on GPIO1/3 for USB-serial; additional UARTs on GPIO14/13 and GPIO17/16). ADC inputs available on GPIO35/36; DAC outputs on GPIO25/26."
+chip = "esp32"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+adc_inputs = {driver = "custom.adc_inputs", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 32
+scl = 33
+freq = 400000
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.uart1]
+tx = 14
+rx = 13
+baud = 115200
+
+["custom.adc_inputs"]
+type = "adc"
+ADC1 = 35
+ADC2 = 36

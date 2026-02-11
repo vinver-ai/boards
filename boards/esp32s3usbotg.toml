@@ -1,0 +1,70 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32s3usbotg"
+family = "esp32s3usbotg"
+description = "ESP32-S3 USB OTG board with 240x240 SPI LCD, SDMMC (4-bit) interface, multiple buttons, dual status LEDs, USB VBUS/boost/limit control and over-current monitoring, plus battery/host voltage ADC sensing."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+usb_power_control = {driver = "custom.usb_power_control", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 15
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 45
+scl = 46
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 1
+vbus_sense = 12
+
+[system.buttons]
+button_down = 11
+button_menu = 14
+button_up = 10
+
+["drivers.display"]
+type = "st7789"
+bus = "spi"
+cs = 5
+dc = 4
+width = 240
+height = 240
+rst = 8
+backlight = 9
+
+["custom.usb_power_control"]
+type = "usb_otg_power"
+BOOST_EN = 13
+LIMIT_EN = 17
+OVER_CURRENT = 21
+
+["custom.board_specific"]
+type = "misc"
+usb_dn = 19
+usb_dp = 20

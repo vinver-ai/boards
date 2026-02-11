@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "metro_esp-32"
+family = "metro_esp-32"
+description = "Adafruit Metro ESP-32 style board: built-in LED on GPIO2, boot/user button on GPIO0, primary I2C on GPIO21/22, and primary SPI on GPIO23/19/18 with SS on GPIO5."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+ADR = {driver = "custom.ADR", type = "custom"}
+
+[system]
+led_pin = 2
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+["custom.ADR"]
+type = "address_select"
+adr = 12

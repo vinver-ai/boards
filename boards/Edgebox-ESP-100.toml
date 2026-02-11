@@ -1,0 +1,97 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "Edgebox-ESP-100"
+family = "Edgebox-ESP-100"
+description = "Edgebox-ESP-100 (ESP32-S3) industrial controller with I2C, SPI, Ethernet module interface (SPI + INT/RST), LTE modem UART with power control, RS485 transceiver, CAN (TWAI), buzzer, 6 digital outputs, 4 digital inputs, and 2 analog outputs."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+ethernet = {driver = "drivers.ethernet", type = "ethernet"}
+can = {driver = "drivers.can", type = "can"}
+rs485 = {driver = "drivers.rs485", type = "rs485"}
+lte_modem = {driver = "custom.lte_modem", type = "custom"}
+digital_outputs = {driver = "custom.digital_outputs", type = "custom"}
+digital_inputs = {driver = "custom.digital_inputs", type = "custom"}
+analog_outputs = {driver = "custom.analog_outputs", type = "custom"}
+i2c_alert = {driver = "custom.i2c_alert", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 21
+buzzer_pin = 45
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 20
+scl = 19
+freq = 400000
+
+[system.spi]
+mosi = 12
+miso = 11
+sck = 13
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.ethernet"]
+type = "unknown"
+bus = "spi"
+irq = 14
+rst = 15
+
+["drivers.can"]
+txd = 1
+rxd = 2
+
+["drivers.rs485"]
+txd = 17
+rxd = 18
+rts = 8
+
+["custom.lte_modem"]
+type = "cellular_modem"
+pwr_en = 16
+rxd = 47
+txd = 48
+
+["custom.digital_outputs"]
+type = "gpio_outputs"
+do0 = 40
+do1 = 39
+do2 = 38
+do3 = 37
+do4 = 36
+do5 = 35
+
+["custom.digital_inputs"]
+type = "gpio_inputs"
+di0 = 4
+di1 = 5
+di2 = 6
+di3 = 7
+
+["custom.analog_outputs"]
+type = "analog_out"
+ao0 = 42
+ao1 = 41
+
+["custom.i2c_alert"]
+type = "i2c_interrupt"
+int = 9
+
+["custom.board_specific"]
+type = "misc"
+rst = 0

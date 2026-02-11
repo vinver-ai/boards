@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "aslcanx2"
+family = "aslcanx2"
+description = "ESP32-S2 board with built-in LED, primary I2C and SPI buses, a user UART, and a CAN (TWAI) transceiver interface on GPIO6/7."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+can = {driver = "drivers.can", type = "can"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 2
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.can"]
+txd = 7
+rxd = 6
+
+["custom.board_specific"]
+type = "misc"
+cs = 10

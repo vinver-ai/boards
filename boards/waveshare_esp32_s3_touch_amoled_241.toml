@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "waveshare_esp32_s3_touch_amoled_241"
+family = "waveshare_esp32_s3"
+description = "Waveshare ESP32-S3 Touch AMOLED 2.41\" board: QSPI-connected AMOLED panel, I2C touch/RTC/IMU on shared bus, battery voltage ADC, and a general-purpose SPI + UART."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+amoled_qspi = {driver = "custom.amoled_qspi", type = "custom"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+imu = {driver = "drivers.imu", type = "imu"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 47
+scl = 48
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 17
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+rst = 21
+
+["custom.amoled_qspi"]
+type = "qspi_display_bus"
+cs = 9
+d0 = 11
+d1 = 12
+d2 = 13
+d3 = 14
+sck = 10
+
+["drivers.rtc"]
+type = "unknown"
+bus = "i2c"
+
+["drivers.imu"]
+type = "qmi8658"
+bus = "i2c"
+addr = 0x6B

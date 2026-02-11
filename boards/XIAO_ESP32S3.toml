@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "XIAO_ESP32S3"
+family = "xiao"
+description = "Seeed Studio XIAO ESP32S3 variant: built-in LED on GPIO21, I2C on GPIO5/6, SPI on GPIO7/8/9, UART pins on GPIO43/44."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = true
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = 21
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 5
+scl = 6
+freq = 400000
+
+[system.spi]
+mosi = 9
+miso = 8
+sck = 7
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200

@@ -1,0 +1,67 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "mpython"
+family = "mpython"
+description = "mpython ESP32 board with MicroPython-style P0..P20 edge pins, two user buttons (A/B), buzzer, and onboard light/sound analog inputs. Primary I2C on GPIO23/22; primary SPI on GPIO23/19/18 (note MOSI shares GPIO23 with I2C SDA)."
+chip = "esp32"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+edge_pins = {driver = "custom.edge_pins", type = "custom"}
+sensors = {driver = "custom.sensors", type = "custom"}
+letter_pins = {driver = "custom.letter_pins", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+buzzer_pin = 16
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 23
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.buttons]
+btn_b = 2
+
+["custom.edge_pins"]
+type = "gpio_edge_connector"
+P10 = 36
+P4 = 39
+
+["custom.sensors"]
+type = "analog_inputs"
+LIGHT = 39
+SOUND = 36
+
+["custom.letter_pins"]
+type = "gpio_named"
+H = 13
+N = 4
+O = 15
+P = 27
+T = 12
+Y = 14

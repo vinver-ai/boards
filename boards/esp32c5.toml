@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32c5"
+family = "esp32c5"
+description = "ESP32-S3 board with primary UART, primary SPI, primary I2C, and an onboard RGB LED (NeoPixel-style)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 0
+scl = 1
+freq = 400000
+
+[system.spi]
+mosi = 8
+miso = 9
+sck = 10
+
+[system.uart]
+tx = 11
+rx = 12
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 27
+num_leds = 1

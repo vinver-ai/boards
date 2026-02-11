@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "um_feathers3neo"
+family = "um_feathers3neo"
+description = "UM FeatherS3 Neo (ESP32-S3) with built-in status LED, primary I2C and SPI pinout, UART on GPIO43/44, battery and VBUS sensing, and onboard NeoPixel/RGB power + data plus a separate RGB matrix data/power control."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+rgb_matrix = {driver = "custom.rgb_matrix", type = "custom"}
+spi_cs = {driver = "custom.spi_cs", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 2
+vbus_sense = 15
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 40
+power_pin = 39
+num_leds = 1
+
+["custom.rgb_matrix"]
+type = "led_matrix"
+data = 16
+power = 39
+
+["custom.spi_cs"]
+type = "spi_cs"
+ss = 5

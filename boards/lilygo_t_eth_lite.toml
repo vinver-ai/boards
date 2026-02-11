@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lilygo_t_eth_lite"
+family = "lilygo_t_eth"
+description = "LILYGO T-ETH Lite (ESP32-S2) with SPI Ethernet PHY/module (W5500-style) plus general SPI and I2C headers."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+ethernet = {driver = "drivers.ethernet", type = "ethernet"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 15
+scl = 16
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 5
+sck = 7
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 42
+
+["drivers.ethernet"]
+type = "w5500"
+bus = "spi"
+phy_addr = 1
+cs = 9
+irq = 13
+rst = 14

@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "intorobot-fig"
+family = "intorobot-fig"
+description = "IntoRobot FIG ESP32 board with single user LED, boot button, primary I2C and SPI broken out; also exposes on-board RGB LED channels as three separate GPIOs."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+rgb_led_channels = {driver = "custom.rgb_led_channels", type = "custom"}
+
+[system]
+led_pin = 4
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 23
+scl = 19
+freq = 400000
+
+[system.spi]
+mosi = 16
+miso = 17
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["custom.rgb_led_channels"]
+type = "rgb_led_discrete"
+b = 22
+g = 21
+r = 27

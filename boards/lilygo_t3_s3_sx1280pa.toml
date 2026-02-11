@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lilygo_t3_s3_sx1280pa"
+family = "lilygo_t3_s3"
+description = "LILYGO T3 S3 board with SX1280 LoRa (2.4GHz) module, onboard LED, BOOT button, battery voltage ADC, plus exposed I2C and SPI buses."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+lora = {driver = "drivers.lora", type = "lora"}
+lora_uart = {driver = "custom.lora_uart", type = "custom"}
+spi_ss_alias = {driver = "custom.spi_ss_alias", type = "custom"}
+
+[system]
+led_pin = 37
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 18
+scl = 17
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 2
+sck = 14
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 1
+
+[system.buttons]
+BUTTON_1 = 0
+
+["drivers.lora"]
+type = "sx1280"
+bus = "spi"
+cs = 7
+rst = 8
+irq = 9
+busy = 36
+
+["custom.lora_uart"]
+type = "uart"
+rx = 21
+tx = 10
+
+["custom.spi_ss_alias"]
+type = "spi_cs"
+ss = 13

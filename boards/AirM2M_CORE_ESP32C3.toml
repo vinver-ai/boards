@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "AirM2M_CORE_ESP32C3"
+family = "AirM2M_CORE_ESP32C3"
+description = "ESP32-C3 core board with two user LEDs, primary UART on GPIO21/20, and exposed I2C (GPIO4/5) and SPI (GPIO3/10/2 with SS on GPIO7)."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+spi_cs = {driver = "custom.spi_cs", type = "custom"}
+
+[system]
+led_pin = 12
+button_pin = 0
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 4
+scl = 5
+freq = 400000
+
+[system.spi]
+mosi = 3
+miso = 10
+sck = 2
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+[system.buttons]
+LED_BUILTIN_AUX = 13
+
+["custom.spi_cs"]
+type = "spi_chip_select"
+SS = 7

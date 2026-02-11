@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_itsybitsy_esp32"
+family = "adafruit_itsybitsy_esp32"
+description = "Adafruit ItsyBitsy ESP32 with built-in status LED, user button, and onboard NeoPixel (with power control). Exposes primary I2C, SPI, and a UART on GPIO20/8."
+chip = "esp32"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = 13
+button_pin = 35
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 15
+scl = 27
+freq = 400000
+
+[system.spi]
+mosi = 21
+miso = 22
+sck = 19
+
+[system.uart]
+tx = 20
+rx = 8
+baud = 115200
+
+[system.uart1]
+tx = 20
+rx = 8
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 0
+power_pin = 2
+num_leds = 1

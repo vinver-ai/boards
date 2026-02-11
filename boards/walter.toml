@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "walter"
+family = "walter"
+description = "ESP32-S3 board with primary UART, I2C, SPI, plus a cellular modem interface (UART + RTS/CTS + reset/wake)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+modem = {driver = "custom.modem", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["custom.modem"]
+type = "cellular_modem_uart"
+cts = 47
+reset = 45
+rts = 19
+rx = 14
+tx = 48
+wake = 46

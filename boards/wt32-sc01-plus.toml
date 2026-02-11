@@ -1,0 +1,64 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "wt32-sc01-plus"
+family = "wt32-sc01-plus"
+description = "ESP32S3 board with button, display, sdcard, touch"
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+touch = {driver = "drivers.touch", type = "touch"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 6
+scl = 5
+freq = 400000
+
+[system.spi]
+mosi = 40
+miso = 38
+sck = 39
+
+[system.uart]
+tx = 42
+rx = 1
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+dc = 0
+rst = 4
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+irq = 7
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 41
+
+["custom.board_specific"]
+type = "misc"
+bclk = 36
+bl_pwm = 45
+dout = 37
+lrck = 35
+rst = 4
+rts = 2

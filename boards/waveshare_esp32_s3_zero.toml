@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "waveshare_esp32_s3_zero"
+family = "waveshare_esp32_s3"
+description = "Waveshare ESP32-S3-Zero style board: exposes a bank of GPIO outputs, has a single WS2812 RGB LED (virtual LED_BUILTIN), and provides default SPI and UART pin mappings. No default I2C pins are defined in the core."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+output_io_bank = {driver = "custom.output_io_bank", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 21
+num_leds = 1
+
+["custom.output_io_bank"]
+type = "gpio_outputs"
+OUTPUT_IO1 = 1
+OUTPUT_IO10 = 10
+OUTPUT_IO11 = 11
+OUTPUT_IO12 = 12
+OUTPUT_IO13 = 13
+OUTPUT_IO2 = 2
+OUTPUT_IO3 = 3
+OUTPUT_IO4 = 4
+OUTPUT_IO5 = 5
+OUTPUT_IO6 = 6
+OUTPUT_IO7 = 7
+OUTPUT_IO8 = 8
+OUTPUT_IO9 = 9

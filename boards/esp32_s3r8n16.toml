@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32_s3r8n16"
+family = "esp32_s3r8n16"
+description = "Generic ESP32-S3 board variant (S3R8N16) exposing primary UART and I2C; no default SPI pins defined; no on-board LED/button/buzzer specified in provided header."
+chip = "esp32s3"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 17
+scl = 18
+freq = 400000
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200

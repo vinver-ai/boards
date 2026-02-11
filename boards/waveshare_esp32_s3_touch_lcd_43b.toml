@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "waveshare_esp32_s3_touch_lcd_43b"
+family = "waveshare_esp32_s3"
+description = "Waveshare ESP32-S3 Touch LCD 4.3B: RGB (parallel) LCD interface plus I2C touch panel, with onboard CAN (TWAI) and RS485 transceiver pins exposed. Also provides a general-purpose SPI bus and a primary I2C header."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+touch = {driver = "drivers.touch", type = "touch"}
+can = {driver = "drivers.can", type = "can"}
+rs485 = {driver = "drivers.rs485", type = "rs485"}
+lcd_rgb_parallel = {driver = "custom.lcd_rgb_parallel", type = "custom"}
+ch422g_io_expander = {driver = "custom.ch422g_io_expander", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 11
+scl = 10
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+irq = 4
+
+["drivers.can"]
+txd = 16
+rxd = 15
+
+["drivers.rs485"]
+txd = 44
+rxd = 43
+
+["custom.lcd_rgb_parallel"]
+type = "rgb_lcd"
+b5 = 18
+b6 = 17
+r4 = 2
+vsync = 3
+
+["custom.ch422g_io_expander"]
+type = "ch422g"
+scl = 9
+sda = 8

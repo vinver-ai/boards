@@ -1,0 +1,109 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lilygo_twatch_s3"
+family = "lilygo_twatch_s3"
+description = "LILYGO T-Watch S3 (ESP32-S3) smartwatch with ST7789 LCD 240x240 (SPI GPIO13/18), AXP2101 PMU, PCF8563 RTC, BMA423 sensor, SX1262 LoRa (SPI GPIO1/3/4), MAX98357A speaker, PDM mic SPM1423, DRV2605L haptic, touch (I2C GPIO39/40), IR on GPIO2."
+chip = "esp32s3"
+flash_size = "16MB"
+psram = true
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+audio = {driver = "drivers.audio", type = "audio"}
+touch = {driver = "drivers.touch", type = "touch"}
+lora = {driver = "drivers.lora", type = "lora"}
+gps = {driver = "drivers.gps", type = "gps"}
+pmu = {driver = "drivers.pmu", type = "pmu"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+haptic = {driver = "custom.haptic", type = "custom"}
+imu = {driver = "drivers.imu", type = "imu"}
+ir = {driver = "drivers.ir", type = "ir"}
+mic = {driver = "custom.mic", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 10
+scl = 11
+freq = 400000
+
+[system.spi]
+mosi = 1
+miso = 4
+sck = 3
+
+[system.uart]
+tx = 42
+rx = 41
+baud = 115200
+
+["drivers.display"]
+type = "st7789"
+bus = "spi"
+cs = 12
+dc = 38
+width = 240
+height = 240
+backlight = 45
+
+["drivers.audio"]
+type = "max98357"
+bclk = 48
+lrck = 15
+dout = 46
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+irq = 16
+
+["drivers.lora"]
+type = "sx1262"
+bus = "spi"
+cs = 5
+rst = 8
+irq = 9
+busy = 7
+
+["drivers.gps"]
+type = "unknown"
+tx = 42
+rx = 41
+
+["drivers.pmu"]
+type = "axp2101"
+bus = "i2c"
+addr = 0x34
+irq = 21
+
+["drivers.rtc"]
+type = "pcf8563"
+bus = "i2c"
+addr = 0x51
+irq = 17
+
+["drivers.imu"]
+type = "bma423"
+bus = "i2c"
+addr = 0x18
+irq = 14
+
+["drivers.ir"]
+tx = 2
+
+["custom.haptic"]
+type = "drv2605l"
+
+["custom.mic"]
+type = "spm1423"
+clk = 44
+data = 47

@@ -1,0 +1,78 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "heltec_wireless_stick"
+family = "heltec_wireless_stick"
+description = "Heltec Wireless Stick (ESP32) with onboard SSD1306 64x32 OLED (dedicated I2C pins) and LoRa radio (SX1276-class, DIO0/1/2). Includes built-in LED on GPIO25 and BOOT button on GPIO0."
+chip = "esp32"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+display = {driver = "drivers.display", type = "display"}
+lora = {driver = "drivers.lora", type = "lora"}
+oled_i2c = {driver = "custom.oled_i2c", type = "custom"}
+vext = {driver = "custom.vext", type = "custom"}
+lora_dio = {driver = "custom.lora_dio", type = "custom"}
+
+[system]
+led_pin = 25
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 27
+miso = 19
+sck = 5
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.power]
+vext = 21
+
+["drivers.display"]
+type = "ssd1306"
+bus = "i2c"
+addr = 0x3C
+width = 64
+height = 32
+rst = 16
+
+["drivers.lora"]
+type = "sx1276"
+bus = "spi"
+cs = 18
+rst = 14
+irq = 26
+
+["custom.oled_i2c"]
+type = "i2c_bus"
+scl = 15
+sda = 4
+
+["custom.vext"]
+type = "power_switch"
+enable = 21
+
+["custom.lora_dio"]
+type = "lora_irq_lines"
+dio1 = 35
+dio2 = 34

@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "sparkfun_pro_micro_esp32c3"
+family = "sparkfun_pro_micro"
+description = "SparkFun Pro Micro ESP32-C3 style board with built-in LED, primary UART on GPIO20/21, I2C on GPIO5/6, SPI on GPIO0/1/3 (SS on GPIO10). Also exposes basic I2S-style audio pins (no specific codec/amp indicated)."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+audio = {driver = "drivers.audio", type = "audio"}
+
+[system]
+led_pin = 10
+button_pin = 0
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 5
+scl = 6
+freq = 400000
+
+[system.spi]
+mosi = 3
+miso = 1
+sck = 0
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+["drivers.audio"]
+type = "i2s"
+bclk = 6
+lrck = 10
+dout = 7
+din = 5

@@ -1,0 +1,88 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32s3camlcd"
+family = "esp32s3camlcd"
+description = "ESP32-S3 camera + 480x320 8-bit parallel TFT board with SDMMC and digital microphone; primary I2C on GPIO17/18 and UART on GPIO43/44."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+camera = {driver = "drivers.camera", type = "camera"}
+audio = {driver = "drivers.audio", type = "audio"}
+tft_parallel_8bit = {driver = "custom.tft_parallel_8bit", type = "custom"}
+sdmmc_1bit = {driver = "custom.sdmmc_1bit", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 17
+scl = 18
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "rgb"
+dc = 2
+width = 480
+height = 320
+
+["drivers.camera"]
+type = "unknown"
+d0 = 13
+d1 = 47
+d2 = 14
+d3 = 3
+d4 = 12
+d5 = 42
+d6 = 41
+d7 = 39
+xclk = 40
+pclk = 11
+vsync = 21
+href = 38
+sccb_sda = 17
+sccb_scl = 18
+
+["drivers.audio"]
+type = "i2s"
+din = 1
+speaker_en = 0
+
+["custom.tft_parallel_8bit"]
+type = "tft_parallel_8bit"
+d0 = 45
+d1 = 16
+d2 = 15
+d3 = 10
+d4 = 8
+d5 = 7
+d6 = 6
+d7 = 5
+wr = 4
+
+["custom.sdmmc_1bit"]
+type = "sdmmc_1bit"
+clk = 9
+cmd = 20
+data0 = 19

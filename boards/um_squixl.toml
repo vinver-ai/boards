@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "um_squixl"
+family = "um_squixl"
+description = "ESP32-S2 board with primary I2C on GPIO1/2 and primary SPI on GPIO46/41/45 (SS=GPIO42). No onboard LED/button or other peripherals defined in provided pins."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 1
+scl = 2
+freq = 400000
+
+[system.spi]
+mosi = 46
+miso = 41
+sck = 45

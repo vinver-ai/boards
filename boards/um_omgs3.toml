@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "um_omgs3"
+family = "um_omgs3"
+description = "ESP32-S3 board with primary UART on GPIO43/44, I2C on GPIO8/9, SPI on GPIO6/5/4, VBUS sensing on GPIO33, and an onboard RGB (NeoPixel-compatible) LED driven from GPIO35 with power control on GPIO34 (LED_BUILTIN is a virtual pin)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 5
+sck = 4
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+vbus_sense = 33
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 35
+power_pin = 34
+num_leds = 1

@@ -1,0 +1,77 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "waveshare_esp32_s3_lcd_169"
+family = "waveshare_esp32_s3"
+description = "Waveshare ESP32-S3 LCD 1.69\" board with SPI TFT display, I2C IMU (QMI8658) + RTC on shared I2C bus, buzzer, battery voltage ADC, and several user output GPIOs."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+display = {driver = "drivers.display", type = "display"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+imu = {driver = "drivers.imu", type = "imu"}
+system_power = {driver = "custom.system_power", type = "custom"}
+user_outputs = {driver = "custom.user_outputs", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+buzzer_pin = 33
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 11
+scl = 10
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 1
+
+["drivers.display"]
+type = "st7789"
+bus = "spi"
+cs = 5
+dc = 4
+rst = 8
+backlight = 15
+
+["drivers.rtc"]
+type = "unknown"
+bus = "i2c"
+irq = 41
+
+["drivers.imu"]
+type = "qmi8658"
+bus = "i2c"
+addr = 0x6B
+irq = 38
+
+["custom.system_power"]
+type = "power_switch"
+sys_en = 35
+sys_out = 36
+
+["custom.user_outputs"]
+type = "gpio_outputs"
+output_io17 = 17
+output_io18 = 18
+output_io2 = 2
+output_io3 = 3

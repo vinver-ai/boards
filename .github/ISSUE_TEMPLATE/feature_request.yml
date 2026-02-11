@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+name: Feature Request
+description: Request a new driver type or schema change
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What driver type or schema change would you like?
+      placeholder: "Add a motor driver type with PWM, direction, and enable pins"
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use Case
+      description: Which boards would use this?
+      placeholder: "ESP32 boards with DRV8833 or L298N motor drivers"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_schema
+    attributes:
+      label: Proposed Schema
+      description: Optional TOML example of what the driver section would look like
+      render: toml

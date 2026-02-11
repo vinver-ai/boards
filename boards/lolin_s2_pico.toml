@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lolin_s2_pico"
+family = "lolin_s2_pico"
+description = "Wemos LOLIN S2 Pico (ESP32-S2) with built-in LED, primary I2C and SPI pin mappings, and a dedicated OLED reset pin."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 10
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 38
+rx = 33
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+rst = 18
+
+["custom.board_specific"]
+type = "misc"
+usb_fw_msc_serial_number = 0

@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "deneyapkartg"
+family = "deneyapkartg"
+description = "Deneyap Kart G (ESP32-C3) with a single built-in LED on GPIO32, one user/GP button on GPIO9, exposed primary UART on GPIO21/20, and standard I2C (GPIO8/2) and SPI (GPIO6/5/4 with CS on GPIO7)."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+pwm_outputs = {driver = "custom.pwm_outputs", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 9
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 8
+scl = 2
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 5
+sck = 4
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+[system.uart1]
+tx = 21
+rx = 20
+baud = 115200
+
+["custom.pwm_outputs"]
+type = "pwm"
+PWM0 = 0
+PWM1 = 1
+PWM2 = 3
+
+["custom.board_specific"]
+type = "misc"
+bt = 9

@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lopy"
+family = "lopy"
+description = "Pycom LoPy (ESP32) with onboard LoRa (SPI) and RGB LED; exposes I2C and a general SPI mapping. Note: LED_BUILTIN is defined as GPIO40 which is not a valid ESP32 GPIO, so the main LED pin is treated as absent; RGB LED is on GPIO0."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+lora = {driver = "drivers.lora", type = "lora"}
+ant_select = {driver = "custom.ant_select", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 12
+scl = 13
+freq = 400000
+
+[system.spi]
+mosi = 22
+miso = 37
+sck = 13
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.neopixel"]
+type = "unknown"
+pin = 0
+num_leds = 1
+
+["drivers.lora"]
+type = "sx1276"
+bus = "spi"
+cs = 17
+rst = 18
+irq = 23
+
+["custom.ant_select"]
+type = "rf_antenna_switch"
+ANT_SELECT = 16

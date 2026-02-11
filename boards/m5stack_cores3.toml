@@ -1,0 +1,117 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_cores3"
+family = "m5stack_cores3"
+description = "M5Stack CoreS3 (ESP32-S3) with AXP2101 PMU, ILI9341 LCD (SPI, DC=GPIO35), GC0308 camera (DVP 8-bit), FT6336 touch (I2C), ES7210+AW88298 audio (I2S), BMI270 IMU, AW9523B GPIO expander, BM8563 RTC, microSD (SPI), and Port A I2C1 connector."
+chip = "esp32s3"
+flash_size = "16MB"
+psram = true
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+rgb_led = {pin = "system.led_pin", type = "addressable_rgb"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+camera = {driver = "drivers.camera", type = "camera"}
+audio = {driver = "drivers.audio", type = "audio"}
+touch = {driver = "drivers.touch", type = "touch"}
+pmu = {driver = "drivers.pmu", type = "pmu"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+imu = {driver = "drivers.imu", type = "imu"}
+gpio_expander = {driver = "custom.gpio_expander", type = "custom"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 48
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 12
+scl = 11
+freq = 400000
+
+[system.spi]
+mosi = 37
+miso = 35
+sck = 36
+
+[system.uart]
+tx = 17
+rx = 18
+baud = 115200
+
+[system.i2c1]
+sda = 2
+scl = 1
+freq = 400000
+
+["drivers.display"]
+type = "ili9341"
+bus = "spi"
+cs = 3
+dc = 35
+width = 320
+height = 240
+
+["drivers.camera"]
+type = "unknown"
+d0 = 40
+d1 = 41
+d2 = 47
+d3 = 48
+d4 = 15
+d5 = 16
+d6 = 33
+d7 = 34
+pclk = 45
+vsync = 46
+href = 38
+sccb_sda = 12
+sccb_scl = 11
+
+["drivers.audio"]
+type = "es7210"
+bclk = 35
+lrck = 36
+dout = 13
+din = 14
+mclk = 0
+
+["drivers.touch"]
+type = "ft6336"
+bus = "i2c"
+addr = 0x38
+irq = 21
+
+["drivers.pmu"]
+type = "axp2101"
+bus = "i2c"
+addr = 0x34
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 4
+
+["drivers.imu"]
+type = "bmi270"
+bus = "i2c"
+addr = 0x68
+
+["custom.gpio_expander"]
+type = "aw9523b"
+int = 21
+
+["drivers.rtc"]
+type = "bm8563"
+bus = "i2c"
+addr = 0x51
+
+["custom.board_specific"]
+type = "misc"
+adc = 10

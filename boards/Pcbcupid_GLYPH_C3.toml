@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "Pcbcupid_GLYPH_C3"
+family = "Pcbcupid_GLYPH_C3"
+description = "ESP32-C3 board with built-in LED, battery voltage measurement on ADC-capable GPIO0, and exposed primary I2C/SPI/UART pins."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+MSR = {driver = "custom.MSR", type = "custom"}
+
+[system]
+led_pin = 1
+button_pin = 0
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 4
+scl = 5
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 7
+sck = 10
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+[system.power]
+battery_adc = 0
+
+["custom.MSR"]
+type = "battery_measure_alias"
+msr = 0

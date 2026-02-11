@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32c3"
+family = "esp32c3"
+description = "Generic ESP32-C3 variant with UART on GPIO20/21, I2C on GPIO8/9, SPI on GPIO4-7, and an onboard RGB LED mapped via Arduino extended pin numbering."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+rgb_led = {pin = "system.led_pin", type = "addressable_rgb"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = 30
+button_pin = 9
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 5
+sck = 4
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 8
+num_leds = 1

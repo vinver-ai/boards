@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_feather_esp32s3_nopsram"
+family = "adafruit_feather_esp32s3"
+description = "Adafruit Feather ESP32-S3 (no PSRAM) with single NeoPixel (power-controlled), user LED, primary I2C on GPIO3/4, and primary SPI on GPIO35/36/37 with SS on GPIO42. UART pins are on GPIO39/38."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+i2c_power = {driver = "custom.i2c_power", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 3
+scl = 4
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 39
+rx = 38
+baud = 115200
+
+[system.uart1]
+tx = 39
+rx = 38
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 33
+power_pin = 21
+num_leds = 1
+
+["custom.i2c_power"]
+type = "power_switch"
+enable = 7

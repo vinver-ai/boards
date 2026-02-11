@@ -1,0 +1,72 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "fobe_quill_esp32s3_mesh"
+family = "fobe_quill_esp32s3_mesh"
+description = "ESP32-S3 mesh node board with SX126x LoRa radio (SPI), SSD1306-style OLED over I2C, battery voltage sensing, one user/boot button, and a peripheral power enable plus 4 multi-function header pins."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+peri_power = {driver = "custom.peri_power", type = "custom"}
+sx126x_rf_switch = {driver = "custom.sx126x_rf_switch", type = "custom"}
+mfp_header = {driver = "custom.mfp_header", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 11
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 14
+scl = 13
+freq = 400000
+
+[system.spi]
+mosi = 39
+miso = 41
+sck = 40
+
+[system.uart]
+tx = 9
+rx = 8
+baud = 115200
+
+[system.power]
+battery_adc = 10
+
+[system.buttons]
+BUTTON1 = 0
+
+["custom.peri_power"]
+type = "power_enable"
+PERI_EN = 1
+
+["custom.sx126x_rf_switch"]
+type = "rf_frontend"
+RXEN = 46
+
+["custom.mfp_header"]
+type = "multi_function_pins"
+MFP1 = 38
+MFP2 = 37
+MFP3 = 36
+MFP4 = 35
+
+["custom.board_specific"]
+type = "misc"
+pin_oled_en = 12
+pin_oled_scl = 13
+pin_oled_sda = 14
+pin_sx126x_busy = 43
+pin_sx126x_dio1 = 42
+pin_sx126x_nss = 45
+pin_sx126x_reset = 44

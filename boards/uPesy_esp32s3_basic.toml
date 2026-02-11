@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "uPesy_esp32s3_basic"
+family = "uPesy_esp32s3_basic"
+description = "Basic ESP32-S3 board with single user LED, primary I2C and SPI broken out, plus two UART pin sets (TX/RX and TX1/RX1)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+rgb_data = {driver = "custom.rgb_data", type = "custom"}
+
+[system]
+led_pin = 2
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.uart1]
+tx = 17
+rx = 18
+baud = 115200
+
+["drivers.neopixel"]
+type = "unknown"
+pin = 38
+num_leds = 1
+
+["custom.rgb_data"]
+type = "rgb_led_data"
+data = 38

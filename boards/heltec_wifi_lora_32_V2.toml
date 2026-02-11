@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "heltec_wifi_lora_32_V2"
+family = "heltec-wifi-lora-32"
+description = "Heltec WiFi LoRa 32 V2 (ESP32) with SSD1306 OLED (128x64, dedicated I2C on GPIO4/15), SX1276 LoRa radio, Vext power control on GPIO21, and user LED on GPIO25."
+chip = "esp32"
+flash_size = "8MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+lora = {driver = "drivers.lora", type = "lora"}
+display = {driver = "drivers.display", type = "display"}
+oled_i2c_bus = {driver = "custom.oled_i2c_bus", type = "custom"}
+lora_dio = {driver = "custom.lora_dio", type = "custom"}
+
+[system]
+led_pin = 25
+button_pin = 0
+reserved_pins = [6, 7, 8, 9, 10, 11]
+dac1_pin = 25
+dac2_pin = 26
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 27
+miso = 19
+sck = 5
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.power]
+vext = 21
+
+["drivers.lora"]
+type = "sx1276"
+bus = "spi"
+cs = 18
+rst = 14
+irq = 26
+
+["drivers.display"]
+type = "ssd1306"
+bus = "i2c"
+addr = 60
+width = 128
+height = 64
+rst = 16
+
+["custom.oled_i2c_bus"]
+type = "i2c_bus"
+scl = 15
+sda = 4
+
+["custom.lora_dio"]
+type = "gpio_interrupts"
+dio1 = 35
+dio2 = 34

@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "dfrobot_firebeetle2_esp32s3"
+family = "dfrobot_firebeetle2_esp32s3"
+description = "DFRobot FireBeetle 2 ESP32-S3 board with built-in LED, primary I2C and SPI exposed, and a GDI (DFRobot display interface) header providing SPI display control plus optional SD/Flash/Touch chip-select and interrupt/busy lines."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+gdi_display_spi = {driver = "custom.gdi_display_spi", type = "custom"}
+gdi_touch = {driver = "custom.gdi_touch", type = "custom"}
+gdi_flash = {driver = "custom.gdi_flash", type = "custom"}
+gdi_te_busy = {driver = "custom.gdi_te_busy", type = "custom"}
+
+[system]
+led_pin = 21
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 1
+scl = 2
+freq = 400000
+
+[system.spi]
+mosi = 15
+miso = 16
+sck = 17
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 18
+dc = 3
+rst = 38
+backlight = 21
+
+["custom.gdi_display_spi"]
+type = "display_header_spi"
+backlight = 21
+cs = 18
+dc = 3
+rst = 38
+spi_miso = 16
+spi_mosi = 15
+spi_sck = 17
+
+["custom.gdi_touch"]
+type = "touch_header"
+cs = 12
+int = 13
+
+["custom.gdi_flash"]
+type = "spi_flash_header"
+cs = 7
+
+["custom.gdi_te_busy"]
+type = "display_te_busy"
+busy_te = 14

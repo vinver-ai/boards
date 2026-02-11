@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_capsule"
+family = "m5stack_capsule"
+description = "M5Stack Capsule (ESP32-S2) with primary I2C on GPIO13/15, primary SPI on GPIO12/39/14 (SS=11), and a user UART on GPIO43/44 plus an additional UART2 on GPIO1/2."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 13
+scl = 15
+freq = 400000
+
+[system.spi]
+mosi = 12
+miso = 39
+sck = 14
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200

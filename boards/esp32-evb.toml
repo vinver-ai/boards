@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32-evb"
+family = "esp32_evb"
+description = "ESP32-EVB style board with primary I2C on GPIO13/16 and SPI on GPIO2/15/14 with SS on GPIO17; includes a user key on GPIO34 and an extra UART on GPIO4/36."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+spi_ss = {driver = "custom.spi_ss", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 34
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 13
+scl = 16
+freq = 400000
+
+[system.spi]
+mosi = 2
+miso = 15
+sck = 14
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.uart1]
+tx = 4
+rx = 36
+baud = 115200
+
+["custom.spi_ss"]
+type = "spi_cs"
+ss = 17

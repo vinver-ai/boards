@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+name: Incorrect Pin Mapping
+description: Report a wrong or missing pin mapping in a board manifest
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: board_file
+    attributes:
+      label: Board File
+      description: Name of the TOML file in boards/
+      placeholder: esp32s3.toml
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What is incorrect?
+      description: Describe which pin(s) or driver field(s) are wrong
+      placeholder: "drivers.display.cs should be 10, not 5"
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Reference Source
+      description: URL to schematic, datasheet, or product page proving the correct value
+      placeholder: https://...
+    validations:
+      required: true

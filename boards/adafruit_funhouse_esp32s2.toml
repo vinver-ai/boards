@@ -1,0 +1,77 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_funhouse_esp32s2"
+family = "adafruit_funhouse_esp32s2"
+description = "Adafruit FunHouse ESP32-S2 with SPI TFT (ST7789-style pins), 4 user buttons (incl. BOOT on GPIO0), DotStar status LED, onboard speaker output pin, PIR and light sensors, plus primary I2C and UART broken out."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+audio = {driver = "drivers.audio", type = "audio"}
+dotstar = {driver = "custom.dotstar", type = "custom"}
+pir_sensor = {driver = "custom.pir_sensor", type = "custom"}
+light_sensor = {driver = "custom.light_sensor", type = "custom"}
+
+[system]
+led_pin = 37
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 34
+scl = 33
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.uart1]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.buttons]
+pin_button1 = 3
+pin_button2 = 4
+pin_button3 = 5
+
+["drivers.display"]
+type = "st7789"
+bus = "spi"
+cs = 40
+dc = 39
+rst = 41
+backlight = 21
+
+["drivers.audio"]
+type = "unknown"
+speaker_en = 42
+
+["custom.dotstar"]
+type = "apa102"
+clock = 15
+data = 14
+
+["custom.pir_sensor"]
+type = "pir"
+signal = 16
+
+["custom.light_sensor"]
+type = "analog"
+adc = 18

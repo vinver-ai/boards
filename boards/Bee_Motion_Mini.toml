@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "Bee_Motion_Mini"
+family = "bee_motion_mini"
+description = "ESP32-C3 board with primary UART on GPIO21/20, primary SPI on GPIO6/5/4 with SS on GPIO7, primary I2C on GPIO8/9, BOOT button on GPIO9, and a PIR motion sensor input on GPIO5 (shared with SPI MISO)."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+pir_motion = {driver = "custom.pir_motion", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 9
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 5
+sck = 4
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+["custom.pir_motion"]
+type = "pir_sensor"
+pir = 5

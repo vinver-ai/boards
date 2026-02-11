@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "oroca_edubot"
+family = "oroca_edubot"
+description = "ESP32 educational robot controller with built-in LED, battery voltage sensing, and exposed UART/I2C/SPI buses."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+
+[system]
+led_pin = 13
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 23
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 18
+miso = 19
+sck = 5
+
+[system.uart]
+tx = 17
+rx = 16
+baud = 115200
+
+[system.power]
+battery_adc = 35

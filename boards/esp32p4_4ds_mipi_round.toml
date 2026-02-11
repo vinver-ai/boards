@@ -1,0 +1,74 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32p4_4ds_mipi_round"
+family = "esp32p4_4ds_mipi"
+description = "ESP32-S3 board with round LCD (reset pin defined), capacitive touch panel (I2C + INT/RST), I2S audio interface with external amp enable, SDMMC power control pin, plus exposed I2C/SPI and a primary UART."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+audio = {driver = "drivers.audio", type = "audio"}
+touch = {driver = "drivers.touch", type = "touch"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+alt_i2c_header = {driver = "custom.alt_i2c_header", type = "custom"}
+lcd_backlight_level = {driver = "custom.lcd_backlight_level", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 7
+scl = 8
+freq = 400000
+
+[system.spi]
+mosi = 14
+miso = 15
+sck = 6
+
+[system.uart]
+tx = 37
+rx = 38
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "rgb"
+rst = 23
+
+["drivers.audio"]
+type = "i2s"
+bclk = 12
+lrck = 10
+dout = 11
+din = 9
+mclk = 13
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+irq = 5
+rst = 4
+
+["drivers.sdcard"]
+bus = "sdio"
+power_pin = 45
+
+["custom.alt_i2c_header"]
+type = "i2c_pins"
+scl = 3
+sda = 2
+
+["custom.lcd_backlight_level"]
+type = "fixed_level"
+bl_on_level = 1

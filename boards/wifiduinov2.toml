@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "wifiduinov2"
+family = "wifiduinov2"
+description = "ESP32C3 board with LED"
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = 13
+button_pin = 0
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 4
+scl = 5
+freq = 400000
+
+[system.spi]
+mosi = 3
+miso = 10
+sck = 2
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200

@@ -1,0 +1,69 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "VALTRACK_V4_VTS_ESP32_C3"
+family = "VALTRACK_V4_VTS_ESP32_C3"
+description = "VALTRACK V4 VTS tracker board based on ESP32-C3 with GSM power/enable control, SOS input, power key, status LED, and analog input; exposes I2C and SPI plus two UARTs."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+gsm_modem_control = {driver = "custom.gsm_modem_control", type = "custom"}
+tps_power_switch = {driver = "custom.tps_power_switch", type = "custom"}
+int1 = {driver = "custom.int1", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 8
+button_pin = 7
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 5
+scl = 6
+freq = 400000
+
+[system.spi]
+mosi = 10
+miso = 9
+sck = 8
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+[system.uart1]
+tx = 0
+rx = 1
+baud = 115200
+
+[system.power]
+charge_en = 4
+
+[system.buttons]
+SOS = 9
+
+["custom.gsm_modem_control"]
+type = "gsm_control"
+enable = 10
+
+["custom.tps_power_switch"]
+type = "power_enable"
+enable = 4
+
+["custom.int1"]
+type = "interrupt_input"
+int1 = 3
+
+["custom.board_specific"]
+type = "misc"
+gpio_analog_in = 2
+gpio_sos = 9

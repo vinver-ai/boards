@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32c6-evb"
+family = "esp32c6_evb"
+description = "ESP32-C6 EVB with built-in LED and button, 4 relays (REL1-REL4), 4 digital inputs (DIN1-DIN4), primary I2C and SPI buses, and a user UART on TX/RX plus a secondary UART on TX1/RX1."
+chip = "esp32c6"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+relays = {driver = "custom.relays", type = "custom"}
+digital_inputs = {driver = "custom.digital_inputs", type = "custom"}
+
+[system]
+led_pin = 8
+button_pin = 9
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 6
+scl = 7
+freq = 400000
+
+[system.spi]
+mosi = 18
+miso = 20
+sck = 19
+
+[system.uart]
+tx = 16
+rx = 17
+baud = 115200
+
+[system.uart1]
+tx = 5
+rx = 4
+baud = 115200
+
+["custom.relays"]
+type = "relay_outputs"
+REL1 = 10
+REL2 = 11
+REL3 = 22
+REL4 = 23
+
+["custom.digital_inputs"]
+type = "digital_inputs"
+DIN1 = 1
+DIN2 = 2
+DIN3 = 3
+DIN4 = 15

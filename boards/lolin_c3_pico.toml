@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lolin_c3_pico"
+family = "lolin_c3_pico"
+description = "Wemos LOLIN C3 Pico (ESP32-C3) with onboard status LED, RGB LED, I2C, SPI, UART, and battery voltage sensing."
+chip = "esp32c3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [11, 12, 13, 14, 15, 16, 17]
+
+[system.i2c]
+sda = 8
+scl = 10
+freq = 400000
+
+[system.spi]
+mosi = 4
+miso = 0
+sck = 1
+
+[system.uart]
+tx = 21
+rx = 20
+baud = 115200
+
+[system.power]
+battery_adc = 3
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 7
+num_leds = 1

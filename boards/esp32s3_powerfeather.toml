@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32s3_powerfeather"
+family = "esp32s3_powerfeather"
+description = "ESP32-S3 PowerFeather-style board with on-board LED, BOOT button, primary SPI/I2C, secondary I2C (Wire1), and a dedicated UART on GPIO44/42. Also exposes ALARM/INT/EN control pins (likely for a power/charger/RTC subsystem)."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+power_ctrl = {driver = "custom.power_ctrl", type = "custom"}
+
+[system]
+led_pin = 46
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 35
+scl = 36
+freq = 400000
+
+[system.spi]
+mosi = 40
+miso = 41
+sck = 39
+
+[system.uart]
+tx = 44
+rx = 42
+baud = 115200
+
+[system.i2c1]
+sda = 47
+scl = 48
+freq = 400000
+
+["custom.power_ctrl"]
+type = "power-control"
+alarm = 21
+en = 7
+int = 5

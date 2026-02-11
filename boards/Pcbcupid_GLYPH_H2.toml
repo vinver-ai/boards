@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "Pcbcupid_GLYPH_H2"
+family = "Pcbcupid_GLYPH_H2"
+description = "ESP32-H2 board with single user LED, battery voltage measurement ADC, primary I2C and SPI buses, and a user UART on GPIO23/24."
+chip = "esp32h2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+msr = {driver = "custom.msr", type = "custom"}
+
+[system]
+led_pin = 0
+button_pin = 0
+reserved_pins = [15, 16, 17, 18, 19, 20]
+
+[system.i2c]
+sda = 4
+scl = 5
+freq = 400000
+
+[system.spi]
+mosi = 22
+miso = 25
+sck = 11
+
+[system.uart]
+tx = 24
+rx = 23
+baud = 115200
+
+[system.power]
+battery_adc = 1
+
+["custom.msr"]
+type = "battery_measure_alias"
+MSR = 1

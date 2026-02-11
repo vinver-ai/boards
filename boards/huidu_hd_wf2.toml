@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "huidu_hd_wf2"
+family = "huidu_hd_wf2"
+description = "Huidu HD-WF2 ESP32-S2 controller board with HUB75-style RGB LED matrix interface (two output banks X1/X2), BM8563 RTC on I2C, a test button, and a run/status LED. Exposes a general SPI bus and a primary UART."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+hub75_matrix = {driver = "custom.hub75_matrix", type = "custom"}
+rtc_bm8563 = {driver = "custom.rtc_bm8563", type = "custom"}
+pcb_io = {driver = "custom.pcb_io", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 40
+button_pin = 17
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 41
+scl = 42
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["custom.hub75_matrix"]
+type = "hub75_parallel_rgb_matrix"
+addr_a = 39
+addr_b = 38
+addr_c = 37
+addr_d = 36
+clk = 34
+lat = 33
+oe = 35
+x1_b1 = 10
+x1_b2 = 11
+x1_e = 21
+x1_g1 = 6
+x1_g2 = 7
+x1_r1 = 2
+x1_r2 = 3
+x2_b1 = 12
+x2_b2 = 13
+x2_g1 = 8
+x2_g2 = 9
+x2_r1 = 4
+x2_r2 = 5
+
+["custom.rtc_bm8563"]
+type = "bm8563_rtc"
+i2c_scl = 42
+i2c_sda = 41
+
+["custom.pcb_io"]
+type = "board_pcb_pads"
+pcb1 = 45
+pcb2 = 46
+
+["custom.board_specific"]
+type = "misc"
+wf2_usb_dn_pin = 19
+wf2_usb_dp_pin = 20

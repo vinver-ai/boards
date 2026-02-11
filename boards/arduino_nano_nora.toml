@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "arduino_nano_nora"
+family = "arduino_nano_nora"
+description = "Arduino Nano form-factor board based on ESP32-S3 (Nano ESP32 / NORA module). No pin mappings were provided in the supplied pins_arduino.h snippet, so peripherals cannot be inferred."
+chip = "esp32s3"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]

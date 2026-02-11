@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "sparkfun_esp32c6_qwiic_pocket"
+family = "sparkfun_esp32c6_qwiic"
+description = "SparkFun ESP32-C6 Qwiic Pocket: compact ESP32-C6 board with built-in LED, Qwiic (I2C) connector, and a general-purpose SPI bus plus a user UART."
+chip = "esp32c6"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = 23
+button_pin = 0
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 6
+scl = 7
+freq = 400000
+
+[system.spi]
+mosi = 3
+miso = 4
+sck = 5
+
+[system.uart]
+tx = 16
+rx = 17
+baud = 115200

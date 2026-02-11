@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32c2"
+family = "esp32c2"
+description = "ESP32-S3 board with primary UART on GPIO20/19, primary I2C on GPIO8/9, and primary SPI on GPIO6/5/4 with SS on GPIO7. Built-in LED is a virtual pin (62), likely an onboard RGB/LED driven via external hardware."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 6
+miso = 5
+sck = 4
+
+[system.uart]
+tx = 20
+rx = 19
+baud = 115200

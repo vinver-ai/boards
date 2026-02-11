@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lolin_s3_mini"
+family = "lolin_s3_mini"
+description = "Wemos LOLIN S3 Mini (ESP32-S3) with WS2812B RGB LED on GPIO47 (virtual pin 96), BOOT button on GPIO0, I2C on GPIO35/36, SPI on GPIO11/13/12."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+rgb_led = {pin = "system.led_pin", type = "addressable_rgb"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = 96
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 35
+scl = 36
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 96
+num_leds = 1

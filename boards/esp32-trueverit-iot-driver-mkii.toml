@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32-trueverit-iot-driver-mkii"
+family = "esp32_trueverit_iot"
+description = "ESP32 IoT Driver MKII-style board with built-in LED, primary I2C and SPI, two extra UART pin pairs, and RMII Ethernet PHY (address 1) with MDC/MDIO and PHY power control."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+ethernet = {driver = "drivers.ethernet", type = "ethernet"}
+uart2 = {driver = "custom.uart2", type = "custom"}
+spi_cs = {driver = "custom.spi_cs", type = "custom"}
+
+[system]
+led_pin = 18
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 15
+scl = 4
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 32
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.uart1]
+tx = 12
+rx = 13
+baud = 115200
+
+["drivers.ethernet"]
+type = "unknown"
+bus = "rmii"
+mdc = 16
+mdio = 14
+phy_addr = 1
+power_pin = 2
+
+["custom.uart2"]
+type = "uart"
+rx = 39
+tx = 33
+
+["custom.spi_cs"]
+type = "spi"
+cs = 5

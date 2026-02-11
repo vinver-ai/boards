@@ -1,0 +1,100 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "axiometa_genesis_one"
+family = "axiometa_genesis_one"
+description = "Axiometa Genesis One (ESP32-S3) with primary UART on GPIO43/44, I2C on GPIO47/48, SPI on GPIO11/12/13 with SS on GPIO1, and VBAT sensing on GPIO10. Exposes multiple port header IOs (P1-P8)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+port_p1 = {driver = "custom.port_p1", type = "custom"}
+port_p2 = {driver = "custom.port_p2", type = "custom"}
+port_p3 = {driver = "custom.port_p3", type = "custom"}
+port_p4 = {driver = "custom.port_p4", type = "custom"}
+port_p5 = {driver = "custom.port_p5", type = "custom"}
+port_p6 = {driver = "custom.port_p6", type = "custom"}
+port_p7 = {driver = "custom.port_p7", type = "custom"}
+port_p8 = {driver = "custom.port_p8", type = "custom"}
+spi_ss = {driver = "custom.spi_ss", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 47
+scl = 48
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 12
+sck = 13
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 10
+
+["custom.port_p1"]
+type = "expansion_port"
+io0 = 1
+io1 = 14
+io2 = 41
+
+["custom.port_p2"]
+type = "expansion_port"
+io0 = 2
+io1 = 15
+io2 = 42
+
+["custom.port_p3"]
+type = "expansion_port"
+io0 = 3
+io1 = 16
+io2 = 45
+
+["custom.port_p4"]
+type = "expansion_port"
+io0 = 4
+io1 = 17
+io2 = 46
+
+["custom.port_p5"]
+type = "expansion_port"
+io0 = 5
+io1 = 18
+io2 = 21
+
+["custom.port_p6"]
+type = "expansion_port"
+io0 = 6
+io1 = 40
+io2 = 38
+
+["custom.port_p7"]
+type = "expansion_port"
+io0 = 7
+io1 = 9
+io2 = 39
+
+["custom.port_p8"]
+type = "expansion_port"
+io0 = 8
+io1 = 43
+io2 = 44
+
+["custom.spi_ss"]
+type = "spi_chip_select"
+ss = 1

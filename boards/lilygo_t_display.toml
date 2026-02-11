@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lilygo_t_display"
+family = "lilygo_t_display"
+description = "LILYGO TTGO T-Display (ESP32) with ST7789V LCD 135x240 (SPI, dc=16, rst=23, bl=4), two buttons (left=GPIO0, right=GPIO35), battery voltage ADC on GPIO34, I2C on GPIO21/22."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+display = {driver = "drivers.display", type = "display"}
+
+[system]
+led_pin = -1
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.power]
+battery_adc = 34
+
+[system.buttons]
+right = 35
+
+["drivers.display"]
+type = "st7789"
+bus = "spi"
+cs = 5
+dc = 16
+rst = 23
+backlight = 4
+width = 135
+height = 240

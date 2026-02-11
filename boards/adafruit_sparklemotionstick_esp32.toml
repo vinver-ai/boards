@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_sparklemotionstick_esp32"
+family = "adafruit_sparklemotionstick_esp32"
+description = "Adafruit Sparkle Motion Stick (ESP32-S3) with onboard status LED, boot button, NeoPixel, primary I2C and SPI, and a UART broken out on GPIO25/26."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = 4
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 13
+scl = 15
+freq = 400000
+
+[system.spi]
+mosi = 21
+miso = 23
+sck = 22
+
+[system.uart]
+tx = 25
+rx = 26
+baud = 115200
+
+[system.uart1]
+tx = 25
+rx = 26
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 18
+num_leds = 1

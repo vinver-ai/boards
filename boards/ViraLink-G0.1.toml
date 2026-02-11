@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "ViraLink-G0.1"
+family = "ViraLink-G0.1"
+description = "ViraLink-G0.1 (ESP32) industrial-style controller with built-in LED, reset/boot key, buzzer, 4x relays, dual Wiegand inputs, RS485 UART, and RMII Ethernet (ESP32 EMAC)."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+ethernet = {driver = "drivers.ethernet", type = "ethernet"}
+rs485 = {driver = "drivers.rs485", type = "rs485"}
+relays = {driver = "custom.relays", type = "custom"}
+wiegand1 = {driver = "custom.wiegand1", type = "custom"}
+wiegand2 = {driver = "custom.wiegand2", type = "custom"}
+
+[system]
+led_pin = 5
+button_pin = 0
+buzzer_pin = 12
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 4
+scl = 16
+freq = 400000
+
+["drivers.ethernet"]
+type = "unknown"
+bus = "rmii"
+mdc = 23
+mdio = 18
+
+["drivers.rs485"]
+txd = 32
+rxd = 35
+
+["custom.relays"]
+type = "relay_outputs"
+relay1 = 2
+relay2 = 13
+relay3 = 14
+relay4 = 33
+
+["custom.wiegand1"]
+type = "wiegand_reader"
+d0 = 15
+d1 = 34
+
+["custom.wiegand2"]
+type = "wiegand_reader"
+d0 = 39
+d1 = 36

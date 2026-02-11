@@ -1,0 +1,108 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lilygo_twatch_ultra"
+family = "lilygo_twatch_ultra"
+description = "LILYGO T-Watch Ultra (ESP32-S3) with parallel/RGB-style display interface, I2C touch + PMU/RTC/sensors, SPI peripherals (SD, LoRa, NFC), and I2S audio (mic + speaker out)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+audio = {driver = "drivers.audio", type = "audio"}
+touch = {driver = "drivers.touch", type = "touch"}
+lora = {driver = "drivers.lora", type = "lora"}
+pmu = {driver = "drivers.pmu", type = "pmu"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+nfc = {driver = "drivers.nfc", type = "nfc"}
+display_parallel_bus = {driver = "custom.display_parallel_bus", type = "custom"}
+rtc_interrupt = {driver = "custom.rtc_interrupt", type = "custom"}
+sensor_interrupt = {driver = "custom.sensor_interrupt", type = "custom"}
+expander_controls = {driver = "custom.expander_controls", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 3
+scl = 2
+freq = 400000
+
+[system.spi]
+mosi = 34
+miso = 33
+sck = 35
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.audio"]
+type = "i2s"
+bclk = 17
+dout = 11
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+irq = 12
+
+["drivers.lora"]
+type = "sx1262"
+bus = "spi"
+cs = 36
+rst = 47
+irq = 14
+busy = 48
+
+["drivers.pmu"]
+type = "unknown"
+bus = "i2c"
+irq = 7
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 21
+
+["drivers.nfc"]
+type = "unknown"
+bus = "spi"
+cs = 4
+irq = 5
+
+["custom.display_parallel_bus"]
+type = "display_data_bus"
+d0 = 38
+d1 = 39
+d2 = 42
+d3 = 45
+sck = 40
+te = 6
+
+["custom.rtc_interrupt"]
+type = "rtc_int"
+int = 1
+
+["custom.sensor_interrupt"]
+type = "sensor_int"
+int = 8
+
+["custom.expander_controls"]
+type = "io_expander_ctrl"
+disp_en = 7
+drv_en = 6
+
+["custom.board_specific"]
+type = "misc"
+disp_cs = 41
+disp_rst = 37
+expands_sd_det = 10

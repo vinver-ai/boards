@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "tamc_termod_s3"
+family = "tamc_termod_s3"
+description = "ESP32-S3 board with SPI TFT (240x320, likely ILI9341-class), SPI bus broken out, SD card over SPI with card-detect, battery voltage ADC input and charge-status pin, plus a primary UART on GPIO43/44."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+charger_status = {driver = "custom.charger_status", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 1
+charge_en = 2
+
+["drivers.display"]
+type = "ili9341"
+bus = "spi"
+cs = 10
+dc = 18
+width = 240
+height = 320
+rst = 14
+backlight = 48
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 21
+detect = 47
+
+["custom.charger_status"]
+type = "charge_status"
+CHG = 2

@@ -1,0 +1,77 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "openkb"
+family = "openkb"
+description = "OpenKB ESP32 board with multiple status LEDs, buzzer, LDR (ADC), 4 digital inputs, 2 digital outputs, primary SPI/I2C, and a secondary I2C bus."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+ldr = {driver = "custom.ldr", type = "custom"}
+digital_inputs = {driver = "custom.digital_inputs", type = "custom"}
+digital_outputs = {driver = "custom.digital_outputs", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 16
+button_pin = 16
+buzzer_pin = 13
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.i2c1]
+sda = 4
+scl = 5
+freq = 400000
+
+[system.buttons]
+sw2 = 14
+
+["custom.ldr"]
+type = "light_sensor_adc"
+LDR_PIN = 36
+
+["custom.digital_inputs"]
+type = "gpio_inputs"
+INPUT1 = 32
+INPUT2 = 33
+INPUT3 = 34
+INPUT4 = 35
+
+["custom.digital_outputs"]
+type = "gpio_outputs"
+OUTPUT1 = 26
+OUTPUT2 = 27
+
+["custom.board_specific"]
+type = "misc"
+kb_gpio18 = 18
+kb_gpio19 = 19
+kb_gpio23 = 23

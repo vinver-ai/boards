@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "esp32p4"
+family = "esp32p4"
+description = "ESP32-S3 board with RMII Ethernet (external PHY), primary SPI and I2C broken out, UART on GPIO37/38, and an SDMMC/SDIO power control plus SDIO (ESP-Hosted) signal set."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+ethernet = {driver = "drivers.ethernet", type = "ethernet"}
+esp_hosted_sdio = {driver = "custom.esp_hosted_sdio", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 7
+scl = 8
+freq = 400000
+
+[system.spi]
+mosi = 32
+miso = 33
+sck = 36
+
+[system.uart]
+tx = 37
+rx = 38
+baud = 115200
+
+["drivers.sdcard"]
+bus = "sdio"
+power_pin = 45
+
+["drivers.ethernet"]
+type = "unknown"
+bus = "rmii"
+mdc = 31
+phy_addr = 1
+
+["custom.esp_hosted_sdio"]
+type = "sdio_esp_hosted"
+cmd = 19
+d0 = 14
+d1 = 15
+d2 = 16
+d3 = 17

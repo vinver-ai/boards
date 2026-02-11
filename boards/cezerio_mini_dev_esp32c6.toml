@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "cezerio_mini_dev_esp32c6"
+family = "cezerio_mini_dev_esp32c6"
+description = "ESP32-C6 mini dev board with a built-in (virtual) RGB LED, a boot/user button, and exposed I2C/SPI/UART pins."
+chip = "esp32c6"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+matrix = {driver = "custom.matrix", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 9
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 23
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 19
+miso = 21
+sck = 18
+
+[system.uart]
+tx = 7
+rx = 14
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 20
+num_leds = 1
+
+["custom.matrix"]
+type = "matrix"
+MATRIX = 4

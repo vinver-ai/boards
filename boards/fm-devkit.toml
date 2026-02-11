@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "fm-devkit"
+family = "fm-devkit"
+description = "ESP32 devkit with built-in LED, 4 user switches, I2C header, and I2S audio output (MCLK/LRCLK/BCLK/DOUT). No general-purpose SPI pins defined in variant."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+audio = {driver = "drivers.audio", type = "audio"}
+
+[system]
+led_pin = 5
+button_pin = 4
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 16
+scl = 17
+freq = 400000
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.buttons]
+sw2 = 18
+sw3 = 19
+sw4 = 21
+
+["drivers.audio"]
+type = "i2s"
+bclk = 26
+lrck = 25
+dout = 22
+mclk = 2

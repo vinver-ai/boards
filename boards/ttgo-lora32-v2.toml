@@ -1,0 +1,61 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "ttgo-lora32-v2"
+family = "ttgo_lora32"
+description = "TTGO LoRa32 V2 (ESP32) with onboard SSD1306 OLED over I2C, SX1276-class LoRa radio over SPI, and SPI SD card interface. Boot button on GPIO0; built-in LED on GPIO22 (shared with I2C SCL)."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+display = {driver = "drivers.display", type = "display"}
+lora = {driver = "drivers.lora", type = "lora"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+
+[system]
+led_pin = 22
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 27
+miso = 19
+sck = 5
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.display"]
+type = "ssd1306"
+bus = "i2c"
+addr = 0x3C
+rst = 16
+
+["drivers.lora"]
+type = "sx1276"
+bus = "spi"
+cs = 18
+rst = 12
+irq = 26
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 13

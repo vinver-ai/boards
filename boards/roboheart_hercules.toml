@@ -1,0 +1,78 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "roboheart_hercules"
+family = "roboheart_hercules"
+description = "Roboheart Hercules ESP32 robot controller with 3 DC motor channels (A/B/C) via dual IN pins plus shared sleep/enable, onboard LED and BOOT button, IMU on I2C, GSM modem control/UART pins, battery voltage ADC, and standard SPI header pins."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+motor_driver_abc = {driver = "custom.motor_driver_abc", type = "custom"}
+gsm_modem = {driver = "custom.gsm_modem", type = "custom"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 13
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 35
+rx = 34
+baud = 115200
+
+[system.uart1]
+tx = 17
+rx = 16
+baud = 115200
+
+[system.power]
+battery_adc = 36
+
+[system.buttons]
+gsm_pwrkey = 12
+
+["custom.motor_driver_abc"]
+type = "dc_motor_driver"
+motor_a_in1 = 25
+motor_a_in2 = 26
+motor_b_in1 = 27
+motor_b_in2 = 32
+motor_c_in1 = 33
+motor_c_in2 = 4
+sleep_motor_abc = 2
+
+["custom.gsm_modem"]
+type = "cellular_modem_uart"
+cts = 15
+dtr = 13
+rts = 14
+rx = 16
+tx = 17
+
+["custom.board_specific"]
+type = "misc"
+imu_scl = 22
+imu_sda = 21

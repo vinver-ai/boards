@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "heltec_wireless_bridge"
+family = "heltec_wireless_bridge"
+description = "Heltec Wireless Bridge (ESP32) with built-in status LEDs, BOOT button, I2C header, and LoRa radio control/IRQ pins (SPI pins not explicitly defined in provided header)."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+lora = {driver = "drivers.lora", type = "lora"}
+status_leds = {driver = "custom.status_leds", type = "custom"}
+lora_dio = {driver = "custom.lora_dio", type = "custom"}
+
+[system]
+led_pin = 25
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 27
+miso = 19
+sck = 5
+
+[system.power]
+vext = 21
+
+["drivers.lora"]
+type = "sx1276"
+bus = "spi"
+cs = 18
+rst = 14
+irq = 26
+
+["custom.status_leds"]
+type = "leds"
+lora_led = 22
+wifi_led = 23
+
+["custom.lora_dio"]
+type = "lora_irq_lines"
+dio1 = 35
+dio2 = 34

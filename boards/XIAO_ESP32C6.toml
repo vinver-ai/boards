@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "XIAO_ESP32C6"
+family = "xiao-esp32"
+description = "Seeed Studio XIAO ESP32-C6 with onboard user LED, I2C and SPI broken out, UART pins defined, and WiFi enable/antenna config pins."
+chip = "esp32c6"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+wifi_control = {driver = "custom.wifi_control", type = "custom"}
+wifi_antenna = {driver = "custom.wifi_antenna", type = "custom"}
+spi_cs = {driver = "custom.spi_cs", type = "custom"}
+
+[system]
+led_pin = 15
+button_pin = 9
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 22
+scl = 23
+freq = 400000
+
+[system.spi]
+mosi = 18
+miso = 20
+sck = 19
+
+[system.uart]
+tx = 16
+rx = 17
+baud = 115200
+
+["custom.wifi_control"]
+type = "wifi_enable"
+pin = 3
+
+["custom.wifi_antenna"]
+type = "antenna_config"
+pin = 14
+
+["custom.spi_cs"]
+type = "chip_select"
+pin = 21

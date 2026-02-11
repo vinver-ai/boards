@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "m5stack_stickc_plus2"
+family = "m5stack_stickc_plus2"
+description = "M5Stack StickC Plus2 (ESP32-S2) with primary I2C and SPI broken out; no explicit LED/button/display pins defined in provided header."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+spi_cs = {driver = "custom.spi_cs", type = "custom"}
+adc_inputs = {driver = "custom.adc_inputs", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 32
+scl = 33
+freq = 400000
+
+[system.spi]
+mosi = 15
+miso = 36
+sck = 13
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["custom.spi_cs"]
+type = "chip_select"
+ss = 5
+
+["custom.adc_inputs"]
+type = "adc"
+adc1 = 35
+adc2 = 36

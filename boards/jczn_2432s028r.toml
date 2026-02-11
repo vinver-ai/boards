@@ -1,0 +1,78 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "jczn_2432s028r"
+family = "jczn_2432s028r"
+description = "ESP32-2432S028R CYD (Cheap Yellow Display) with ILI9341 TFT 320x240 (HSPI), XPT2046 resistive touch (soft SPI), microSD (VSPI), 8002A audio on GPIO26, RGB LED (GPIO4/16/17), LDR on GPIO34, button on GPIO0."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+audio = {driver = "drivers.audio", type = "audio"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+cyd_touch_spi = {driver = "custom.cyd_touch_spi", type = "custom"}
+cyd_rgb_led = {driver = "custom.cyd_rgb_led", type = "custom"}
+cyd_ldr = {driver = "custom.cyd_ldr", type = "custom"}
+
+[system]
+led_pin = 4
+button_pin = 0
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.display"]
+type = "ili9341"
+bus = "spi"
+cs = 15
+dc = 2
+width = 320
+height = 240
+backlight = 21
+
+["drivers.audio"]
+type = "unknown"
+dout = 26
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 5
+
+["custom.cyd_touch_spi"]
+type = "xpt2046"
+cs = 33
+irq = 36
+miso = 39
+mosi = 32
+sck = 25
+
+["custom.cyd_rgb_led"]
+type = "rgb_led"
+red = 4
+green = 16
+blue = 17
+
+["custom.cyd_ldr"]
+type = "light_sensor"
+adc = 34

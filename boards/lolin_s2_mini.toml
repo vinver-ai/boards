@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lolin_s2_mini"
+family = "lolin_s2_mini"
+description = "Wemos LOLIN S2 Mini (ESP32-S2) with single user LED, exposed I2C/SPI, and a general-purpose UART on GPIO39/37."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 15
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 33
+scl = 35
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 9
+sck = 7
+
+[system.uart]
+tx = 39
+rx = 37
+baud = 115200
+
+["custom.board_specific"]
+type = "misc"
+usb_fw_msc_serial_number = 0

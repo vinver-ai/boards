@@ -1,0 +1,67 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "bpi-bit"
+family = "bpi-bit"
+description = "BPI:bit ESP32 board with buzzer, two user buttons (A/B), onboard RGB LED, I2C (MPU9250 IMU interrupt), and multiple analog sensors (light x2, temperature). Exposes micro:bit-style P0..P20 edge pins."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+buzzer = {pin = "system.buzzer_pin", type = "buzzer"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+light_sensors = {driver = "custom.light_sensors", type = "custom"}
+temperature_sensor = {driver = "custom.temperature_sensor", type = "custom"}
+mpu9250_int = {driver = "custom.mpu9250_int", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 35
+buzzer_pin = 25
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.buttons]
+button_b = 27
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 4
+num_leds = 1
+
+["custom.light_sensors"]
+type = "adc"
+LIGHT_SENSOR1 = 36
+LIGHT_SENSOR2 = 39
+
+["custom.temperature_sensor"]
+type = "adc"
+TEMPERATURE_SENSOR = 34
+
+["custom.mpu9250_int"]
+type = "imu_interrupt"
+MPU9250_INT = 0

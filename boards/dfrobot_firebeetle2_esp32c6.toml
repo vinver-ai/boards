@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "dfrobot_firebeetle2_esp32c6"
+family = "dfrobot_firebeetle2_esp32c6"
+description = "DFRobot FireBeetle 2 ESP32-C6 board with built-in LED, primary UART, I2C, and SPI broken out; includes a GDI display/touch connector pin set (SPI + control + I2C + interrupts) and a dedicated SD card CS on the GDI header."
+chip = "esp32c6"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+gdi_connector = {driver = "custom.gdi_connector", type = "custom"}
+
+[system]
+led_pin = 15
+button_pin = 0
+reserved_pins = [24, 25, 26, 27, 28, 29, 30]
+
+[system.i2c]
+sda = 19
+scl = 20
+freq = 400000
+
+[system.spi]
+mosi = 22
+miso = 21
+sck = 23
+
+[system.uart]
+tx = 16
+rx = 17
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 1
+dc = 8
+rst = 14
+backlight = 15
+
+["custom.gdi_connector"]
+type = "gdi_display_touch_header"
+backlight = 15
+cs = 1
+dc = 8
+i2c_scl = 20
+i2c_sda = 19
+rst = 14
+sd_cs = 18
+spi_miso = 21
+spi_mosi = 22
+spi_sck = 23
+touch_cs = 6
+touch_int = 7

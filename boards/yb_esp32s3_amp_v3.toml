@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "yb_esp32s3_amp_v3"
+family = "yb_esp32s3_amp_v3"
+description = "ESP32S3 board with LED, audio"
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+audio = {driver = "drivers.audio", type = "audio"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = 47
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.audio"]
+type = "unknown"
+bclk = 5
+lrck = 6
+dout = 7
+
+["custom.board_specific"]
+type = "misc"
+pin_dac_mute = 47

@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "atd35s3"
+family = "atd35s3"
+description = "ESP32-S3 board with SPI TFT LCD (shared with primary SPI), microSD over SPI, I2C on GPIO8/9, user button on GPIO4, and I2S audio DAC output (BCLK/WS/DIN)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+audio = {driver = "drivers.audio", type = "audio"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+
+[system]
+led_pin = 5
+button_pin = 4
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.buttons]
+BTN_A = 4
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 10
+dc = 21
+rst = 14
+backlight = 3
+
+["drivers.audio"]
+type = "i2s"
+bclk = 48
+lrck = 45
+din = 47
+
+["drivers.sdcard"]
+bus = "spi"
+cs = 18
+detect = 17

@@ -1,0 +1,80 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "lilygo_t_display_s3"
+family = "lilygo-t-display"
+description = "LILYGO T-Display S3 (ESP32-S3) with ST7789 TFT (170x320, 8080 parallel on GPIO39-48, WR=8/RD=9), 2 buttons (GPIO0/14), battery ADC on GPIO4, touch panel (I2C, RST=21, INIT=16), and LCD power control on GPIO15."
+chip = "esp32s3"
+flash_size = "16MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+touch = {driver = "drivers.touch", type = "touch"}
+lcd_8080_parallel = {driver = "custom.lcd_8080_parallel", type = "custom"}
+tp_control = {driver = "custom.tp_control", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 18
+scl = 17
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 4
+
+[system.buttons]
+button_2 = 14
+
+["drivers.display"]
+type = "st7789"
+bus = "spi"
+cs = 6
+dc = 7
+width = 170
+height = 320
+rst = 5
+backlight = 38
+power_pin = 15
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+rst = 21
+
+["custom.lcd_8080_parallel"]
+type = "lcd_8080"
+d0 = 39
+d1 = 40
+d2 = 41
+d3 = 42
+d4 = 45
+d5 = 46
+d6 = 47
+d7 = 48
+rd = 9
+wr = 8
+
+["custom.tp_control"]
+type = "touch_panel_control"
+init = 16
+reset = 21

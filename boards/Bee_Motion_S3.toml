@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "Bee_Motion_S3"
+family = "bee_motion_s3"
+description = "Bee_Motion_S3 (ESP32-S3) with primary UART on GPIO43/44, I2C on GPIO37/36, SPI on GPIO15/16/17 with SS on GPIO5, boot button on GPIO0, battery and VBUS sensing, PIR motion input, ambient light input, and an onboard RGB LED driven from GPIO40 with a power control pin on GPIO34. LED_BUILTIN is a virtual pin (89)."
+chip = "esp32s3"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+pir_sensor = {driver = "custom.pir_sensor", type = "custom"}
+light_sensor = {driver = "custom.light_sensor", type = "custom"}
+ldo2_control = {driver = "custom.ldo2_control", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 37
+scl = 36
+freq = 400000
+
+[system.spi]
+mosi = 15
+miso = 16
+sck = 17
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 1
+vbus_sense = 2
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 40
+power_pin = 34
+num_leds = 1
+
+["custom.pir_sensor"]
+type = "pir_motion"
+pir = 4
+
+["custom.light_sensor"]
+type = "light_input"
+light = 3
+
+["custom.ldo2_control"]
+type = "power_switch"
+ldo2 = 34

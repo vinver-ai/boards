@@ -1,0 +1,56 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "adafruit_feather_esp32_v2"
+family = "adafruit_feather_esp32"
+description = "Adafruit Feather ESP32 V2 with built-in status LED, boot/user button, on-board NeoPixel (with power control), LiPo battery voltage monitor, and exposed I2C/SPI/UART pins."
+chip = "esp32"
+flash_size = "8MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+
+[system]
+led_pin = 13
+button_pin = 38
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 22
+scl = 20
+freq = 400000
+
+[system.spi]
+mosi = 19
+miso = 21
+sck = 5
+
+[system.uart]
+tx = 8
+rx = 7
+baud = 115200
+
+[system.uart1]
+tx = 8
+rx = 7
+baud = 115200
+
+[system.power]
+battery_adc = 35
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 0
+power_pin = 2
+num_leds = 1

@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "waveshare_esp32_s3_touch_amoled_143"
+family = "waveshare_esp32_s3"
+description = "Waveshare ESP32-S3 Touch AMOLED 1.43\" board with QSPI AMOLED display, I2C touch interface, battery voltage ADC, and a general-purpose SPI + UART."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+qspi_amoled_bus = {driver = "custom.qspi_amoled_bus", type = "custom"}
+rtc_interrupt = {driver = "custom.rtc_interrupt", type = "custom"}
+qmi_sensor_interrupt = {driver = "custom.qmi_sensor_interrupt", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 47
+scl = 48
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+battery_adc = 4
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+rst = 21
+
+["custom.qspi_amoled_bus"]
+type = "qspi"
+cs = 9
+d0 = 11
+d1 = 12
+d2 = 13
+d3 = 14
+sck = 10
+
+["custom.rtc_interrupt"]
+type = "rtc_int"
+int = 15
+
+["custom.qmi_sensor_interrupt"]
+type = "imu_int"
+int1 = 8

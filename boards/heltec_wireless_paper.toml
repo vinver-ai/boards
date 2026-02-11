@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "heltec_wireless_paper"
+family = "heltec_wireless_paper"
+description = "Heltec Wireless Paper (ESP32-S3) with built-in OLED (128x64) on a dedicated I2C bus, user LED, BOOT button, Vext power control, and exposed I2C/SPI/UART pins."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+oled_i2c_bus = {driver = "custom.oled_i2c_bus", type = "custom"}
+alt_led = {driver = "custom.alt_led", type = "custom"}
+
+[system]
+led_pin = 35
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 10
+miso = 11
+sck = 9
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.power]
+vext = 45
+
+["drivers.display"]
+type = "ssd1306"
+bus = "i2c"
+addr = 0x3C
+width = 128
+height = 64
+rst = 21
+
+["custom.oled_i2c_bus"]
+type = "i2c_bus"
+scl_oled = 18
+sda_oled = 17
+
+["custom.alt_led"]
+type = "indicator_led"
+led = 18

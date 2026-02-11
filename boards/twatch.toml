@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "twatch"
+family = "twatch"
+description = "T-Watch (ESP32) wearable-style board with primary I2C + SPI, secondary UART, I2C touch panel, PMU interrupt, RTC interrupt, and accelerometer interrupt."
+chip = "esp32"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+touch = {driver = "drivers.touch", type = "touch"}
+rtc = {driver = "drivers.rtc", type = "rtc"}
+imu = {driver = "drivers.imu", type = "imu"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 15
+miso = 2
+sck = 14
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+[system.uart1]
+tx = 33
+rx = 34
+baud = 115200
+
+["drivers.touch"]
+type = "unknown"
+bus = "i2c"
+irq = 38
+
+["drivers.rtc"]
+type = "unknown"
+bus = "i2c"
+irq = 37
+
+["drivers.imu"]
+type = "bma42x"
+bus = "i2c"
+irq = 39
+
+["custom.board_specific"]
+type = "misc"
+apx20x_int = 35

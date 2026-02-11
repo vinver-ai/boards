@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "sparkfun_esp32_iot_redboard"
+family = "sparkfun_esp32_iot"
+description = "SparkFun ESP32 IoT RedBoard: ESP32 with built-in status LED, RGB LED, primary I2C on GPIO21/22, and primary SPI on GPIO23/19/18 with SS on GPIO5. Default UART uses GPIO1/3."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+dac2 = {pin = "system.dac2_pin", type = "dac"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+rgb_led = {driver = "custom.rgb_led", type = "custom"}
+spi_cs_default = {driver = "custom.spi_cs_default", type = "custom"}
+
+[system]
+led_pin = 18
+button_pin = 0
+dac1_pin = 25
+dac2_pin = 26
+reserved_pins = [6, 7, 8, 9, 10, 11]
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 23
+miso = 19
+sck = 18
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.neopixel"]
+type = "unknown"
+pin = 2
+num_leds = 1
+
+["custom.rgb_led"]
+type = "rgb_led"
+data = 2
+
+["custom.spi_cs_default"]
+type = "spi_cs"
+cs = 5

@@ -1,0 +1,67 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "tbeam"
+family = "tbeam"
+description = "LilyGO T-Beam V1.1 (ESP32) with SX1276 LoRa (SPI), NEO-6M GPS (UART, TX=12/RX=34), AXP2101 PMU (I2C, IRQ=35), LoRa DIO1/DIO2 lines, LED on GPIO14, and KEY button on GPIO39."
+chip = "esp32"
+flash_size = "4MB"
+psram = false
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+lora = {driver = "drivers.lora", type = "lora"}
+gps = {driver = "drivers.gps", type = "gps"}
+pmu = {driver = "drivers.pmu", type = "pmu"}
+dac1 = {pin = "system.dac1_pin", type = "dac"}
+lora_dio = {driver = "custom.lora_dio", type = "custom"}
+
+[system]
+led_pin = 14
+button_pin = 39
+reserved_pins = [6, 7, 8, 9, 10, 11]
+dac1_pin = 25
+
+[system.i2c]
+sda = 21
+scl = 22
+freq = 400000
+
+[system.spi]
+mosi = 27
+miso = 19
+sck = 5
+
+[system.uart]
+tx = 1
+rx = 3
+baud = 115200
+
+["drivers.lora"]
+type = "sx1276"
+bus = "spi"
+cs = 18
+rst = 23
+irq = 26
+
+["drivers.gps"]
+type = "neo-6m"
+tx = 12
+rx = 34
+baud = 9600
+
+["drivers.pmu"]
+type = "axp2101"
+bus = "i2c"
+addr = 0x34
+irq = 35
+
+["custom.lora_dio"]
+type = "lora_dio_lines"
+dio1 = 33
+dio2 = 32

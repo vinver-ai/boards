@@ -1,0 +1,64 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "sparkfun_esp32s3_thing_plus"
+family = "sparkfun-thing-plus"
+description = "SparkFun ESP32-S3 Thing Plus with WS2812 RGB LED on GPIO46, Qwiic I2C, microSD via SDIO, MAX17048 fuel gauge (I2C 0x36, ALRT=GPIO35), and peripheral power control on GPIO45."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = true
+tier = "gold"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+rgb_led = {pin = "system.led_pin", type = "addressable_rgb"}
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+sdcard = {driver = "drivers.sdcard", type = "sdcard"}
+fuel_gauge = {driver = "custom.fuel_gauge", type = "custom"}
+peripheral_power = {driver = "custom.peripheral_power", type = "custom"}
+
+[system]
+led_pin = 46
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 46
+num_leds = 1
+
+["drivers.sdcard"]
+bus = "sdio"
+detect = 48
+d0 = 39
+d1 = 40
+d2 = 47
+d3 = 33
+clk = 38
+cmd = 34
+
+["custom.fuel_gauge"]
+type = "max17048"
+alert = 35
+
+["custom.peripheral_power"]
+type = "power_switch"
+enable = 45

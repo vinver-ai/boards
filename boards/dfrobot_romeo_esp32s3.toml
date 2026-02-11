@@ -1,0 +1,82 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "dfrobot_romeo_esp32s3"
+family = "dfrobot_romeo_esp32s3"
+description = "DFRobot Romeo ESP32-S3 robot controller board with 4x motor driver control pins, a GDI display/expansion header (SPI + control + SD/Flash/Touch CS), and an onboard camera interface (parallel + SCCB)."
+chip = "esp32s3"
+flash_size = "16MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+display = {driver = "drivers.display", type = "display"}
+camera = {driver = "drivers.camera", type = "camera"}
+motor_driver = {driver = "custom.motor_driver", type = "custom"}
+gdi_expansion = {driver = "custom.gdi_expansion", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 1
+scl = 2
+freq = 400000
+
+[system.spi]
+mosi = 15
+miso = 16
+sck = 17
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.display"]
+type = "unknown"
+bus = "spi"
+cs = 18
+dc = 3
+rst = 38
+backlight = 21
+
+["drivers.camera"]
+type = "unknown"
+d0 = 39
+d1 = 40
+d2 = 41
+d3 = 4
+d4 = 7
+d5 = 8
+d6 = 46
+d7 = 48
+xclk = 45
+pclk = 5
+vsync = 6
+href = 42
+sccb_sda = 1
+sccb_scl = 2
+
+["custom.motor_driver"]
+type = "hbridge_4ch"
+M1_EN = 12
+M1_PH = 13
+M2_EN = 14
+M2_PH = 21
+M3_EN = 9
+M3_PH = 10
+M4_EN = 47
+M4_PH = 11
+
+["custom.gdi_expansion"]
+type = "gdi_header"
+BUSY_TE = 14
+INT = 13
+TCS = 12

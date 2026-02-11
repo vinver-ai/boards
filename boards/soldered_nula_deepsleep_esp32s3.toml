@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "soldered_nula_deepsleep_esp32s3"
+family = "soldered_nula_deepsleep_esp32s3"
+description = "ESP32-S3 board with I2C on GPIO8/9, SPI on GPIO11/13/12 with SS on GPIO10, UART on GPIO43/44, and an onboard RGB LED on GPIO2 (plus a virtual LED_BUILTIN alias at 51)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+spi_ss = {driver = "custom.spi_ss", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 11
+miso = 13
+sck = 12
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.neopixel"]
+type = "ws2812"
+pin = 2
+num_leds = 1
+
+["custom.spi_ss"]
+type = "spi_cs"
+cs = 10

@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "franzininho_wifi_msc_esp32s2"
+family = "franzininho_wifi_msc_esp32s2"
+description = "ESP32-S2 board with primary I2C (SDA/SCL), primary SPI (SS/MOSI/MISO/SCK), a user UART (TX/RX on GPIO43/44), and an onboard RGB LED (PIN_RGB_LED). LED_BUILTIN is defined as a virtual pin (65)."
+chip = "esp32s2"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+button = {pin = "system.button_pin", type = "button"}
+neopixel = {driver = "drivers.neopixel", type = "rgb_led"}
+board_specific = {driver = "custom.board_specific", type = "custom"}
+
+[system]
+led_pin = -1
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 8
+scl = 9
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+["drivers.neopixel"]
+type = "unknown"
+pin = 18
+num_leds = 1
+
+["custom.board_specific"]
+type = "misc"
+usb_fw_msc_serial_number = 0

@@ -1,0 +1,55 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+[meta]
+id = "nora_w10"
+family = "nora_w10"
+description = "ESP32-S3 board with RGB status LEDs, 4 user switches, primary SPI + I2C, and a UART with full modem-control signals (RTS/CTS/DTR/DSR)."
+chip = "esp32s3"
+flash_size = "4MB"
+psram = false
+tier = "volume"
+manifest_version = "1.0"
+min_runtime_version = "1.0"
+
+[capabilities]
+led = {pin = "system.led_pin", type = "led"}
+button = {pin = "system.button_pin", type = "button"}
+uart_modem_control = {driver = "custom.uart_modem_control", type = "custom"}
+
+[system]
+led_pin = 8
+button_pin = 0
+reserved_pins = [26, 27, 28, 29, 30, 31, 32]
+
+[system.i2c]
+sda = 18
+scl = 17
+freq = 400000
+
+[system.spi]
+mosi = 35
+miso = 37
+sck = 36
+
+[system.uart]
+tx = 43
+rx = 44
+baud = 115200
+
+[system.i2c1]
+sda = 21
+scl = 0
+freq = 400000
+
+[system.buttons]
+sw1 = 46
+sw3 = 47
+sw4 = 48
+
+["custom.uart_modem_control"]
+type = "uart_flow_control"
+cts = 6
+dsr = 7
+dtr = 1
+rts = 45
