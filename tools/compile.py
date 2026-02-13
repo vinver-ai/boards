@@ -45,19 +45,18 @@ def compute_runtime_defaults(chip: str, psram: bool, flash_size: str) -> dict:
     chip_lower = chip.lower()
 
     if chip_lower in RISCV_CHIPS:
-        return {"heap_kb": 64, "stack_kb": 8, "native_stack_kb": 16}
+        return {"wasm_heap_kb": 64, "wasm_stack_kb": 8, "wasm_native_stack_kb": 16}
 
     if not psram:
-        return {"heap_kb": 64, "stack_kb": 8, "native_stack_kb": 16}
+        return {"wasm_heap_kb": 64, "wasm_stack_kb": 8, "wasm_native_stack_kb": 16}
 
     if chip_lower == "esp32s3" and flash_mb >= 8:
-        return {"heap_kb": 1024, "stack_kb": 32, "native_stack_kb": 32}
+        return {"wasm_heap_kb": 1024, "wasm_stack_kb": 32, "wasm_native_stack_kb": 32}
 
     if chip_lower == "esp32s3":
-        return {"heap_kb": 512, "stack_kb": 16, "native_stack_kb": 24}
+        return {"wasm_heap_kb": 512, "wasm_stack_kb": 16, "wasm_native_stack_kb": 24}
 
-    # ESP32 / ESP32-S2 with PSRAM
-    return {"heap_kb": 512, "stack_kb": 16, "native_stack_kb": 24}
+    return {"wasm_heap_kb": 512, "wasm_stack_kb": 16, "wasm_native_stack_kb": 24}
 
 
 def inject_runtime(data: dict) -> dict:
