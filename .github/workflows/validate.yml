@@ -40,6 +40,12 @@ jobs:
       - name: Validate consistency
         run: python3 tools/validate.py
 
+      - name: Install msgpack
+        run: pip install "msgpack>=1.0,<2"
+
+      - name: Compile (dry-run)
+        run: python3 tools/compile.py --dry-run
+
       - name: Check meta.id matches filename
         run: |
           python3 -c "

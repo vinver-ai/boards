@@ -24,5 +24,8 @@ Thumbs.db
 *.swp
 *.swo
 
+# Build artifacts
+dist/
+
 # CLA tokens (never commit)
 CLA_ASSISTANT_PAT

@@ -1,0 +1,80 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Vinver, Inc.
+
+name: Publish Board Registry to R2
+
+on:
+  push:
+    branches: [main]
+    paths: ["boards/**", "tools/**", "schema/**"]
+
+concurrency:
+  group: publish-registry
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install "msgpack>=1.0,<2"
+
+      - name: Validate manifests
+        run: python3 tools/validate.py
+
+      - name: Compile manifests
+        run: python3 tools/compile.py
+
+      - name: Verify artifact counts
+        run: |
+          toml_count=$(ls boards/*.toml | wc -l)
+          msgpack_count=$(ls dist/v1/*.msgpack | wc -l)
+          index_total=$(python3 -c "import json; print(json.load(open('dist/v1/index.json'))['total'])")
+          echo "TOMLs: $toml_count | msgpack: $msgpack_count | index.total: $index_total"
+          if [ "$toml_count" != "$msgpack_count" ] || [ "$toml_count" != "$index_total" ]; then
+            echo "ERROR: count mismatch"
+            exit 1
+          fi
+
+      - name: Install rclone
+        run: |
+          curl -fsSL https://rclone.org/install.sh | sudo bash
+
+      - name: Upload to R2
+        env:
+          RCLONE_CONFIG_R2_TYPE: s3
+          RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+          RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          RCLONE_CONFIG_R2_ENDPOINT: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          RCLONE_CONFIG_R2_NO_CHECK_BUCKET: "true"
+        run: |
+          rclone sync dist/v1/ R2:${{ secrets.R2_BUCKET }}/v1/ \
+            --transfers 16 \
+            --header-upload "Cache-Control: public, max-age=86400" \
+            --verbose
+
+      - name: Set short cache on index.json
+        env:
+          RCLONE_CONFIG_R2_TYPE: s3
+          RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+          RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          RCLONE_CONFIG_R2_ENDPOINT: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          RCLONE_CONFIG_R2_NO_CHECK_BUCKET: "true"
+        run: |
+          rclone copyto dist/v1/index.json R2:${{ secrets.R2_BUCKET }}/v1/index.json \
+            --header-upload "Cache-Control: public, max-age=300"
+
+      - name: Verify deployment
+        run: |
+          sleep 5
+          total=$(curl -sf https://boards.vinver.ai/v1/index.json | python3 -c "import sys,json; print(json.load(sys.stdin)['total'])")
+          echo "Registry live with $total boards"
