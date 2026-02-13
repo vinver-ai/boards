@@ -8,6 +8,9 @@ on:
     branches: [main]
     paths: ["boards/**", "tools/**", "schema/**"]
 
+permissions:
+  contents: read
+
 concurrency:
   group: publish-registry
   cancel-in-progress: false
@@ -43,9 +46,15 @@ jobs:
             exit 1
           fi
 
-      - name: Install rclone
+      - name: Install rclone v1.73.0
         run: |
-          curl -fsSL https://rclone.org/install.sh | sudo bash
+          RCLONE_VERSION="v1.73.0"
+          RCLONE_SHA256="c465f1124d2cc7244560b9d4808c42d96b9025fd7dd1a7933a63e427abfe0133"
+          RCLONE_DEB="rclone-${RCLONE_VERSION}-linux-amd64.deb"
+          curl -fsSL -o "${RCLONE_DEB}" "https://downloads.rclone.org/${RCLONE_VERSION}/${RCLONE_DEB}"
+          echo "${RCLONE_SHA256}  ${RCLONE_DEB}" | sha256sum --check --strict
+          sudo dpkg -i "${RCLONE_DEB}"
+          rm -f "${RCLONE_DEB}"
 
       - name: Upload to R2
         env:

@@ -10,6 +10,9 @@ on:
   pull_request:
     paths: ["boards/**", "tools/**", "schema/**"]
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
