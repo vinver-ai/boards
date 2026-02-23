@@ -48,7 +48,7 @@ button_down = 11
 button_menu = 14
 button_up = 10
 
-["drivers.display"]
+[drivers.display]
 type = "st7789"
 bus = "spi"
 cs = 5
@@ -58,13 +58,13 @@ height = 240
 rst = 8
 backlight = 9
 
-["custom.usb_power_control"]
+[custom.usb_power_control]
 type = "usb_otg_power"
 BOOST_EN = 13
 LIMIT_EN = 17
 OVER_CURRENT = 21
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 usb_dn = 19
 usb_dp = 20

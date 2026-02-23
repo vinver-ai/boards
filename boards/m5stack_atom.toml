@@ -42,10 +42,11 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "sk6812"
 pin = 27
 num_leds = 1
 
-["drivers.ir"]
+[drivers.ir]
+type = "ir"
 tx = 12

@@ -39,7 +39,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 17
@@ -47,7 +47,7 @@ dc = 14
 rst = 15
 backlight = 16
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1262"
 bus = "spi"
 cs = 10
@@ -55,6 +55,6 @@ rst = 41
 irq = 4
 busy = 40
 
-["custom.lora_antenna_power"]
+[custom.lora_antenna_power]
 type = "rf_switch"
 ant_pwr = 42

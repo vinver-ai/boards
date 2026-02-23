@@ -36,6 +36,6 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.spi_ss"]
+[custom.spi_ss]
 type = "spi_cs"
 cs = 34

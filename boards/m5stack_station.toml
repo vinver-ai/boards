@@ -40,7 +40,7 @@ tx = 14
 rx = 13
 baud = 115200
 
-["custom.adc_inputs"]
+[custom.adc_inputs]
 type = "adc"
 ADC1 = 35
 ADC2 = 36

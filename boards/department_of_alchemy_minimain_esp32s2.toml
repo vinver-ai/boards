@@ -44,16 +44,16 @@ tx = 39
 rx = 38
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 33
 power_pin = 21
 num_leds = 1
 
-["custom.servo"]
+[custom.servo]
 type = "pwm_servo"
 signal = 2
 
-["custom.isolated_input"]
+[custom.isolated_input]
 type = "digital_input_isolated"
 in = 40

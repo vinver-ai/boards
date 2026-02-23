@@ -38,7 +38,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 48
@@ -46,10 +46,11 @@ dc = 47
 rst = 21
 backlight = 14
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 46
 
-["custom.touchscreen_spi"]
+[custom.touchscreen_spi]
 type = "touchscreen_cs"
 cs = 45

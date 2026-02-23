@@ -54,23 +54,23 @@ freq = 400000
 [system.buttons]
 sw2 = 14
 
-["custom.ldr"]
+[custom.ldr]
 type = "light_sensor_adc"
 LDR_PIN = 36
 
-["custom.digital_inputs"]
+[custom.digital_inputs]
 type = "gpio_inputs"
 INPUT1 = 32
 INPUT2 = 33
 INPUT3 = 34
 INPUT4 = 35
 
-["custom.digital_outputs"]
+[custom.digital_outputs]
 type = "gpio_outputs"
 OUTPUT1 = 26
 OUTPUT2 = 27
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 kb_gpio18 = 18
 kb_gpio19 = 19

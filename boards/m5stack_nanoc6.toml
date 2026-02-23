@@ -38,12 +38,12 @@ tx = 16
 rx = 17
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 20
 power_pin = 19
 num_leds = 1
 
-["custom.ir_tx"]
+[custom.ir_tx]
 type = "ir_transmitter"
 tx = 3

@@ -54,7 +54,7 @@ battery_adc = 36
 [system.buttons]
 gsm_pwrkey = 12
 
-["custom.motor_driver_abc"]
+[custom.motor_driver_abc]
 type = "dc_motor_driver"
 motor_a_in1 = 25
 motor_a_in2 = 26
@@ -64,7 +64,7 @@ motor_c_in1 = 33
 motor_c_in2 = 4
 sleep_motor_abc = 2
 
-["custom.gsm_modem"]
+[custom.gsm_modem]
 type = "cellular_modem_uart"
 cts = 15
 dtr = 13
@@ -72,7 +72,7 @@ rts = 14
 rx = 16
 tx = 17
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 imu_scl = 22
 imu_sda = 21

@@ -36,6 +36,6 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.pir_motion"]
+[custom.pir_motion]
 type = "pir_sensor"
 pir = 5

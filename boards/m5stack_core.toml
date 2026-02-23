@@ -46,7 +46,7 @@ baud = 115200
 B = 38
 C = 37
 
-["drivers.display"]
+[drivers.display]
 type = "ili9341"
 bus = "spi"
 cs = 14
@@ -56,11 +56,12 @@ backlight = 32
 width = 320
 height = 240
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 4
 
-["drivers.pmu"]
+[drivers.pmu]
 type = "ip5306"
 bus = "i2c"
 addr = 0x75

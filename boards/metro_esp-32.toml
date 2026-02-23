@@ -36,6 +36,6 @@ mosi = 23
 miso = 19
 sck = 18
 
-["custom.ADR"]
+[custom.ADR]
 type = "address_select"
 adr = 12

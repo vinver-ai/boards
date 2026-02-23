@@ -42,7 +42,7 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 15
@@ -50,13 +50,14 @@ dc = 27
 rst = 32
 backlight = 18
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 19
 rst = 21
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 23
 detect = 22

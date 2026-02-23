@@ -51,19 +51,19 @@ user_btn_1 = 14
 user_btn_2 = 39
 user_btn_3 = 40
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "unknown"
 pin = 35
 num_leds = 1
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 45
 lrck = 48
 din = 39
 speaker_en = 42
 
-["custom.misc_control"]
+[custom.misc_control]
 type = "gpio_control"
 DSCS = 14
 INTERRUPT_PIN = 18

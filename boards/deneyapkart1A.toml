@@ -46,7 +46,7 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.camera"]
+[drivers.camera]
 type = "unknown"
 d0 = 19
 d1 = 22
@@ -63,7 +63,7 @@ href = 39
 sccb_sda = 33
 sccb_scl = 25
 
-["custom.pwm_outputs"]
+[custom.pwm_outputs]
 type = "pwm"
 PWM0 = 23
 PWM1 = 22

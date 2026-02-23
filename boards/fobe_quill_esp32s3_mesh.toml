@@ -46,22 +46,22 @@ battery_adc = 10
 [system.buttons]
 BUTTON1 = 0
 
-["custom.peri_power"]
+[custom.peri_power]
 type = "power_enable"
 PERI_EN = 1
 
-["custom.sx126x_rf_switch"]
+[custom.sx126x_rf_switch]
 type = "rf_frontend"
 RXEN = 46
 
-["custom.mfp_header"]
+[custom.mfp_header]
 type = "multi_function_pins"
 MFP1 = 38
 MFP2 = 37
 MFP3 = 36
 MFP4 = 35
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 pin_oled_en = 12
 pin_oled_scl = 13

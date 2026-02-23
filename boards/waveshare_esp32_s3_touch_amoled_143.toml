@@ -42,12 +42,12 @@ baud = 115200
 [system.power]
 battery_adc = 4
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 rst = 21
 
-["custom.qspi_amoled_bus"]
+[custom.qspi_amoled_bus]
 type = "qspi"
 cs = 9
 d0 = 11
@@ -56,10 +56,10 @@ d2 = 13
 d3 = 14
 sck = 10
 
-["custom.rtc_interrupt"]
+[custom.rtc_interrupt]
 type = "rtc_int"
-int = 15
+irq = 15
 
-["custom.qmi_sensor_interrupt"]
+[custom.qmi_sensor_interrupt]
 type = "imu_int"
 int1 = 8

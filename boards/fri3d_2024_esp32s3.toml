@@ -57,12 +57,12 @@ PIN_START = 0
 PIN_X = 38
 PIN_Y = 41
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 12
 num_leds = 1
 
-["drivers.display"]
+[drivers.display]
 type = "st7789"
 bus = "spi"
 cs = 5
@@ -71,26 +71,27 @@ width = 240
 height = 240
 rst = 48
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 17
 lrck = 47
 din = 15
 
-["drivers.ir"]
+[drivers.ir]
+type = "ir"
 tx = 10
 rx = 11
 
-["custom.joystick"]
+[custom.joystick]
 type = "analog_2axis"
 x = 1
 y = 3
 
-["custom.accel_gyro"]
+[custom.accel_gyro]
 type = "imu"
 int_or_cs = 21
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 pin_a = 39
 pin_aux = 42

@@ -37,6 +37,6 @@ tx = 37
 rx = 36
 baud = 115200
 
-["custom.spi_ss"]
+[custom.spi_ss]
 type = "spi_chip_select"
 ss = 3

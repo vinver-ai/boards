@@ -41,16 +41,17 @@ baud = 115200
 [system.power]
 battery_adc = 4
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 rst = 21
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 38
 
-["custom.qspi_display_bus"]
+[custom.qspi_display_bus]
 type = "qspi"
 cs = 9
 d0 = 11

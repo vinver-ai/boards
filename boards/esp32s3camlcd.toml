@@ -40,14 +40,14 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "rgb"
 dc = 2
 width = 480
 height = 320
 
-["drivers.camera"]
+[drivers.camera]
 type = "unknown"
 d0 = 13
 d1 = 47
@@ -64,12 +64,12 @@ href = 38
 sccb_sda = 17
 sccb_scl = 18
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 din = 1
 speaker_en = 0
 
-["custom.tft_parallel_8bit"]
+[custom.tft_parallel_8bit]
 type = "tft_parallel_8bit"
 d0 = 45
 d1 = 16
@@ -81,7 +81,7 @@ d6 = 6
 d7 = 5
 wr = 4
 
-["custom.sdmmc_1bit"]
+[custom.sdmmc_1bit]
 type = "sdmmc_1bit"
 clk = 9
 cmd = 20

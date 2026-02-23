@@ -36,6 +36,6 @@ tx = 37
 rx = 40
 baud = 115200
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 adc = 38

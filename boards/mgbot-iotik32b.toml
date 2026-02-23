@@ -41,5 +41,6 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.ir"]
+[drivers.ir]
+type = "ir"
 rx = 27

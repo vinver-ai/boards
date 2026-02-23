@@ -42,19 +42,19 @@ baud = 115200
 [system.power]
 vext = 45
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 5
 dc = 4
 rst = 6
 
-["custom.eink"]
+[custom.eink]
 type = "epaper"
 busy = 7
 clk = 3
 sdi = 2
 
-["custom.status_led_alt"]
+[custom.status_led_alt]
 type = "led"
 led = 18

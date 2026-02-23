@@ -41,7 +41,7 @@ tx = 1
 rx = 3
 baud = 115200
 
-["custom.cellular_modem"]
+[custom.cellular_modem]
 type = "a7672s_4g_uart"
 rx = 16
 tx = 17

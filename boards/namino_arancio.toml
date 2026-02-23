@@ -42,19 +42,20 @@ baud = 115200
 [system.buttons]
 BOOT_MODE = 47
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 2
 
-["custom.addon_reset"]
+[custom.addon_reset]
 type = "reset"
 reset_add_on = 46
 
-["custom.namino_module_reset"]
+[custom.namino_module_reset]
 type = "reset"
 nm_reset = 48
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 adc2_ch4 = 15
 adc2_ch8 = 19

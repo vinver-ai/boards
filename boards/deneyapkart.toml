@@ -49,7 +49,7 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.camera"]
+[drivers.camera]
 type = "unknown"
 d0 = 19
 d1 = 22
@@ -66,16 +66,16 @@ href = 39
 sccb_sda = 33
 sccb_scl = 25
 
-["custom.rgb_led"]
+[custom.rgb_led]
 type = "gpio_rgb_led"
 blue = 4
 
-["custom.pwm_outputs"]
+[custom.pwm_outputs]
 type = "pwm"
 pwm0 = 23
 pwm1 = 22
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 imusc = 15
 micc = 13

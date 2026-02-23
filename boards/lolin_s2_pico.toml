@@ -38,11 +38,11 @@ tx = 38
 rx = 33
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 rst = 18
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 usb_fw_msc_serial_number = 0

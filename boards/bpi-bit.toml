@@ -48,20 +48,20 @@ baud = 115200
 [system.buttons]
 button_b = 27
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 4
 num_leds = 1
 
-["custom.light_sensors"]
+[custom.light_sensors]
 type = "adc"
 LIGHT_SENSOR1 = 36
 LIGHT_SENSOR2 = 39
 
-["custom.temperature_sensor"]
+[custom.temperature_sensor]
 type = "adc"
 TEMPERATURE_SENSOR = 34
 
-["custom.mpu9250_int"]
+[custom.mpu9250_int]
 type = "imu_interrupt"
 MPU9250_INT = 0

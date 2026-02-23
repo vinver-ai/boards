@@ -51,7 +51,7 @@ pin_button1 = 3
 pin_button2 = 4
 pin_button3 = 5
 
-["drivers.display"]
+[drivers.display]
 type = "st7789"
 bus = "spi"
 cs = 40
@@ -59,19 +59,19 @@ dc = 39
 rst = 41
 backlight = 21
 
-["drivers.audio"]
+[drivers.audio]
 type = "unknown"
 speaker_en = 42
 
-["custom.dotstar"]
+[custom.dotstar]
 type = "apa102"
 clock = 15
 data = 14
 
-["custom.pir_sensor"]
+[custom.pir_sensor]
 type = "pir"
 signal = 16
 
-["custom.light_sensor"]
+[custom.light_sensor]
 type = "analog"
 adc = 18

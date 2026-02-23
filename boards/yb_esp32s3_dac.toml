@@ -38,14 +38,14 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 5
 lrck = 6
 dout = 7
 mclk = 4
 
-["custom.tlv_codec_ctrl"]
+[custom.tlv_codec_ctrl]
 type = "audio_codec_control"
-int = 48
-reset = 21
+irq = 48
+rst = 21

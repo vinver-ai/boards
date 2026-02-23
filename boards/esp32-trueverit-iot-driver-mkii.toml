@@ -48,7 +48,7 @@ tx = 12
 rx = 13
 baud = 115200
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "unknown"
 bus = "rmii"
 mdc = 16
@@ -56,11 +56,11 @@ mdio = 14
 phy_addr = 1
 power_pin = 2
 
-["custom.uart2"]
+[custom.uart2]
 type = "uart"
 rx = 39
 tx = 33
 
-["custom.spi_cs"]
+[custom.spi_cs]
 type = "spi"
 cs = 5

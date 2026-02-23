@@ -40,7 +40,7 @@ baud = 115200
 battery_adc = 10
 vbus_sense = 33
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 18
 power_pin = 17

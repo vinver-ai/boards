@@ -40,7 +40,7 @@ baud = 115200
 btn_b = 5
 btn_c = 45
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 10

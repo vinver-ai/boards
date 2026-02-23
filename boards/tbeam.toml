@@ -42,26 +42,26 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1276"
 bus = "spi"
 cs = 18
 rst = 23
 irq = 26
 
-["drivers.gps"]
+[drivers.gps]
 type = "neo-6m"
 tx = 12
 rx = 34
 baud = 9600
 
-["drivers.pmu"]
+[drivers.pmu]
 type = "axp2101"
 bus = "i2c"
 addr = 0x34
 irq = 35
 
-["custom.lora_dio"]
+[custom.lora_dio]
 type = "lora_dio_lines"
 dio1 = 33
 dio2 = 32

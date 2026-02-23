@@ -38,12 +38,12 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.audio"]
+[drivers.audio]
 type = "unknown"
 bclk = 5
 lrck = 6
 dout = 7
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 pin_dac_mute = 47

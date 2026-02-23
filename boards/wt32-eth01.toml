@@ -40,7 +40,7 @@ tx = 17
 rx = 5
 baud = 115200
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "lan8720"
 bus = "rmii"
 mdc = 23

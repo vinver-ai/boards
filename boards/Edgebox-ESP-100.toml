@@ -46,28 +46,30 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "unknown"
 bus = "spi"
 irq = 14
 rst = 15
 
-["drivers.can"]
+[drivers.can]
+type = "twai"
 txd = 1
 rxd = 2
 
-["drivers.rs485"]
+[drivers.rs485]
+type = "rs485"
 txd = 17
 rxd = 18
 rts = 8
 
-["custom.lte_modem"]
+[custom.lte_modem]
 type = "cellular_modem"
 pwr_en = 16
 rxd = 47
 txd = 48
 
-["custom.digital_outputs"]
+[custom.digital_outputs]
 type = "gpio_outputs"
 do0 = 40
 do1 = 39
@@ -76,22 +78,22 @@ do3 = 37
 do4 = 36
 do5 = 35
 
-["custom.digital_inputs"]
+[custom.digital_inputs]
 type = "gpio_inputs"
 di0 = 4
 di1 = 5
 di2 = 6
 di3 = 7
 
-["custom.analog_outputs"]
+[custom.analog_outputs]
 type = "analog_out"
 ao0 = 42
 ao1 = 41
 
-["custom.i2c_alert"]
+[custom.i2c_alert]
 type = "i2c_interrupt"
-int = 9
+irq = 9
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 rst = 0

@@ -38,13 +38,13 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 10
 lrck = 17
 din = 21
 
-["custom.uart_modem_control"]
+[custom.uart_modem_control]
 type = "uart_flow_control"
 cts = 6
 dsr = 7

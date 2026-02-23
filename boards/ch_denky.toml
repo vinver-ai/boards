@@ -42,12 +42,12 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 25
 num_leds = 1
 
-["custom.tic_teleinfo"]
+[custom.tic_teleinfo]
 type = "teleinfo"
 enable = 4
 rx = 8

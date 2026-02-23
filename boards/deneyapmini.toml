@@ -43,11 +43,11 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.pwm_outputs"]
+[custom.pwm_outputs]
 type = "pwm"
 pwm0 = 42
 pwm1 = 41
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 bt = 0

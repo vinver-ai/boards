@@ -39,7 +39,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 5
@@ -47,7 +47,7 @@ dc = 4
 rst = 48
 backlight = 45
 
-["drivers.audio"]
+[drivers.audio]
 type = "unknown"
 bclk = 17
 lrck = 47
@@ -56,11 +56,11 @@ din = 16
 mclk = 2
 speaker_en = 46
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 3
 
-["custom.audio_mute"]
+[custom.audio_mute]
 type = "mute_control"
 mute = 1

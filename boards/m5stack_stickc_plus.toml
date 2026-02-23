@@ -52,7 +52,7 @@ baud = 115200
 [system.buttons]
 b = 39
 
-["drivers.display"]
+[drivers.display]
 type = "st7789"
 bus = "spi"
 cs = 5
@@ -61,25 +61,26 @@ rst = 18
 width = 135
 height = 240
 
-["drivers.pmu"]
+[drivers.pmu]
 type = "axp192"
 bus = "i2c"
 addr = 0x34
 
-["drivers.ir"]
+[drivers.ir]
+type = "ir"
 tx = 9
 
-["drivers.imu"]
+[drivers.imu]
 type = "mpu6886"
 bus = "i2c"
 addr = 0x68
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "bm8563"
 bus = "i2c"
 addr = 0x51
 
-["custom.microphone"]
+[custom.microphone]
 type = "spm1423"
 clk = 0
 data = 34

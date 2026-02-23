@@ -37,11 +37,11 @@ tx = 24
 rx = 23
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "unknown"
 pin = 8
 num_leds = 1
 
-["custom.spi_cs"]
+[custom.spi_cs]
 type = "spi_cs"
 ss = 0

@@ -37,7 +37,7 @@ tx = 21
 rx = 20
 baud = 115200
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 6
 lrck = 10

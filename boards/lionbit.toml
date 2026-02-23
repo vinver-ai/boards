@@ -50,12 +50,12 @@ baud = 115200
 [system.buttons]
 switch_b = 4
 
-["custom.spi_alt_bus"]
+[custom.spi_alt_bus]
 type = "spi"
 VMOSI = 23
 VSCK = 18
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 cs = 27
 dc = 32

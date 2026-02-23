@@ -38,16 +38,16 @@ tx = 16
 rx = 17
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "unknown"
 pin = 3
 num_leds = 1
 
-["custom.matrix"]
+[custom.matrix]
 type = "gpio"
 MATRIX = 18
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 imusc = 7
 imusd = 8

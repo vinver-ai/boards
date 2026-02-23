@@ -46,7 +46,7 @@ baud = 115200
 [system.power]
 battery_adc = 1
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 5
@@ -54,29 +54,29 @@ dc = 4
 rst = 8
 backlight = 15
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 14
 rst = 13
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "unknown"
 bus = "i2c"
 irq = 41
 
-["drivers.imu"]
+[drivers.imu]
 type = "qmi8658"
 bus = "i2c"
 addr = 0x6B
 irq = 38
 
-["custom.system_power"]
+[custom.system_power]
 type = "power_switch"
 sys_en = 35
 sys_out = 36
 
-["custom.extra_outputs"]
+[custom.extra_outputs]
 type = "gpio_outputs"
 output_io17 = 17
 output_io18 = 18

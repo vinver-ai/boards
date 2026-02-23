@@ -43,13 +43,13 @@ tx = 1
 rx = 2
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 33
 power_pin = 34
 num_leds = 1
 
-["drivers.display"]
+[drivers.display]
 type = "st7789"
 bus = "spi"
 cs = 7

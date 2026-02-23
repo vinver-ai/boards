@@ -41,7 +41,7 @@ sda = 6
 scl = 7
 freq = 400000
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "unknown"
 pin = 8
 num_leds = 1

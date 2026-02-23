@@ -40,6 +40,6 @@ baud = 115200
 [system.power]
 battery_adc = 0
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 msr = 0

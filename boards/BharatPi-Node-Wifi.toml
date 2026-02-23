@@ -42,12 +42,12 @@ tx = 1
 rx = 3
 baud = 115200
 
-["custom.status_leds"]
+[custom.status_leds]
 type = "leds"
 GREEN_LED = 13
 SAFFRON_LED = 12
 WHITE_LED = 2
 
-["custom.spi_cs"]
+[custom.spi_cs]
 type = "spi_chip_select"
 SS = 5

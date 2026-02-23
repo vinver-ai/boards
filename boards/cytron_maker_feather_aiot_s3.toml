@@ -46,6 +46,6 @@ vbus_sense = 13
 [system.buttons]
 button = 3
 
-["custom.vp_en"]
+[custom.vp_en]
 type = "power_enable"
 en = 11

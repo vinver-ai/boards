@@ -41,7 +41,7 @@ tx = 1
 rx = 3
 baud = 115200
 
-["custom.rgb_led_channels"]
+[custom.rgb_led_channels]
 type = "rgb_led_discrete"
 b = 22
 g = 21

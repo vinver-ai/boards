@@ -41,6 +41,6 @@ sda = 2
 scl = 1
 freq = 400000
 
-["custom.spi_ss"]
+[custom.spi_ss]
 type = "spi_cs"
 cs = 41

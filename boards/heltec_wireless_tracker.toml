@@ -42,14 +42,14 @@ baud = 115200
 [system.power]
 vext = 3
 
-["drivers.display"]
+[drivers.display]
 type = "ssd1306"
 bus = "i2c"
 addr = 0x3C
 rst = 39
 power_pin = 3
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1262"
 bus = "spi"
 cs = 8
@@ -57,7 +57,7 @@ rst = 12
 irq = 14
 busy = 13
 
-["drivers.gps"]
+[drivers.gps]
 type = "unknown"
 tx = 34
 rx = 33

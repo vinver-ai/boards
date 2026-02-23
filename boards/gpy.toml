@@ -42,12 +42,12 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "unknown"
 pin = 0
 num_leds = 1
 
-["custom.lte_modem"]
+[custom.lte_modem]
 type = "cellular_lte"
 cts = 18
 rts = 19
@@ -55,6 +55,6 @@ rx = 23
 tx = 5
 wake = 27
 
-["custom.antenna_select"]
+[custom.antenna_select]
 type = "rf_switch"
 ant_select = 21

@@ -46,7 +46,7 @@ battery_adc = 34
 [system.buttons]
 right = 35
 
-["drivers.display"]
+[drivers.display]
 type = "st7789"
 bus = "spi"
 cs = 5

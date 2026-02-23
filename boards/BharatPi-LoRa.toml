@@ -41,6 +41,6 @@ tx = 1
 rx = 3
 baud = 115200
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 rst = 14

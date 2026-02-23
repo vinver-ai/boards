@@ -43,7 +43,7 @@ baud = 115200
 [system.power]
 battery_adc = 33
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 12
@@ -52,22 +52,23 @@ height = 502
 rst = 8
 power_pin = 21
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 38
 rst = 9
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "sdio"
 cs = 17
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "unknown"
 bus = "i2c"
 irq = 39
 
-["drivers.imu"]
+[drivers.imu]
 type = "qmi8658"
 bus = "i2c"
 addr = 0x6B

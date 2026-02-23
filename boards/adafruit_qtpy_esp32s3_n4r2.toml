@@ -46,7 +46,7 @@ tx = 5
 rx = 16
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 39
 power_pin = 38

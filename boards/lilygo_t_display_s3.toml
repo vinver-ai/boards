@@ -45,7 +45,7 @@ battery_adc = 4
 [system.buttons]
 button_2 = 14
 
-["drivers.display"]
+[drivers.display]
 type = "st7789"
 bus = "spi"
 cs = 6
@@ -56,12 +56,12 @@ rst = 5
 backlight = 38
 power_pin = 15
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 rst = 21
 
-["custom.lcd_8080_parallel"]
+[custom.lcd_8080_parallel]
 type = "lcd_8080"
 d0 = 39
 d1 = 40
@@ -74,7 +74,7 @@ d7 = 48
 rd = 9
 wr = 8
 
-["custom.tp_control"]
+[custom.tp_control]
 type = "touch_panel_control"
 init = 16
-reset = 21
+rst = 21

@@ -40,6 +40,6 @@ baud = 115200
 [system.power]
 battery_adc = 0
 
-["custom.MSR"]
+[custom.MSR]
 type = "battery_measure_alias"
 msr = 0

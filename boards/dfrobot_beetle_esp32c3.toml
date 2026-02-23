@@ -38,7 +38,7 @@ tx = 21
 rx = 20
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 7
@@ -46,7 +46,7 @@ dc = 1
 rst = 2
 backlight = 10
 
-["custom.gdi_interface"]
+[custom.gdi_interface]
 type = "dfrobot_gdi"
 blk = 10
 cs = 7

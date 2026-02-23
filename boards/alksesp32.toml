@@ -52,35 +52,35 @@ baud = 115200
 sw1 = 15
 sw2 = 2
 
-["custom.traffic_leds"]
+[custom.traffic_leds]
 type = "led_outputs"
 L_B = 5
 L_G = 17
 L_R = 22
 L_Y = 23
 
-["custom.rgb_led"]
+[custom.rgb_led]
 type = "rgb_led_outputs"
 L_RGB_B = 16
 L_RGB_G = 21
 L_RGB_R = 4
 
-["custom.piezo"]
+[custom.piezo]
 type = "piezo_outputs"
 PIEZO1 = 19
 PIEZO2 = 18
 
-["custom.analog_inputs"]
+[custom.analog_inputs]
 type = "adc_inputs"
 PHOTO = 25
 POT1 = 32
 POT2 = 33
 
-["custom.dht_sensor"]
+[custom.dht_sensor]
 type = "dht"
 DHT_PIN = 26
 
-["custom.header_signals"]
+[custom.header_signals]
 type = "digital_io_header"
 S1 = 4
 S2 = 16

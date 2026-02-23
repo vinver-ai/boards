@@ -39,22 +39,23 @@ tx = 42
 rx = 1
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 dc = 0
 rst = 4
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 7
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 41
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 bclk = 36
 bl_pwm = 45

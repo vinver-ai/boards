@@ -32,12 +32,12 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 21
 num_leds = 1
 
-["custom.output_io_bank"]
+[custom.output_io_bank]
 type = "gpio_outputs"
 OUTPUT_IO1 = 1
 OUTPUT_IO10 = 10

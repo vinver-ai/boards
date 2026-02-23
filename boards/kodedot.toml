@@ -37,12 +37,12 @@ baud = 115200
 [system.buttons]
 BUTTON_TOP = 0
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 4
 num_leds = 1
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 9
@@ -50,7 +50,7 @@ width = 410
 height = 502
 rst = 8
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 int_i2c_scl = 47
 int_i2c_sda = 48

@@ -41,12 +41,12 @@ tx = 37
 rx = 38
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "rgb"
 rst = 23
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 12
 lrck = 10
@@ -54,21 +54,22 @@ dout = 11
 din = 9
 mclk = 13
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 5
 rst = 4
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "sdio"
 power_pin = 45
 
-["custom.alt_i2c_header"]
+[custom.alt_i2c_header]
 type = "i2c_pins"
 scl = 3
 sda = 2
 
-["custom.lcd_backlight_level"]
+[custom.lcd_backlight_level]
 type = "fixed_level"
 bl_on_level = 1

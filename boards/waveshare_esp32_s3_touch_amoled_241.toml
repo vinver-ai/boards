@@ -42,12 +42,12 @@ baud = 115200
 [system.power]
 battery_adc = 17
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 rst = 21
 
-["custom.amoled_qspi"]
+[custom.amoled_qspi]
 type = "qspi_display_bus"
 cs = 9
 d0 = 11
@@ -56,11 +56,11 @@ d2 = 13
 d3 = 14
 sck = 10
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "unknown"
 bus = "i2c"
 
-["drivers.imu"]
+[drivers.imu]
 type = "qmi8658"
 bus = "i2c"
 addr = 0x6B

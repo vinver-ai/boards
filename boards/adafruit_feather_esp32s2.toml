@@ -43,12 +43,12 @@ tx = 39
 rx = 38
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 33
 power_pin = 21
 num_leds = 1
 
-["custom.i2c_power"]
+[custom.i2c_power]
 type = "power_switch"
 en = 7

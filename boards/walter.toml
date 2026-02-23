@@ -36,10 +36,10 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.modem"]
+[custom.modem]
 type = "cellular_modem_uart"
 cts = 47
-reset = 45
+rst = 45
 rts = 19
 rx = 14
 tx = 48

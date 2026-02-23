@@ -45,13 +45,13 @@ baud = 115200
 [system.buttons]
 pca_button_down = 6
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "rgb"
 cs = 1
 rst = 2
 backlight = 4
 
-["custom.tft_rgb666"]
+[custom.tft_rgb666]
 type = "rgb_parallel_tft"
 r5 = 3

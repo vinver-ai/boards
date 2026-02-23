@@ -46,7 +46,7 @@ tx = 42
 rx = 41
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "st7789"
 bus = "spi"
 cs = 12
@@ -55,18 +55,18 @@ width = 240
 height = 240
 backlight = 45
 
-["drivers.audio"]
+[drivers.audio]
 type = "max98357"
 bclk = 48
 lrck = 15
 dout = 46
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 16
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1262"
 bus = "spi"
 cs = 5
@@ -74,36 +74,37 @@ rst = 8
 irq = 9
 busy = 7
 
-["drivers.gps"]
+[drivers.gps]
 type = "unknown"
 tx = 42
 rx = 41
 
-["drivers.pmu"]
+[drivers.pmu]
 type = "axp2101"
 bus = "i2c"
 addr = 0x34
 irq = 21
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "pcf8563"
 bus = "i2c"
 addr = 0x51
 irq = 17
 
-["drivers.imu"]
+[drivers.imu]
 type = "bma423"
 bus = "i2c"
 addr = 0x18
 irq = 14
 
-["drivers.ir"]
+[drivers.ir]
+type = "ir"
 tx = 2
 
-["custom.haptic"]
+[custom.haptic]
 type = "drv2605l"
 
-["custom.mic"]
+[custom.mic]
 type = "spm1423"
 clk = 44
 data = 47

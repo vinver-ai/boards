@@ -46,14 +46,14 @@ baud = 115200
 [system.power]
 battery_adc = 10
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 39
 lrck = 40
 mclk = 10
 speaker_en = 38
 
-["custom.spi1"]
+[custom.spi1]
 type = "spi_bus"
 miso1 = 12
 mosi1 = 11

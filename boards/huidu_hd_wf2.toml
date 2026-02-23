@@ -40,7 +40,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.hub75_matrix"]
+[custom.hub75_matrix]
 type = "hub75_parallel_rgb_matrix"
 addr_a = 39
 addr_b = 38
@@ -63,17 +63,17 @@ x2_g2 = 9
 x2_r1 = 4
 x2_r2 = 5
 
-["custom.rtc_bm8563"]
+[custom.rtc_bm8563]
 type = "bm8563_rtc"
 i2c_scl = 42
 i2c_sda = 41
 
-["custom.pcb_io"]
+[custom.pcb_io]
 type = "board_pcb_pads"
 pcb1 = 45
 pcb2 = 46
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 wf2_usb_dn_pin = 19
 wf2_usb_dp_pin = 20

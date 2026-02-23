@@ -42,7 +42,7 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "ili9341"
 bus = "spi"
 cs = 15
@@ -51,15 +51,16 @@ width = 320
 height = 240
 backlight = 21
 
-["drivers.audio"]
+[drivers.audio]
 type = "unknown"
 dout = 26
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 5
 
-["custom.cyd_touch_spi"]
+[custom.cyd_touch_spi]
 type = "xpt2046"
 cs = 33
 irq = 36
@@ -67,12 +68,12 @@ miso = 39
 mosi = 32
 sck = 25
 
-["custom.cyd_rgb_led"]
+[custom.cyd_rgb_led]
 type = "rgb_led"
 red = 4
 green = 16
 blue = 17
 
-["custom.cyd_ldr"]
+[custom.cyd_ldr]
 type = "light_sensor"
 adc = 34

@@ -52,12 +52,12 @@ baud = 115200
 [system.buttons]
 switch_b = 47
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 48
 num_leds = 1
 
-["drivers.display"]
+[drivers.display]
 type = "st7789"
 bus = "spi"
 cs = 42
@@ -65,19 +65,19 @@ dc = 37
 rst = 38
 backlight = 45
 
-["custom.wifi_led"]
+[custom.wifi_led]
 type = "status_led"
 WIFI_LED = 38
 
-["custom.bt_led"]
+[custom.bt_led]
 type = "status_led"
 BT_LED = 37
 
-["custom.ldr"]
+[custom.ldr]
 type = "light_sensor_adc"
 LDR = 7
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 cs = 42
 mosi = 36

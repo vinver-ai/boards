@@ -41,7 +41,7 @@ sw2 = 18
 sw3 = 19
 sw4 = 21
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 26
 lrck = 25

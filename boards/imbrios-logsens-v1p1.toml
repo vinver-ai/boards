@@ -52,27 +52,29 @@ baud = 115200
 sw3_buildin = 36
 sw4_buildin = 34
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 detect = 35
 
-["drivers.can"]
+[drivers.can]
+type = "twai"
 txd = 17
 rxd = 16
 
-["custom.spi_chip_selects"]
+[custom.spi_chip_selects]
 type = "spi_cs"
 SS = 15
 
-["custom.can_transceiver"]
+[custom.can_transceiver]
 type = "can_tx_enable"
 CAN_TXDE = 4
 
-["custom.uart2_flow_control"]
+[custom.uart2_flow_control]
 type = "uart_rts"
 UART2_RTS = 4
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 spi_clk = 14
 spi_miso = 12

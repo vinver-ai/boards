@@ -46,7 +46,7 @@ tx = 10
 rx = 9
 baud = 115200
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "unknown"
 bus = "rmii"
 mdc = 32
@@ -54,10 +54,10 @@ mdio = 33
 phy_addr = 0
 irq = 35
 
-["custom.generic_module_header"]
+[custom.generic_module_header]
 type = "module_header"
 an = 36
 cs = 15
-int = 4
+irq = 4
 pwm = 2
 rst = 5

@@ -43,15 +43,15 @@ sda = 20
 scl = 21
 freq = 400000
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "unknown"
 pin = 38
 num_leds = 1
 
-["custom.als"]
+[custom.als]
 type = "ambient_light_sensor"
 als = 17
 
-["custom.rf_switch"]
+[custom.rf_switch]
 type = "rf_switch_control"
 sw = 37

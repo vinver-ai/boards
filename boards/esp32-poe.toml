@@ -42,7 +42,7 @@ tx = 4
 rx = 36
 baud = 115200
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "lan8720"
 bus = "rmii"
 mdc = 23
@@ -50,5 +50,6 @@ mdio = 18
 phy_addr = 0
 power_pin = 12
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "sdio"

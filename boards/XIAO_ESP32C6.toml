@@ -39,14 +39,14 @@ tx = 16
 rx = 17
 baud = 115200
 
-["custom.wifi_control"]
+[custom.wifi_control]
 type = "wifi_enable"
 pin = 3
 
-["custom.wifi_antenna"]
+[custom.wifi_antenna]
 type = "antenna_config"
 pin = 14
 
-["custom.spi_cs"]
+[custom.spi_cs]
 type = "chip_select"
 pin = 21

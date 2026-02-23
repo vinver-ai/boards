@@ -37,11 +37,11 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.dotstar"]
+[custom.dotstar]
 type = "apa102"
 clk = 45
 data = 40
 
-["custom.ldo_2"]
+[custom.ldo_2]
 type = "power_switch"
 enable = 21

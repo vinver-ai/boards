@@ -48,13 +48,13 @@ button_b = 10
 button_c = 33
 button_d = 34
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 18
 power_pin = 6
 num_leds = 1
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 42
 lrck = 40
@@ -62,11 +62,12 @@ dout = 3
 din = 41
 speaker_en = 39
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 21
 detect = 38
 
-["custom.rtc_interrupt"]
+[custom.rtc_interrupt]
 type = "rtc_int"
-int = 7
+irq = 7

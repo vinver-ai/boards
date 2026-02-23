@@ -37,6 +37,6 @@ tx = 21
 rx = 20
 baud = 115200
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 builtin_sw = 9

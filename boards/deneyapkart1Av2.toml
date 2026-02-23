@@ -46,7 +46,7 @@ baud = 115200
 [system.power]
 battery_adc = 9
 
-["drivers.camera"]
+[drivers.camera]
 type = "unknown"
 d0 = 41
 d1 = 2
@@ -63,12 +63,12 @@ href = 7
 sccb_sda = 4
 sccb_scl = 5
 
-["custom.camera_extra_data"]
+[custom.camera_extra_data]
 type = "camera_parallel_extra"
 d8 = 17
 d9 = 15
 
-["custom.pwm_outputs"]
+[custom.pwm_outputs]
 type = "pwm"
 pwm0 = 15
 pwm1 = 16

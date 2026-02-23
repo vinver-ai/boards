@@ -43,20 +43,20 @@ baud = 115200
 battery_adc = 1
 vbus_sense = 2
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 40
 power_pin = 34
 num_leds = 1
 
-["custom.pir_sensor"]
+[custom.pir_sensor]
 type = "pir_motion"
 pir = 4
 
-["custom.light_sensor"]
+[custom.light_sensor]
 type = "light_input"
 light = 3
 
-["custom.ldo2_control"]
+[custom.ldo2_control]
 type = "power_switch"
 ldo2 = 34

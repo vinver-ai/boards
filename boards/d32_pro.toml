@@ -31,7 +31,7 @@ reserved_pins = [6, 7, 8, 9, 10, 11]
 [system.power]
 battery_adc = 35
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 14
@@ -39,10 +39,11 @@ dc = 27
 rst = 33
 backlight = 32
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 4
 
-["custom.touchscreen_spi"]
+[custom.touchscreen_spi]
 type = "touchscreen_controller_spi"
 cs = 12

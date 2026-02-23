@@ -223,37 +223,59 @@ def validate_file(path: Path) -> list[tuple[str, str]]:
                     f'references pin="system.{sys_field}"'
                 ))
 
-    # ── CHECK 7: LEGACY_FIELD ─────────────────────────────────────────
+    # ── CHECK 7: MISSING_DRIVER_TYPE ───────────────────────────────────
     for drv_name in sorted(driver_sections):
         drv_data = data.get(drv_name, {})
-        short = drv_name.split(".", 1)[1] if "." in drv_name else drv_name
+        if "type" not in drv_data:
+            issues.append((
+                "MISSING_DRIVER_TYPE",
+                f'["{drv_name}"] has no "type" field'
+            ))
 
-        if short in ("touch", "imu", "rtc", "nfc", "ethernet"):
-            if "int" in drv_data and "irq" not in drv_data:
-                issues.append((
-                    "LEGACY_FIELD",
-                    f'["{drv_name}"] has "int" -- should be "irq"'
-                ))
+    # ── CHECK 8: MISSING_CUSTOM_TYPE ────────────────────────────────────
+    for cust_name, cust_data in sorted(custom_sections.items()):
+        if "type" not in cust_data:
+            issues.append((
+                "MISSING_CUSTOM_TYPE",
+                f'["{cust_name}"] has no "type" field'
+            ))
 
+    # ── CHECK 9: LEGACY_FIELD ───────────────────────────────────────────
+    all_sections = (
+        [(name, data.get(name, {})) for name in sorted(driver_sections)]
+        + [(name, val) for name, val in sorted(custom_sections.items())]
+    )
+    for section_name, section_data in all_sections:
+        if "int" in section_data and "irq" not in section_data:
+            issues.append((
+                "LEGACY_FIELD",
+                f'["{section_name}"] has "int" -- should be "irq"'
+            ))
+
+        if "reset" in section_data and "rst" not in section_data:
+            issues.append((
+                "LEGACY_FIELD",
+                f'["{section_name}"] has "reset" -- should be "rst"'
+            ))
+
+        if "power" in section_data and "power_pin" not in section_data:
+            issues.append((
+                "LEGACY_FIELD",
+                f'["{section_name}"] has "power" -- should be "power_pin"'
+            ))
+
+        if "address" in section_data and "addr" not in section_data:
+            issues.append((
+                "LEGACY_FIELD",
+                f'["{section_name}"] has "address" -- should be "addr"'
+            ))
+
+        short = section_name.split(".", 1)[1] if "." in section_name else section_name
         if short == "neopixel":
-            if "count" in drv_data and "num_leds" not in drv_data:
+            if "count" in section_data and "num_leds" not in section_data:
                 issues.append((
                     "LEGACY_FIELD",
-                    f'["{drv_name}"] has "count" -- should be "num_leds"'
-                ))
-
-        if short in ("display", "sdcard", "ethernet"):
-            if "power" in drv_data and "power_pin" not in drv_data:
-                issues.append((
-                    "LEGACY_FIELD",
-                    f'["{drv_name}"] has "power" -- should be "power_pin"'
-                ))
-
-        if short == "display":
-            if "address" in drv_data and "addr" not in drv_data:
-                issues.append((
-                    "LEGACY_FIELD",
-                    f'["{drv_name}"] has "address" -- should be "addr"'
+                    f'["{section_name}"] has "count" -- should be "num_leds"'
                 ))
 
     return issues
@@ -294,6 +316,8 @@ def main():
         "WRONG_CAP_TYPE",
         "ORPHAN_CAP",
         "MISSING_PIN_CAP",
+        "MISSING_DRIVER_TYPE",
+        "MISSING_CUSTOM_TYPE",
         "LEGACY_FIELD",
     ]
 

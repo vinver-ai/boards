@@ -51,7 +51,7 @@ sda = 2
 scl = 1
 freq = 400000
 
-["drivers.display"]
+[drivers.display]
 type = "ili9341"
 bus = "spi"
 cs = 3
@@ -59,7 +59,7 @@ dc = 35
 width = 320
 height = 240
 
-["drivers.camera"]
+[drivers.camera]
 type = "unknown"
 d0 = 40
 d1 = 41
@@ -75,7 +75,7 @@ href = 38
 sccb_sda = 12
 sccb_scl = 11
 
-["drivers.audio"]
+[drivers.audio]
 type = "es7210"
 bclk = 35
 lrck = 36
@@ -83,35 +83,36 @@ dout = 13
 din = 14
 mclk = 0
 
-["drivers.touch"]
+[drivers.touch]
 type = "ft6336"
 bus = "i2c"
 addr = 0x38
 irq = 21
 
-["drivers.pmu"]
+[drivers.pmu]
 type = "axp2101"
 bus = "i2c"
 addr = 0x34
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 4
 
-["drivers.imu"]
+[drivers.imu]
 type = "bmi270"
 bus = "i2c"
 addr = 0x68
 
-["custom.gpio_expander"]
+[custom.gpio_expander]
 type = "aw9523b"
-int = 21
+irq = 21
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "bm8563"
 bus = "i2c"
 addr = 0x51
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 adc = 10

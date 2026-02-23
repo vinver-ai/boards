@@ -51,16 +51,16 @@ charge_en = 4
 PWRKEY = 7
 SOS = 9
 
-["custom.gsm_modem_control"]
+[custom.gsm_modem_control]
 type = "cellular_modem_control"
 enable = 10
 int1 = 3
 
-["custom.tps_power_switch"]
+[custom.tps_power_switch]
 type = "power_enable"
 enable = 4
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 gpio_analog_in = 2
 gpio_sos = 9

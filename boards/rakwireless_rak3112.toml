@@ -49,7 +49,7 @@ battery_adc = 21
 [system.buttons]
 LED_BLUE = 45
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1262"
 bus = "spi"
 cs = 7
@@ -57,7 +57,7 @@ rst = 8
 irq = 47
 busy = 48
 
-["custom.wisblock_io"]
+[custom.wisblock_io]
 type = "expansion_header"
 WB_A0 = 1
 WB_A1 = 2

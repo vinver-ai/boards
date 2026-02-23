@@ -43,7 +43,7 @@ scl = 7
 freq = 400000
 
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 8
 num_leds = 1

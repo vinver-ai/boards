@@ -45,14 +45,14 @@ baud = 115200
 [system.buttons]
 slide_switch = 16
 
-["custom.ads1292"]
+[custom.ads1292]
 type = "ecg_afe"
 cs = 13
 drdy = 26
 pwdn = 27
 start = 14
 
-["custom.afe4490"]
+[custom.afe4490]
 type = "ppg_afe"
 cs = 21
 drdy = 39

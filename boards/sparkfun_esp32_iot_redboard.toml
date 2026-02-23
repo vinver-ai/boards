@@ -43,15 +43,15 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "unknown"
 pin = 2
 num_leds = 1
 
-["custom.rgb_led"]
+[custom.rgb_led]
 type = "rgb_led"
 data = 2
 
-["custom.spi_cs_default"]
+[custom.spi_cs_default]
 type = "spi_cs"
 cs = 5

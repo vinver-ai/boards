@@ -42,7 +42,7 @@ baud = 115200
 [system.buttons]
 BTN_A = 4
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 10
@@ -50,13 +50,14 @@ dc = 21
 rst = 14
 backlight = 3
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 48
 lrck = 45
 din = 47
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 18
 detect = 17

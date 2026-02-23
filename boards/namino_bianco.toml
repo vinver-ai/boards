@@ -36,7 +36,7 @@ tx = 17
 rx = 18
 baud = 115200
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 adc1_ch0 = 1
 adc1_ch1 = 2

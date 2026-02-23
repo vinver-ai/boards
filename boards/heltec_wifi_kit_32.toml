@@ -45,7 +45,7 @@ baud = 115200
 [system.power]
 vext = 21
 
-["drivers.display"]
+[drivers.display]
 type = "ssd1306"
 bus = "i2c"
 addr = 0x3C
@@ -53,7 +53,7 @@ width = 128
 height = 64
 rst = 16
 
-["custom.oled_i2c"]
+[custom.oled_i2c]
 type = "i2c_bus"
 scl = 15
 sda = 4

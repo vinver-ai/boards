@@ -52,12 +52,12 @@ awexp_button_right = 12
 awexp_button_sel = 1
 awexp_button_up = 13
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 1
 num_leds = 1
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 39
@@ -65,7 +65,7 @@ dc = 40
 rst = 38
 backlight = 45
 
-["drivers.camera"]
+[drivers.camera]
 type = "unknown"
 d0 = 13
 d1 = 15
@@ -83,17 +83,18 @@ sccb_sda = 34
 sccb_scl = 33
 pwdn = 21
 
-["drivers.audio"]
+[drivers.audio]
 type = "unknown"
 speaker_en = 46
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 48
 detect = 8
 power_pin = 9
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 awexp_spkr_sd = 0
 reset_gpio_num = 47

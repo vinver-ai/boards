@@ -39,7 +39,7 @@ baud = 115200
 [system.power]
 battery_adc = 1
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 48
 power_pin = 34

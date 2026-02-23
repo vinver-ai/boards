@@ -43,14 +43,14 @@ tx = 5
 rx = 4
 baud = 115200
 
-["custom.relays"]
+[custom.relays]
 type = "relay_outputs"
 REL1 = 10
 REL2 = 11
 REL3 = 22
 REL4 = 23
 
-["custom.digital_inputs"]
+[custom.digital_inputs]
 type = "digital_inputs"
 DIN1 = 1
 DIN2 = 2

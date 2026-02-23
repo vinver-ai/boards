@@ -51,19 +51,19 @@ charge_en = 4
 [system.buttons]
 SOS = 9
 
-["custom.gsm_modem_control"]
+[custom.gsm_modem_control]
 type = "gsm_control"
 enable = 10
 
-["custom.tps_power_switch"]
+[custom.tps_power_switch]
 type = "power_enable"
 enable = 4
 
-["custom.int1"]
+[custom.int1]
 type = "interrupt_input"
 int1 = 3
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 gpio_analog_in = 2
 gpio_sos = 9

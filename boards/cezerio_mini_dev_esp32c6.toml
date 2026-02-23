@@ -37,11 +37,11 @@ tx = 7
 rx = 14
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 20
 num_leds = 1
 
-["custom.matrix"]
+[custom.matrix]
 type = "matrix"
 MATRIX = 4

@@ -40,7 +40,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.hub75_matrix"]
+[custom.hub75_matrix]
 type = "hub75_rgb_led_matrix"
 addr_a = 39
 addr_b = 38
@@ -79,12 +79,12 @@ x4_g2 = 9
 x4_r1 = 4
 x4_r2 = 5
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "bm8563"
 bus = "i2c"
 addr = 0x51
 
-["custom.wf4_ports"]
+[custom.wf4_ports]
 type = "huidu_io_ports"
 p11_data = 15
 p12_data1 = 47
@@ -97,7 +97,7 @@ s2_data = 48
 s3_data = 26
 s4_data = 46
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 wf4_p1_rx_pin = 44
 wf4_p1_tx_pin = 43

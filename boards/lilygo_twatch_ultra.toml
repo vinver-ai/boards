@@ -46,17 +46,17 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 17
 dout = 11
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 12
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1262"
 bus = "spi"
 cs = 36
@@ -64,22 +64,23 @@ rst = 47
 irq = 14
 busy = 48
 
-["drivers.pmu"]
+[drivers.pmu]
 type = "unknown"
 bus = "i2c"
 irq = 7
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 21
 
-["drivers.nfc"]
+[drivers.nfc]
 type = "unknown"
 bus = "spi"
 cs = 4
 irq = 5
 
-["custom.display_parallel_bus"]
+[custom.display_parallel_bus]
 type = "display_data_bus"
 d0 = 38
 d1 = 39
@@ -88,20 +89,20 @@ d3 = 45
 sck = 40
 te = 6
 
-["custom.rtc_interrupt"]
+[custom.rtc_interrupt]
 type = "rtc_int"
-int = 1
+irq = 1
 
-["custom.sensor_interrupt"]
+[custom.sensor_interrupt]
 type = "sensor_int"
-int = 8
+irq = 8
 
-["custom.expander_controls"]
+[custom.expander_controls]
 type = "io_expander_ctrl"
 disp_en = 7
 drv_en = 6
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 disp_cs = 41
 disp_rst = 37

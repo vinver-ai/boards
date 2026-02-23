@@ -37,11 +37,11 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.spi_ss"]
+[custom.spi_ss]
 type = "spi_chip_select"
 ss = 12
 
-["custom.adc_inputs"]
+[custom.adc_inputs]
 type = "adc"
 adc1 = 7
 adc2 = 8

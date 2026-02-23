@@ -42,12 +42,12 @@ tx = 21
 rx = 20
 baud = 115200
 
-["custom.pwm_outputs"]
+[custom.pwm_outputs]
 type = "pwm"
 PWM0 = 0
 PWM1 = 1
 PWM2 = 3
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 bt = 9

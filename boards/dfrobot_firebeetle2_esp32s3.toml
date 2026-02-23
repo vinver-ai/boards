@@ -41,7 +41,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 18
@@ -49,7 +49,7 @@ dc = 3
 rst = 38
 backlight = 21
 
-["custom.gdi_display_spi"]
+[custom.gdi_display_spi]
 type = "display_header_spi"
 backlight = 21
 cs = 18
@@ -59,15 +59,15 @@ spi_miso = 16
 spi_mosi = 15
 spi_sck = 17
 
-["custom.gdi_touch"]
+[custom.gdi_touch]
 type = "touch_header"
 cs = 12
-int = 13
+irq = 13
 
-["custom.gdi_flash"]
+[custom.gdi_flash]
 type = "spi_flash_header"
 cs = 7
 
-["custom.gdi_te_busy"]
+[custom.gdi_te_busy]
 type = "display_te_busy"
 busy_te = 14

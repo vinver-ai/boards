@@ -41,6 +41,7 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 33

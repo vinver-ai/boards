@@ -37,7 +37,7 @@ tx = 21
 rx = 20
 baud = 115200
 
-["custom.leds_discrete"]
+[custom.leds_discrete]
 type = "discrete_leds"
 LED_BLUE = 5
 LED_COLD = 19

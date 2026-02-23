@@ -49,6 +49,6 @@ baud = 115200
 [system.power]
 battery_adc = 35
 
-["custom.spi_cs"]
+[custom.spi_cs]
 type = "chip_select"
 ss = 33

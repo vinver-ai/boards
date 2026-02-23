@@ -40,21 +40,21 @@ mosi = 21
 miso = 22
 sck = 20
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 17
 dc = 16
 
-["custom.ir_tx"]
+[custom.ir_tx]
 type = "ir_transmitter"
 tx = 9
 
-["custom.grove"]
+[custom.grove]
 type = "grove_port"
 io0 = 5
 io1 = 4
 
-["custom.sys_irq"]
+[custom.sys_irq]
 type = "interrupt"
 irq = 3

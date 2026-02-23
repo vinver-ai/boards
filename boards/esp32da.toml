@@ -40,7 +40,7 @@ tx = 1
 rx = 3
 baud = 115200
 
-["custom.antenna_switch"]
+[custom.antenna_switch]
 type = "rf_antenna_select"
 ant1 = 2
 ant2 = 25

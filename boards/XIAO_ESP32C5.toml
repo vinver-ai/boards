@@ -44,7 +44,7 @@ baud = 115200
 [system.power]
 battery_adc = 6
 
-["custom.battery_voltage_sense"]
+[custom.battery_voltage_sense]
 type = "battery_adc_with_enable"
 bat_volt_adc = 6
 bat_volt_en = 26

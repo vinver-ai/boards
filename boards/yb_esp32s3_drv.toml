@@ -37,7 +37,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.expansion_header"]
+[custom.expansion_header]
 type = "gpio_expansion"
 X1 = 35
 X2 = 36

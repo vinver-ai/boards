@@ -42,37 +42,39 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 4
 
-["drivers.can"]
+[drivers.can]
+type = "twai"
 txd = 20
 rxd = 19
 
-["drivers.rs485"]
+[drivers.rs485]
+type = "rs485"
 txd = 15
 rxd = 16
 
-["custom.lcd_rgb_43"]
+[custom.lcd_rgb_43]
 type = "rgb_lcd_parallel"
 b5 = 18
 b6 = 17
 r4 = 2
 vsync = 3
 
-["custom.touch_i2c"]
+[custom.touch_i2c]
 type = "touch_controller_i2c"
 scl = 9
 sda = 8
 
-["custom.ch422g_io_expander"]
+[custom.ch422g_io_expander]
 type = "i2c_gpio_expander"
 scl = 9
 sda = 8
 
-["custom.extra_output_aliases"]
+[custom.extra_output_aliases]
 type = "named_gpio_outputs"
 output_io17 = 17
 output_io18 = 18

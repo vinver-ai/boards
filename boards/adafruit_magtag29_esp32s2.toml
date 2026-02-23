@@ -55,28 +55,28 @@ pin_button2 = 14
 pin_button3 = 12
 pin_button4 = 11
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 1
 power_pin = 21
 num_leds = 1
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 8
 dc = 7
 rst = 6
 
-["drivers.audio"]
+[drivers.audio]
 type = "unknown"
 speaker_en = 16
 
-["drivers.imu"]
+[drivers.imu]
 type = "unknown"
 bus = "i2c"
 irq = 9
 
-["custom.light_sensor"]
+[custom.light_sensor]
 type = "adc"
 adc = 3

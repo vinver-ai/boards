@@ -39,7 +39,7 @@ baud = 115200
 [system.power]
 vbus_sense = 33
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 35
 power_pin = 34

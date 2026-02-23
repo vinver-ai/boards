@@ -47,7 +47,7 @@ baud = 115200
 [system.power]
 battery_adc = 16
 
-["custom.slot_connectors"]
+[custom.slot_connectors]
 type = "expansion_slot_signals"
 S1 = 1
 S10 = 6
@@ -70,12 +70,12 @@ S7 = 3
 S8 = 4
 S9 = 5
 
-["custom.spi_chip_selects"]
+[custom.spi_chip_selects]
 type = "chip_select_lines"
 CS1 = 17
 CS2 = 18
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 c = 14
 clk = 36

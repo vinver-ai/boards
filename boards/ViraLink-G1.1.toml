@@ -37,21 +37,22 @@ sda = 4
 scl = 16
 freq = 400000
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "unknown"
 bus = "rmii"
 mdc = 23
 mdio = 18
 
-["drivers.rs485"]
+[drivers.rs485]
+type = "rs485"
 txd = 32
 rxd = 35
 
-["custom.rf433"]
+[custom.rf433]
 type = "rf_433mhz"
 data = 5
 
-["custom.gsm"]
+[custom.gsm]
 type = "cellular_modem"
 pwr_en = 33
 uart1_rx = 34
@@ -59,21 +60,21 @@ uart1_tx = 15
 uart2_rx = 35
 uart2_tx = 32
 
-["custom.pcf1"]
+[custom.pcf1]
 type = "gpio_expander_int"
-int = 14
+irq = 14
 
-["custom.wiegand1"]
+[custom.wiegand1]
 type = "wiegand"
 d0 = 15
 d1 = 34
 
-["custom.wiegand2"]
+[custom.wiegand2]
 type = "wiegand"
 d0 = 39
 d1 = 36
 
-["custom.ext_io"]
+[custom.ext_io]
 type = "external_io"
 ext1 = 12
 ext2 = 13

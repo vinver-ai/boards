@@ -40,12 +40,13 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 46
 num_leds = 1
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "sdio"
 detect = 48
 d0 = 39
@@ -55,10 +56,10 @@ d3 = 33
 clk = 38
 cmd = 34
 
-["custom.fuel_gauge"]
+[custom.fuel_gauge]
 type = "max17048"
 alert = 35
 
-["custom.peripheral_power"]
+[custom.peripheral_power]
 type = "power_switch"
 enable = 45

@@ -47,7 +47,7 @@ sw1 = 46
 sw3 = 47
 sw4 = 48
 
-["custom.uart_modem_control"]
+[custom.uart_modem_control]
 type = "uart_flow_control"
 cts = 6
 dsr = 7

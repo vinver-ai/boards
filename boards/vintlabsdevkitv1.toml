@@ -41,7 +41,7 @@ tx = 1
 rx = 3
 baud = 115200
 
-["custom.pwm"]
+[custom.pwm]
 type = "pwm_outputs"
 PWM0 = 12
 PWM1 = 13

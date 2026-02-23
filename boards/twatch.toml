@@ -48,21 +48,21 @@ tx = 33
 rx = 34
 baud = 115200
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 38
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "unknown"
 bus = "i2c"
 irq = 37
 
-["drivers.imu"]
+[drivers.imu]
 type = "bma42x"
 bus = "i2c"
 irq = 39
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 apx20x_int = 35

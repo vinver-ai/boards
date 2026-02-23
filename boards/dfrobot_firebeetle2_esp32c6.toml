@@ -38,7 +38,7 @@ tx = 16
 rx = 17
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 1
@@ -46,7 +46,7 @@ dc = 8
 rst = 14
 backlight = 15
 
-["custom.gdi_connector"]
+[custom.gdi_connector]
 type = "gdi_display_touch_header"
 backlight = 15
 cs = 1

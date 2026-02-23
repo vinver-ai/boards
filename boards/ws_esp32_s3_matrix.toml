@@ -36,7 +36,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 ws_imu_int1 = 10
 ws_imu_int2 = 13

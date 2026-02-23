@@ -48,29 +48,29 @@ back = 25
 down = 4
 up = 35
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 5
 dc = 10
 rst = 9
 
-["custom.epaper_busy"]
+[custom.epaper_busy]
 type = "display_busy"
 pin = 19
 
-["custom.vibration_motor"]
+[custom.vibration_motor]
 type = "haptic_motor"
 pin = 13
 
-["drivers.imu"]
+[drivers.imu]
 type = "bma423"
 bus = "i2c"
 addr = 0x18
 irq = 14
 int2 = 12
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "pcf8563"
 bus = "i2c"
 addr = 0x51

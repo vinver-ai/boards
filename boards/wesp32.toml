@@ -45,7 +45,7 @@ tx = 12
 rx = 13
 baud = 115200
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "unknown"
 bus = "rmii"
 mdc = 16

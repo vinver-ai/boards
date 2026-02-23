@@ -46,7 +46,7 @@ baud = 115200
 [system.power]
 battery_adc = 3
 
-["drivers.camera"]
+[drivers.camera]
 type = "unknown"
 d0 = 41
 d1 = 2
@@ -63,12 +63,12 @@ href = 7
 sccb_sda = 4
 sccb_scl = 5
 
-["custom.sdio_signals"]
+[custom.sdio_signals]
 type = "sdio"
 clk = 13
 cmd = 12
 d0 = 14
 
-["custom.spi_ss"]
+[custom.spi_ss]
 type = "spi_cs"
 ss = 42

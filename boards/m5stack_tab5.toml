@@ -31,11 +31,11 @@ tx = 37
 rx = 38
 baud = 115200
 
-["custom.esp_hosted_sdio"]
+[custom.esp_hosted_sdio]
 type = "sdio_4bit"
 cmd = 13
 d0 = 11
 d1 = 10
 d2 = 9
 d3 = 8
-reset = 15
+rst = 15

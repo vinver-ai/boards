@@ -42,8 +42,8 @@ sda = 47
 scl = 48
 freq = 400000
 
-["custom.power_ctrl"]
+[custom.power_ctrl]
 type = "power-control"
 alarm = 21
 en = 7
-int = 5
+irq = 5

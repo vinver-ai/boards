@@ -42,18 +42,18 @@ tx = 1
 rx = 3
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "unknown"
 pin = 0
 num_leds = 1
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1276"
 bus = "spi"
 cs = 17
 rst = 18
 irq = 23
 
-["custom.ant_select"]
+[custom.ant_select]
 type = "rf_antenna_switch"
 ANT_SELECT = 16

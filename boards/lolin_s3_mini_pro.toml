@@ -41,7 +41,7 @@ baud = 115200
 button_ok = 47
 button_right = 48
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 35
@@ -49,5 +49,6 @@ dc = 36
 rst = 34
 backlight = 33
 
-["drivers.ir"]
+[drivers.ir]
+type = "ir"
 tx = 9

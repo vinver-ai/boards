@@ -44,7 +44,7 @@ baud = 115200
 battery_adc = 7
 vext = 21
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1262"
 bus = "spi"
 cs = 8
@@ -52,18 +52,18 @@ rst = 12
 irq = 14
 busy = 13
 
-["drivers.gps"]
+[drivers.gps]
 type = "unknown"
 tx = 4
 rx = 5
 baud = 9600
 pps = 1
 
-["custom.status_leds"]
+[custom.status_leds]
 type = "leds"
 LED0 = 33
 LED1 = 34
 
-["custom.gps_control"]
+[custom.gps_control]
 type = "reset"
 GPS_RESET_PIN = 3

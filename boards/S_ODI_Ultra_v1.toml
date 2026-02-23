@@ -42,10 +42,10 @@ tx = 1
 rx = 3
 baud = 115200
 
-["custom.led_secondary"]
+[custom.led_secondary]
 type = "led"
 led2 = 4
 
-["custom.spi_cs_default"]
+[custom.spi_cs_default]
 type = "spi_cs"
 cs = 5

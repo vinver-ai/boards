@@ -45,7 +45,7 @@ battery_adc = 1
 [system.buttons]
 BUTTON_1 = 0
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1280"
 bus = "spi"
 cs = 7
@@ -53,11 +53,11 @@ rst = 8
 irq = 9
 busy = 36
 
-["custom.lora_uart"]
+[custom.lora_uart]
 type = "uart"
 rx = 21
 tx = 10
 
-["custom.spi_ss_alias"]
+[custom.spi_ss_alias]
 type = "spi_cs"
 ss = 13

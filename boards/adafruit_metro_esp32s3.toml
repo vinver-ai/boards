@@ -43,11 +43,11 @@ tx = 40
 rx = 41
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 46
 num_leds = 1
 
-["custom.spi_cs_default"]
+[custom.spi_cs_default]
 type = "spi_cs"
 cs = 45

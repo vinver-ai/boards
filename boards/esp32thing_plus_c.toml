@@ -46,6 +46,6 @@ tx = 17
 rx = 16
 baud = 115200
 
-["custom.spi_cs"]
+[custom.spi_cs]
 type = "spi_chip_select"
 ss = 15

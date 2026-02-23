@@ -40,8 +40,8 @@ tx = 1
 rx = 3
 baud = 115200
 
-["custom.apa102_rgb_led"]
+[custom.apa102_rgb_led]
 type = "apa102_dotstar"
 clk = 12
 data = 2
-power = 13
+power_pin = 13

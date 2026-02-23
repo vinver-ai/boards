@@ -37,12 +37,12 @@ tx = 37
 rx = 38
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 44
 num_leds = 1
 
-["custom.esp_hosted_sdio"]
+[custom.esp_hosted_sdio]
 type = "sdio_esp_hosted"
 d2 = 48
 d3 = 47

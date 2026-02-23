@@ -38,10 +38,11 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.can"]
+[drivers.can]
+type = "twai"
 txd = 7
 rxd = 6
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 cs = 10

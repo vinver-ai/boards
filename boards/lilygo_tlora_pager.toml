@@ -46,7 +46,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 11
 lrck = 18
@@ -54,7 +54,7 @@ dout = 45
 din = 17
 mclk = 10
 
-["drivers.lora"]
+[drivers.lora]
 type = "sx1262"
 bus = "spi"
 cs = 36
@@ -62,46 +62,47 @@ rst = 47
 irq = 14
 busy = 48
 
-["drivers.gps"]
+[drivers.gps]
 type = "unknown"
 tx = 12
 rx = 4
 baud = 9600
 pps = 13
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 21
 
-["drivers.nfc"]
+[drivers.nfc]
 type = "unknown"
 bus = "spi"
 cs = 39
 irq = 5
 
-["custom.keyboard"]
+[custom.keyboard]
 type = "keypad"
 backlight = 46
 en = 8
-int = 6
+irq = 6
 rst = 2
 
-["custom.rotary_encoder"]
+[custom.rotary_encoder]
 type = "encoder"
 a = 40
 b = 41
 button = 7
 
-["drivers.rtc"]
+[drivers.rtc]
 type = "unknown"
 bus = "i2c"
 irq = 1
 
-["custom.sensor"]
+[custom.sensor]
 type = "interrupt"
-int = 8
+irq = 8
 
-["custom.expander_controls"]
+[custom.expander_controls]
 type = "io_expander_lines"
 amp_en = 1
 drv_en = 0
@@ -116,7 +117,7 @@ sd_det = 10
 sd_en = 12
 sd_pullen = 11
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 disp_bl = 42
 disp_cs = 38

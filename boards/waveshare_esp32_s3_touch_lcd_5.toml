@@ -40,27 +40,29 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 4
 
-["drivers.can"]
+[drivers.can]
+type = "twai"
 txd = 16
 rxd = 15
 
-["drivers.rs485"]
+[drivers.rs485]
+type = "rs485"
 txd = 44
 rxd = 43
 
-["custom.ws_rgb_lcd"]
+[custom.ws_rgb_lcd]
 type = "rgb_lcd_parallel"
 b5 = 18
 b6 = 17
 r4 = 2
 vsync = 3
 
-["custom.ws_touch_i2c"]
+[custom.ws_touch_i2c]
 type = "touch_i2c_bus"
 scl = 9
 sda = 8

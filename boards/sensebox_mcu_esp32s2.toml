@@ -54,38 +54,39 @@ tx = 17
 rx = 18
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 1
 num_leds = 1
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 10
 power_pin = 9
 
-["custom.xbee_socket"]
+[custom.xbee_socket]
 type = "xbee"
 cs = 34
 enable = 41
-int = 33
+irq = 33
 miso = 37
 mosi = 35
-reset = 38
+rst = 38
 rxd = 18
 sck = 36
 txd = 17
 
-["custom.pd"]
+[custom.pd]
 type = "power_delivery"
 enable = 21
 sense = 14
 
-["custom.uart_port_enable"]
+[custom.uart_port_enable]
 type = "level_shifter_enable"
 enable = 26
 
-["custom.io_header"]
+[custom.io_header]
 type = "gpio_header"
 io2 = 2
 io3 = 3
@@ -95,11 +96,11 @@ io6 = 6
 io7 = 7
 io_enable = 8
 
-["custom.i2c_int"]
+[custom.i2c_int]
 type = "i2c_interrupt"
-int = 46
+irq = 46
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 pin_usb_dm = 19
 pin_usb_dp = 20

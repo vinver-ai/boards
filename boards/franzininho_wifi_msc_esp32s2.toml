@@ -37,11 +37,11 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "unknown"
 pin = 18
 num_leds = 1
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 usb_fw_msc_serial_number = 0

@@ -47,12 +47,12 @@ freq = 400000
 battery_adc = 2
 vbus_sense = 34
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 40
 power_pin = 39
 num_leds = 1
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 ldo2 = 39

@@ -50,25 +50,25 @@ baud = 115200
 LEFT_BUTTON = 35
 RIGHT_BUTTON = 34
 
-["custom.status_leds"]
+[custom.status_leds]
 type = "leds"
 BLUE_LED = 17
 GREEN_LED = 16
 RED_LED = 27
 YELLOW_LED = 18
 
-["custom.sensors"]
+[custom.sensors]
 type = "adc_inputs"
 LDR = 36
 POT = 39
 
-["custom.motor_driver"]
+[custom.motor_driver]
 type = "dual_dc_motor"
 MOTOR1A = 27
 MOTOR1B = 18
 MOTOR2A = 16
 MOTOR2B = 17
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 right_putton = 34

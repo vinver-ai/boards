@@ -43,41 +43,41 @@ tx = 39
 rx = 40
 baud = 115200
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 15
 num_leds = 1
 
-["custom.ultrasonic"]
+[custom.ultrasonic]
 type = "hcsr04"
 echo = 6
 trig = 5
 
-["custom.shift_register_bus"]
+[custom.shift_register_bus]
 type = "shift_register_3wire"
 clock = 47
 data = 48
 latch = 34
 
-["custom.digital_outputs"]
+[custom.digital_outputs]
 type = "gpio_outputs"
 d10_out = 10
 d6_out = 35
 d9_out = 36
 
-["custom.digital_inputs"]
+[custom.digital_inputs]
 type = "gpio_inputs"
 d_in_12 = 9
 d_in_4 = 8
 d_in_8 = 11
 
-["custom.analog_inputs"]
+[custom.analog_inputs]
 type = "adc_inputs"
 an_in_12 = 7
 an_in_4 = 17
 an_in_8 = 16
 
-["custom.selectors"]
+[custom.selectors]
 type = "selector_inputs"
 s1 = 37
 s2 = 38

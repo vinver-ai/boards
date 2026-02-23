@@ -36,12 +36,12 @@ baud = 115200
 switch_1 = 32
 switch_2 = 33
 
-["custom.relays"]
+[custom.relays]
 type = "dual_relay"
 RELAY_1 = 27
 RELAY_2 = 14
 
-["custom.cse7761"]
+[custom.cse7761]
 type = "energy_monitor_uart"
 rx = 26
 tx = 25

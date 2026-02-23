@@ -36,6 +36,6 @@ tx = 43
 rx = 44
 baud = 115200
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 usb_fw_msc_serial_number = 0

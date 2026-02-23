@@ -40,12 +40,12 @@ tx = 37
 rx = 38
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "rgb"
 rst = 23
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 12
 lrck = 10
@@ -53,16 +53,17 @@ dout = 11
 din = 9
 mclk = 13
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 5
 rst = 4
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "sdio"
 power_pin = 45
 
-["custom.lcd_backlight_level"]
+[custom.lcd_backlight_level]
 type = "backlight_level_constant"
 LCD_BL_ON_LEVEL = 1

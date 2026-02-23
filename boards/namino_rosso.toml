@@ -38,17 +38,18 @@ tx = 17
 rx = 18
 baud = 115200
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 2
 
-["custom.namino_mode_reset"]
+[custom.namino_mode_reset]
 type = "control_pins"
 nm_reset = 48
 reset_add_on = 46
 reset_arduino = 46
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 adc2_ch4 = 15
 adc2_ch8 = 19

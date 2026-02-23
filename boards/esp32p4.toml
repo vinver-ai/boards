@@ -38,17 +38,18 @@ tx = 37
 rx = 38
 baud = 115200
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "sdio"
 power_pin = 45
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "unknown"
 bus = "rmii"
 mdc = 31
 phy_addr = 1
 
-["custom.esp_hosted_sdio"]
+[custom.esp_hosted_sdio]
 type = "sdio_esp_hosted"
 cmd = 19
 d0 = 14

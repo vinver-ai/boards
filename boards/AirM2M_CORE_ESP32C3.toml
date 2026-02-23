@@ -40,6 +40,6 @@ baud = 115200
 [system.buttons]
 LED_BUILTIN_AUX = 13
 
-["custom.spi_cs"]
+[custom.spi_cs]
 type = "spi_chip_select"
 SS = 7

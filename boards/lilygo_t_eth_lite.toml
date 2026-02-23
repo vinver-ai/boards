@@ -37,11 +37,12 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 42
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "w5500"
 bus = "spi"
 phy_addr = 1

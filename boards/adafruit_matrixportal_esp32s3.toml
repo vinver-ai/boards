@@ -41,11 +41,11 @@ baud = 115200
 [system.buttons]
 pin_button_down = 7
 
-["drivers.neopixel"]
+[drivers.neopixel]
 type = "ws2812"
 pin = 4
 num_leds = 1
 
-["custom.lightsensor"]
+[custom.lightsensor]
 type = "analog_input"
 sense = 5

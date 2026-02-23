@@ -37,7 +37,7 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "w5500"
 bus = "spi"
 cs = 14

@@ -39,17 +39,17 @@ tx = 43
 rx = 44
 baud = 115200
 
-["drivers.display"]
+[drivers.display]
 type = "unknown"
 bus = "spi"
 cs = 12
 
-["drivers.touch"]
+[drivers.touch]
 type = "unknown"
 bus = "i2c"
 irq = 21
 
-["custom.amoled_qspi_bus"]
+[custom.amoled_qspi_bus]
 type = "qspi_display_bus"
 sck = 11
 sio0 = 4
@@ -57,7 +57,7 @@ sio1 = 5
 sio2 = 6
 sio3 = 7
 
-["custom.extra_outputs"]
+[custom.extra_outputs]
 type = "gpio_outputs"
 output_io17 = 17
 output_io18 = 18

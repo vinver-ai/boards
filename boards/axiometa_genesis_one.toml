@@ -47,54 +47,54 @@ baud = 115200
 [system.power]
 battery_adc = 10
 
-["custom.port_p1"]
+[custom.port_p1]
 type = "expansion_port"
 io0 = 1
 io1 = 14
 io2 = 41
 
-["custom.port_p2"]
+[custom.port_p2]
 type = "expansion_port"
 io0 = 2
 io1 = 15
 io2 = 42
 
-["custom.port_p3"]
+[custom.port_p3]
 type = "expansion_port"
 io0 = 3
 io1 = 16
 io2 = 45
 
-["custom.port_p4"]
+[custom.port_p4]
 type = "expansion_port"
 io0 = 4
 io1 = 17
 io2 = 46
 
-["custom.port_p5"]
+[custom.port_p5]
 type = "expansion_port"
 io0 = 5
 io1 = 18
 io2 = 21
 
-["custom.port_p6"]
+[custom.port_p6]
 type = "expansion_port"
 io0 = 6
 io1 = 40
 io2 = 38
 
-["custom.port_p7"]
+[custom.port_p7]
 type = "expansion_port"
 io0 = 7
 io1 = 9
 io2 = 39
 
-["custom.port_p8"]
+[custom.port_p8]
 type = "expansion_port"
 io0 = 8
 io1 = 43
 io2 = 44
 
-["custom.spi_ss"]
+[custom.spi_ss]
 type = "spi_chip_select"
 ss = 1

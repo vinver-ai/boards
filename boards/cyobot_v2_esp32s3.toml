@@ -49,36 +49,37 @@ battery_adc = 6
 [system.buttons]
 button1 = 38
 
-["drivers.audio"]
+[drivers.audio]
 type = "i2s"
 bclk = 9
 lrck = 45
 din = 8
 mclk = 16
 
-["drivers.sdcard"]
+[drivers.sdcard]
+type = "sdcard"
 bus = "spi"
 cs = 14
 
-["custom.neopixel_base"]
+[custom.neopixel_base]
 type = "neopixel"
 data = 7
 
-["custom.neopixel_brain"]
+[custom.neopixel_brain]
 type = "neopixel"
 data = 15
 
-["custom.encoder1"]
+[custom.encoder1]
 type = "quadrature_encoder"
 a = 39
 b = 40
 
-["custom.encoder2"]
+[custom.encoder2]
 type = "quadrature_encoder"
 a = 20
 b = 19
 
-["custom.board_specific"]
+[custom.board_specific]
 type = "misc"
 char_det = 23
 esp_io0 = 0

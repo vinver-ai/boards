@@ -37,29 +37,30 @@ sda = 4
 scl = 16
 freq = 400000
 
-["drivers.ethernet"]
+[drivers.ethernet]
 type = "unknown"
 bus = "rmii"
 mdc = 23
 mdio = 18
 
-["drivers.rs485"]
+[drivers.rs485]
+type = "rs485"
 txd = 32
 rxd = 35
 
-["custom.relays"]
+[custom.relays]
 type = "relay_outputs"
 relay1 = 2
 relay2 = 13
 relay3 = 14
 relay4 = 33
 
-["custom.wiegand1"]
+[custom.wiegand1]
 type = "wiegand_reader"
 d0 = 15
 d1 = 34
 
-["custom.wiegand2"]
+[custom.wiegand2]
 type = "wiegand_reader"
 d0 = 39
 d1 = 36
