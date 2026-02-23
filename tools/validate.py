@@ -130,11 +130,22 @@ def validate_file(path: Path) -> list[tuple[str, str]]:
     driver_sections: set[str] = set()
     custom_sections: dict[str, dict] = {}
 
+    # Flat root-level keys: "drivers.neopixel" (legacy quoted format)
     for key, val in data.items():
         if key.startswith("drivers.") and isinstance(val, dict):
             driver_sections.add(key)
         elif key.startswith("custom.") and isinstance(val, dict):
             custom_sections[key] = val
+
+    # Nested keys: data["drivers"]["neopixel"] (bare key format)
+    if "drivers" in data and isinstance(data["drivers"], dict):
+        for name, val in data["drivers"].items():
+            if isinstance(val, dict):
+                driver_sections.add(f"drivers.{name}")
+    if "custom" in data and isinstance(data["custom"], dict):
+        for name, val in data["custom"].items():
+            if isinstance(val, dict):
+                custom_sections[f"custom.{name}"] = val
 
     # ── CHECK 1: MISSING_CAP_FOR_DRIVER ───────────────────────────────
     for drv in sorted(driver_sections):
@@ -225,11 +236,16 @@ def validate_file(path: Path) -> list[tuple[str, str]]:
 
     # ── CHECK 7: MISSING_DRIVER_TYPE ───────────────────────────────────
     for drv_name in sorted(driver_sections):
+        # Try flat key first, then nested
         drv_data = data.get(drv_name, {})
+        if not drv_data:
+            parts = drv_name.split(".", 1)
+            if len(parts) == 2:
+                drv_data = data.get(parts[0], {}).get(parts[1], {})
         if "type" not in drv_data:
             issues.append((
                 "MISSING_DRIVER_TYPE",
-                f'["{drv_name}"] has no "type" field'
+                f'[{drv_name}] has no "type" field'
             ))
 
     # ── CHECK 8: MISSING_CUSTOM_TYPE ────────────────────────────────────
@@ -241,8 +257,17 @@ def validate_file(path: Path) -> list[tuple[str, str]]:
             ))
 
     # ── CHECK 9: LEGACY_FIELD ───────────────────────────────────────────
+    def _resolve(name: str) -> dict:
+        """Resolve section data from flat or nested keys."""
+        val = data.get(name, {})
+        if not val:
+            parts = name.split(".", 1)
+            if len(parts) == 2:
+                val = data.get(parts[0], {}).get(parts[1], {})
+        return val
+
     all_sections = (
-        [(name, data.get(name, {})) for name in sorted(driver_sections)]
+        [(name, _resolve(name)) for name in sorted(driver_sections)]
         + [(name, val) for name, val in sorted(custom_sections.items())]
     )
     for section_name, section_data in all_sections:
